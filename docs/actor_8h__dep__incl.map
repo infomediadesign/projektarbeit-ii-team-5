@@ -1,0 +1,21 @@
+<map id="actor.h" name="actor.h">
+<area shape="rect" id="node1" title=" " alt="" coords="307,5,369,33"/>
+<area shape="rect" id="node2" href="$actor_8cpp.html" title=" " alt="" coords="188,81,264,109"/>
+<area shape="rect" id="node3" href="$game__scene_8h.html" title=" " alt="" coords="5,157,114,185"/>
+<area shape="rect" id="node9" href="$scene_8h.html" title=" " alt="" coords="340,81,408,109"/>
+<area shape="rect" id="node18" href="$store_8h.html" title=" " alt="" coords="654,233,716,261"/>
+<area shape="rect" id="node4" href="$scenes_8h.html" title=" " alt="" coords="190,233,265,261"/>
+<area shape="rect" id="node5" href="$game__scene_8cpp.html" title=" " alt="" coords="270,309,393,337"/>
+<area shape="rect" id="node6" href="$main_8cpp.html" title=" " alt="" coords="171,309,247,337"/>
+<area shape="rect" id="node7" href="$menu__scene_8cpp.html" title=" " alt="" coords="417,309,540,337"/>
+<area shape="rect" id="node8" href="$pause__scene_8cpp.html" title=" " alt="" coords="563,309,689,337"/>
+<area shape="rect" id="node10" href="$game_8h.html" title=" " alt="" coords="289,233,355,261"/>
+<area shape="rect" id="node12" href="$menu__scene_8h.html" title=" " alt="" coords="139,157,247,185"/>
+<area shape="rect" id="node13" href="$pause__scene_8h.html" title=" " alt="" coords="272,157,384,185"/>
+<area shape="rect" id="node14" href="$renderer_8h.html" title=" " alt="" coords="458,157,541,185"/>
+<area shape="rect" id="node17" href="$stage_8h.html" title=" " alt="" coords="565,157,630,185"/>
+<area shape="rect" id="node11" href="$game_8cpp.html" title=" " alt="" coords="713,309,793,337"/>
+<area shape="rect" id="node15" href="$renderer_8cpp.html" title=" " alt="" coords="430,233,527,261"/>
+<area shape="rect" id="node16" href="$stage_8cpp.html" title=" " alt="" coords="551,233,630,261"/>
+<area shape="rect" id="node19" href="$sprite__animated_8cpp.html" title=" " alt="" coords="817,309,958,337"/>
+</map>

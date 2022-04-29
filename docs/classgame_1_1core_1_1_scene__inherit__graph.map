@@ -1,0 +1,6 @@
+<map id="game::core::Scene" name="game::core::Scene">
+<area shape="rect" id="node1" title="Scene base class. Scenes are managed by the Stage object." alt="" coords="240,5,373,135"/>
+<area shape="rect" id="node2" href="$classgame_1_1scenes_1_1_game_scene.html" title=" " alt="" coords="5,183,191,312"/>
+<area shape="rect" id="node3" href="$classgame_1_1scenes_1_1_menu_scene.html" title=" " alt="" coords="215,183,398,312"/>
+<area shape="rect" id="node4" href="$classgame_1_1scenes_1_1_pause_scene.html" title=" " alt="" coords="422,183,609,312"/>
+</map>

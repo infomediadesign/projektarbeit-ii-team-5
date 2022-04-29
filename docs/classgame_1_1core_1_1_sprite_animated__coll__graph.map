@@ -1,0 +1,12 @@
+<map id="game::core::SpriteAnimated" name="game::core::SpriteAnimated">
+<area shape="rect" id="node1" title="The SpriteAnimated class enables frame&#45;by&#45;frame animations by displaying only a certain section of a ..." alt="" coords="514,520,701,729"/>
+<area shape="rect" id="node2" href="$classgame_1_1core_1_1_sprite.html" title="The Sprite class specifies position and degree of rotation on the screen for an associated VRAM textu..." alt="" coords="298,183,428,456"/>
+<area shape="rect" id="node3" title=" " alt="" coords="328,5,492,103"/>
+<area shape="rect" id="node4" title=" " alt="" coords="516,13,597,95"/>
+<area shape="rect" id="node5" title=" " alt="" coords="5,13,52,95"/>
+<area shape="rect" id="node6" title=" " alt="" coords="87,13,141,95"/>
+<area shape="rect" id="node7" title=" " alt="" coords="164,13,232,95"/>
+<area shape="rect" id="node8" title=" " alt="" coords="257,13,304,95"/>
+<area shape="rect" id="node9" title=" " alt="" coords="625,13,664,95"/>
+<area shape="rect" id="node10" title=" " alt="" coords="762,263,919,376"/>
+</map>

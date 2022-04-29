@@ -1,0 +1,4 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="node1" href="$classgame_1_1core_1_1_sprite.html" title="The Sprite class specifies position and degree of rotation on the screen for an associated VRAM textu..." alt="" coords="5,5,136,33"/>
+<area shape="rect" id="node2" href="$classgame_1_1core_1_1_sprite_animated.html" title="The SpriteAnimated class enables frame&#45;by&#45;frame animations by displaying only a certain section of a ..." alt="" coords="184,5,370,33"/>
+</map>

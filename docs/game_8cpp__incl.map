@@ -1,0 +1,14 @@
+<map id="game.cpp" name="game.cpp">
+<area shape="rect" id="node1" title=" " alt="" coords="356,5,436,33"/>
+<area shape="rect" id="node2" title=" " alt="" coords="301,537,366,565"/>
+<area shape="rect" id="node3" href="$game_8h.html" title=" " alt="" coords="125,157,191,185"/>
+<area shape="rect" id="node11" href="$store_8h.html" title=" " alt="" coords="425,81,487,109"/>
+<area shape="rect" id="node12" href="$stage_8h.html" title=" " alt="" coords="297,157,362,185"/>
+<area shape="rect" id="node4" title=" " alt="" coords="5,309,59,337"/>
+<area shape="rect" id="node5" href="$scene_8h.html" title=" " alt="" coords="124,233,192,261"/>
+<area shape="rect" id="node6" title=" " alt="" coords="134,309,181,337"/>
+<area shape="rect" id="node7" href="$actor_8h.html" title=" " alt="" coords="205,309,267,337"/>
+<area shape="rect" id="node8" href="$sprite_8h.html" title=" " alt="" coords="229,385,294,413"/>
+<area shape="rect" id="node9" title=" " alt="" coords="299,461,368,489"/>
+<area shape="rect" id="node10" href="$texture2d_8h.html" title=" " alt="" coords="136,461,224,489"/>
+</map>

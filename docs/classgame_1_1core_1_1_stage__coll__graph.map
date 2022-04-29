@@ -1,0 +1,5 @@
+<map id="game::core::Stage" name="game::core::Stage">
+<area shape="rect" id="node1" title="Stage is used to manage scenes. The Stage automatically draws all Actor objects of a scene if they ar..." alt="" coords="83,199,280,472"/>
+<area shape="rect" id="node2" title=" " alt="" coords="5,13,169,111"/>
+<area shape="rect" id="node3" title=" " alt="" coords="192,5,363,119"/>
+</map>

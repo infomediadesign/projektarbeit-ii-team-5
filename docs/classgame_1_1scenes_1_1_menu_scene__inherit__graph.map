@@ -1,0 +1,4 @@
+<map id="game::scenes::MenuScene" name="game::scenes::MenuScene">
+<area shape="rect" id="node1" title=" " alt="" coords="5,183,188,312"/>
+<area shape="rect" id="node2" href="$classgame_1_1core_1_1_scene.html" title="Scene base class. Scenes are managed by the Stage object." alt="" coords="30,5,163,135"/>
+</map>

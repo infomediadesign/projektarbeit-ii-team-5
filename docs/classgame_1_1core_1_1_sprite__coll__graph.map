@@ -1,0 +1,10 @@
+<map id="game::core::Sprite" name="game::core::Sprite">
+<area shape="rect" id="node1" title="The Sprite class specifies position and degree of rotation on the screen for an associated VRAM textu..." alt="" coords="334,183,464,456"/>
+<area shape="rect" id="node2" title=" " alt="" coords="5,5,169,103"/>
+<area shape="rect" id="node3" title=" " alt="" coords="193,13,274,95"/>
+<area shape="rect" id="node4" title=" " alt="" coords="298,13,345,95"/>
+<area shape="rect" id="node5" title=" " alt="" coords="371,13,424,95"/>
+<area shape="rect" id="node6" title=" " alt="" coords="448,13,515,95"/>
+<area shape="rect" id="node7" title=" " alt="" coords="562,13,609,95"/>
+<area shape="rect" id="node8" title=" " alt="" coords="653,13,692,95"/>
+</map>

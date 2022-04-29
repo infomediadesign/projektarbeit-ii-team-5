@@ -1,0 +1,7 @@
+<map id="game::core::Store" name="game::core::Store">
+<area shape="rect" id="node1" title="A central place to share globally accessible objects that should be accessible from anywhere." alt="" coords="230,183,357,264"/>
+<area shape="rect" id="node2" title=" " alt="" coords="5,13,168,111"/>
+<area shape="rect" id="node3" title=" " alt="" coords="192,21,259,103"/>
+<area shape="rect" id="node4" title=" " alt="" coords="342,21,381,103"/>
+<area shape="rect" id="node5" title=" " alt="" coords="405,5,576,119"/>
+</map>

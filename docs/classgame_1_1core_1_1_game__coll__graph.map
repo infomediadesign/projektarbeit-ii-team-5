@@ -1,0 +1,6 @@
+<map id="game::core::Game" name="game::core::Game">
+<area shape="rect" id="node1" title="The entry point into the game. The constructor is used to specify the basic settings such as the size..." alt="" coords="63,167,232,376"/>
+<area shape="rect" id="node2" title=" " alt="" coords="5,5,44,87"/>
+<area shape="rect" id="node3" title=" " alt="" coords="124,5,171,87"/>
+<area shape="rect" id="node4" title=" " alt="" coords="194,5,322,87"/>
+</map>

@@ -1,0 +1,11 @@
+<map id="pause_scene.h" name="pause_scene.h">
+<area shape="rect" id="node1" title=" " alt="" coords="80,5,192,33"/>
+<area shape="rect" id="node2" href="$scene_8h.html" title=" " alt="" coords="102,81,170,109"/>
+<area shape="rect" id="node3" title=" " alt="" coords="5,157,53,185"/>
+<area shape="rect" id="node4" title=" " alt="" coords="77,157,131,185"/>
+<area shape="rect" id="node5" title=" " alt="" coords="186,385,250,413"/>
+<area shape="rect" id="node6" href="$actor_8h.html" title=" " alt="" coords="219,157,281,185"/>
+<area shape="rect" id="node7" href="$sprite_8h.html" title=" " alt="" coords="231,233,296,261"/>
+<area shape="rect" id="node8" title=" " alt="" coords="256,309,325,337"/>
+<area shape="rect" id="node9" href="$texture2d_8h.html" title=" " alt="" coords="349,309,437,337"/>
+</map>

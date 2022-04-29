@@ -1,0 +1,13 @@
+<map id="stage.cpp" name="stage.cpp">
+<area shape="rect" id="node1" title=" " alt="" coords="183,5,262,33"/>
+<area shape="rect" id="node2" title=" " alt="" coords="101,385,171,413"/>
+<area shape="rect" id="node3" title=" " alt="" coords="72,233,120,261"/>
+<area shape="rect" id="node4" href="$stage_8h.html" title=" " alt="" coords="190,81,255,109"/>
+<area shape="rect" id="node9" href="$sprite_8h.html" title=" " alt="" coords="439,309,505,337"/>
+<area shape="rect" id="node11" href="$renderer_8h.html" title=" " alt="" coords="387,81,469,109"/>
+<area shape="rect" id="node5" title=" " alt="" coords="245,233,299,261"/>
+<area shape="rect" id="node6" title=" " alt="" coords="385,461,449,489"/>
+<area shape="rect" id="node7" href="$scene_8h.html" title=" " alt="" coords="301,157,369,185"/>
+<area shape="rect" id="node8" href="$actor_8h.html" title=" " alt="" coords="373,233,435,261"/>
+<area shape="rect" id="node10" href="$texture2d_8h.html" title=" " alt="" coords="373,385,461,413"/>
+</map>

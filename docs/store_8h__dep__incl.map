@@ -1,0 +1,8 @@
+<map id="store.h" name="store.h">
+<area shape="rect" id="node1" title=" " alt="" coords="286,5,348,33"/>
+<area shape="rect" id="node2" href="$game_8cpp.html" title=" " alt="" coords="5,81,85,109"/>
+<area shape="rect" id="node3" href="$game__scene_8cpp.html" title=" " alt="" coords="109,81,232,109"/>
+<area shape="rect" id="node4" href="$menu__scene_8cpp.html" title=" " alt="" coords="256,81,379,109"/>
+<area shape="rect" id="node5" href="$pause__scene_8cpp.html" title=" " alt="" coords="402,81,528,109"/>
+<area shape="rect" id="node6" href="$sprite__animated_8cpp.html" title=" " alt="" coords="552,81,693,109"/>
+</map>

@@ -1,0 +1,40 @@
+#pragma once
+
+#include <raylib.h>
+
+namespace game {
+    class Config final {
+    public:
+        inline static constexpr const char* kProjectName = "@PROJECT_NAME@";
+        inline static constexpr const char* kProjectVersion = "@PROJECT_VERSION@";
+        inline static constexpr const char* kProjectVersionMajor = "@PROJECT_VERSION_MAJOR@";
+        inline static constexpr const char* kProjectVersionMinor = "@PROJECT_VERSION_MINOR@";
+        inline static constexpr const char* kProjectVersionPatch = "@PROJECT_VERSION_PATCH@";
+
+        // Width and Height of the game stage. The stage will be scaled with the window size
+        inline static constexpr int kStageWidth = 960;
+        inline static constexpr int kStageHeight = 540;
+
+        // Target FPS, default is 60 fps
+        inline static constexpr int kTargetFps = 60;
+
+        // Start game in window or fullscreen mode
+        inline static constexpr const bool kFullScreen = false;
+
+        // Define if the game uses a mouse/mouse pointer
+        // The mouse position is then accessible in game::core::Store in the mouse_position attribute
+        // Please do not use the Raylib function GetMousePosition()
+        inline static constexpr const bool kUseMouse = false;
+
+        // Raylib window config flags, e.g. for resizable window and vertical synchronisation
+        // Default: GAME_CONFIG_FLAGS FLAG_WINDOW_RESIZABLE | FLAG_VSYNC_HINT | FLAG_MSAA_4X_HINT
+        inline static constexpr const int kWindowFlags = FLAG_WINDOW_RESIZABLE | FLAG_VSYNC_HINT | FLAG_MSAA_4X_HINT;
+
+        // Define Raylib exit key - KEY_NULL means that no key leads to the termination of the program
+        // Raylib default is KEY_ESCAPE
+        inline static constexpr const int kExitKey = KEY_NULL;
+
+        // Defines if Raylib audio should be enabled
+        inline static constexpr const bool kAudio = true;
+    };
+}

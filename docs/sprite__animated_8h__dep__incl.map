@@ -1,0 +1,10 @@
+<map id="sprite_animated.h" name="sprite_animated.h">
+<area shape="rect" id="node1" title=" " alt="" coords="262,5,389,33"/>
+<area shape="rect" id="node2" href="$game__scene_8h.html" title=" " alt="" coords="196,81,305,109"/>
+<area shape="rect" id="node8" href="$sprite__animated_8cpp.html" title=" " alt="" coords="329,81,471,109"/>
+<area shape="rect" id="node3" href="$scenes_8h.html" title=" " alt="" coords="213,157,288,185"/>
+<area shape="rect" id="node4" href="$game__scene_8cpp.html" title=" " alt="" coords="5,233,128,261"/>
+<area shape="rect" id="node5" href="$main_8cpp.html" title=" " alt="" coords="152,233,227,261"/>
+<area shape="rect" id="node6" href="$menu__scene_8cpp.html" title=" " alt="" coords="251,233,374,261"/>
+<area shape="rect" id="node7" href="$pause__scene_8cpp.html" title=" " alt="" coords="397,233,523,261"/>
+</map>

@@ -1,0 +1,11 @@
+<map id="stage.h" name="stage.h">
+<area shape="rect" id="node1" title=" " alt="" coords="246,5,312,33"/>
+<area shape="rect" id="node2" title=" " alt="" coords="299,309,368,337"/>
+<area shape="rect" id="node3" title=" " alt="" coords="5,157,59,185"/>
+<area shape="rect" id="node4" title=" " alt="" coords="188,385,252,413"/>
+<area shape="rect" id="node5" title=" " alt="" coords="219,157,267,185"/>
+<area shape="rect" id="node6" href="$scene_8h.html" title=" " alt="" coords="130,81,198,109"/>
+<area shape="rect" id="node8" href="$sprite_8h.html" title=" " alt="" coords="229,233,294,261"/>
+<area shape="rect" id="node7" href="$actor_8h.html" title=" " alt="" coords="133,157,195,185"/>
+<area shape="rect" id="node9" href="$texture2d_8h.html" title=" " alt="" coords="136,309,224,337"/>
+</map>
