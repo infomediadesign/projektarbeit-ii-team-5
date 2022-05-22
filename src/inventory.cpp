@@ -30,11 +30,11 @@ inventory::~inventory()
 void inventory::update()
 {
 	
-	if (IsKeyDown(KEY_I))
+	if (IsKeyPressed(KEY_I))
 	{
 		this->visible = true;
 	}
-	else if (IsKeyReleased(KEY_I))
+	if (IsKeyPressed(KEY_O))
 	{
 		this->visible = false;
 	}

@@ -108,21 +108,18 @@ int main() {
                 }
 
                 //TODO: wenn camera nicht border berührt
-                this_camera->target = this_player->position;
-                this_player->update();
-                this_inventory->update();
-
-                this_inventory->position.x = this_player->position.x;
-                this_inventory->position.y = this_player->position.y;
+                
 
                 //player cant move while inventory open
-                /*
+                
                 if (!this_inventory->visible)
                 {
-                    
-                   
+                    this_camera->target = this_player->position;
+                    this_player->update();
                 }
-                */
+
+                this_inventory->update();
+                
                 
                 
 
@@ -186,7 +183,6 @@ int main() {
                     EndMode2D();
 
                     this_inventory->draw();
-                    
 
                 } break;
                 case FIGHT:
