@@ -1,7 +1,7 @@
 #include "sprite.h"
 #include "raylib.h"
 
-//die funktion wird in der strite.h deklariert
+//die funktion wird in der sprite.h deklariert
 void Sprite::Draw() {
 	DrawTexture(texture, pos_x, pos_y, WHITE);
 }

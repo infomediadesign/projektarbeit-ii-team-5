@@ -37,7 +37,7 @@ int main() {
     this_camera->target = this_player->position;
     this_camera->offset = Vector2 {Game::ScreenWidth / 2.0f - this_player->texture.width/2, Game::ScreenHeight / 2.0f - this_player->texture.height/2};
     this_camera->zoom = 1.0f;
-    this_camera->rotation = 1.0f;
+    this_camera->rotation = 0.0f;
 
     Image img_fightScreen = LoadImage ("assets/graphics/backgrounds/UI/Fightscreen/Fightscreen_scaled_down.png");
     ImageResizeNN(&img_fightScreen, img_fightScreen.width * 4, img_fightScreen.height * 4);
@@ -107,16 +107,22 @@ int main() {
                     currentScreen = TITLE;
                 }
 
+                //TODO: wenn camera nicht border berührt
+                this_camera->target = this_player->position;
+                this_player->update();
+                this_inventory->update();
+
+                this_inventory->position.x = this_player->position.x;
+                this_inventory->position.y = this_player->position.y;
+
+                //player cant move while inventory open
+                /*
                 if (!this_inventory->visible)
                 {
-                    //TODO: wenn camera nicht border berührt
-                    this_camera->target = this_player->position;
-                    this_player->update();
-                    this_inventory->update();
-
-                    this_inventory->position.x = this_player->position.x;
-                    this_inventory->position.y = this_player->position.y;
+                    
+                   
                 }
+                */
                 
                 
 
@@ -172,15 +178,14 @@ int main() {
                     //Draw Game Screen here
                     //order equals order of layers
 
-                    DrawRectangle(0, 0, Game::ScreenWidth, Game::ScreenHeight, YELLOW);
-                    DrawText("GAMEPLAY SCREEN", 20, 20, 40, ORANGE);
-                    DrawText("PRESS ENTER to JUMP to GAMEPLAY SCREEN", 240, 500, 20, ORANGE);
+                    DrawRectangle(0, 0, Game::ScreenWidth, Game::ScreenHeight, BROWN);
 
                     BeginMode2D(*this_camera);
                     DrawTexture(this_map->texture, 0, 0, WHITE);
                     this_player->draw();
-                    this_inventory->draw();
                     EndMode2D();
+
+                    this_inventory->draw();
                     
 
                 } break;

@@ -7,10 +7,6 @@ player::player(map* current_map) : current_map(current_map)
     ImageResizeNN(&this->image, this->image.width * scale_factor, this->image.height * scale_factor);
 	this->texture = LoadTextureFromImage(this->image);
 
-    this->bag_img = LoadImage("assets/graphics/backgrounds/UI/Inventory/BagClosed.png");
-    ImageResizeNN(&this->bag_img, this->bag_img.width * scale_factor, this->bag_img.height * scale_factor);
-    this->bag = LoadTextureFromImage(this->bag_img);
-
 	//this->position.x = Game::ScreenWidth / 2 - this->texture.width / 2;
     this->position.x = current_map->player_start_pos.x - 80;
     this->position.y = current_map->player_start_pos.y- 1700;
@@ -52,38 +48,9 @@ void player::update()
     {
         this->position.y += this->movement_speed;
     }
-
-    //dioganal normal speed - not working yet
-    /*
-    //dioganal line up right
-    else if (IsKeyDown(KEY_W) && IsKeyDown(KEY_D))
-    {
-        this->position.x += this->movement_speed/2;
-        this->position.y -= this->movement_speed/2;
-    }
-    //dioganal line up left
-    else if (IsKeyDown(KEY_W) && IsKeyDown(KEY_A))
-    {
-        this->position.x -= this->movement_speed/2;
-        this->position.y -= this->movement_speed/2;
-    }
-    //dioganal down right
-    else if (IsKeyDown(KEY_W) && IsKeyDown(KEY_D))
-    {
-        this->position.x += this->movement_speed/2;
-        this->position.y += this->movement_speed/2;
-    }
-    //diogonal down left
-    else if (IsKeyDown(KEY_W) && IsKeyDown(KEY_D))
-    {
-        this->position.x -= this->movement_speed/2;
-        this->position.y += this->movement_speed/2;
-    }
-    */
 }
 
 void player::draw()
 {
     DrawTexture(this->texture, this->position.x, this->position.y, WHITE);
-    DrawTexture(this->bag, 0, 0, WHITE); //Game::ScreenWidth - 20, Game::ScreenHeight - 20
 }

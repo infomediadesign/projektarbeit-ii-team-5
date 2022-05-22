@@ -9,11 +9,12 @@ public:
 	inventory();
 	~inventory();
 
-	bool is_open = false;
+	Image bag_img;
+	Texture2D bag_c_texu;
+	Texture2D bag_o_texu;
+
 	bool visible = false;
 
-	void open();
-	void close();
 	void update();
 	void draw();
 };
