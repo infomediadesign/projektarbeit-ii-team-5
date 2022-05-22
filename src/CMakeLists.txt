@@ -1,32 +1,23 @@
 ﻿cmake_minimum_required(VERSION 3.11)
 
 include(../cmake/raylib.cmake)
-include(../cmake/raylib_cpp.cmake)
 
-project(game VERSION 0.1.0 LANGUAGES CXX)
+project(game VERSION 0.1 LANGUAGES CXX)
 
-include(../cmake/doxygen.cmake)
-
-set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
-#set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra")
-
-add_subdirectory(core)
-add_subdirectory(scenes)
-
-add_executable(${PROJECT_NAME} main.cpp)
+add_executable(${PROJECT_NAME} main.cpp   "sprite.h" "sprite.cpp" "actor.h" "player.h" "player.cpp" "map.h" "map.cpp" "inventory.h" "inventory.cpp")
 
 # Add config.h.in file
 configure_file(config.h.in config.h)
-
 target_include_directories(${PROJECT_NAME} PUBLIC
         "${PROJECT_BINARY_DIR}"
         )
 
-# Link to libraries
-target_link_libraries(${PROJECT_NAME} core scenes)
+#  Link to Raylib
+target_link_libraries(${PROJECT_NAME} raylib)
 
 # Copy assets to assets path
 add_custom_target(copy_assets
