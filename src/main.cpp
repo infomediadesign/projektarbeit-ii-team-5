@@ -19,7 +19,7 @@ int main() {
 
     
 
-    typedef enum GameScreen { LOGO = 0, TITLE, GAMEPLAY, ENDING } Gamescreen;
+    typedef enum GameScreen { LOGO = 0, TITLE, GAMEPLAY, FIGHT } Gamescreen;
     
 
 #ifdef GAME_START_FULLSCREEN
@@ -38,6 +38,10 @@ int main() {
     this_camera->offset = Vector2 {Game::ScreenWidth / 2.0f - this_player->texture.width/2, Game::ScreenHeight / 2.0f - this_player->texture.height/2};
     this_camera->zoom = 1.0f;
     this_camera->rotation = 1.0f;
+
+    Image img_fightScreen = LoadImage ("assets/graphics/backgrounds/UI/Fightscreen/Fightscreen_scaled_down.png");
+    ImageResizeNN(&img_fightScreen, img_fightScreen.width * 4, img_fightScreen.height * 4);
+    Texture2D fightScreen = LoadTextureFromImage(img_fightScreen);
 
 
     int framesCounter = 0;
@@ -95,7 +99,12 @@ int main() {
                 // Press enter to change to ENDING screen
                 if (IsKeyPressed(KEY_ENTER))
                 {
-                    currentScreen = ENDING;
+                    currentScreen = FIGHT;
+                }
+
+                if (IsKeyPressed(KEY_T))
+                {
+                    currentScreen = TITLE;
                 }
 
                 if (!this_inventory->visible)
@@ -112,14 +121,14 @@ int main() {
                 
 
             } break;
-            case ENDING:
+            case FIGHT:
             {
                 // TODO: Update ENDING screen variables here!
 
                 // Press enter to return to TITLE screen
                 if (IsKeyPressed(KEY_ENTER))
                 {
-                    currentScreen = TITLE;
+                    currentScreen = GAMEPLAY;
                 }
 
             } break;
@@ -175,12 +184,14 @@ int main() {
                     
 
                 } break;
-                case ENDING:
+                case FIGHT:
                 {
                     // TODO: Draw ENDING screen here!
                     DrawRectangle(0, 0, Game::ScreenWidth, Game::ScreenHeight, RED);
                     DrawText("ENDING SCREEN", 20, 20, 40, BLACK);
                     DrawText("PRESS ENTER to RETURN to TITLE SCREEN", 240, 500, 20, BLACK);
+
+                    DrawTexture(fightScreen, 0, 0, WHITE);
                 } break;
                 default: break;
             }

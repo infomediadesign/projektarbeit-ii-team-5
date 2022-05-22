@@ -7,6 +7,10 @@ player::player(map* current_map) : current_map(current_map)
     ImageResizeNN(&this->image, this->image.width * scale_factor, this->image.height * scale_factor);
 	this->texture = LoadTextureFromImage(this->image);
 
+    this->bag_img = LoadImage("assets/graphics/backgrounds/UI/Inventory/BagClosed.png");
+    ImageResizeNN(&this->bag_img, this->bag_img.width * scale_factor, this->bag_img.height * scale_factor);
+    this->bag = LoadTextureFromImage(this->bag_img);
+
 	//this->position.x = Game::ScreenWidth / 2 - this->texture.width / 2;
     this->position.x = current_map->player_start_pos.x - 80;
     this->position.y = current_map->player_start_pos.y- 1700;
@@ -81,4 +85,5 @@ void player::update()
 void player::draw()
 {
     DrawTexture(this->texture, this->position.x, this->position.y, WHITE);
+    DrawTexture(this->bag, 0, 0, WHITE); //Game::ScreenWidth - 20, Game::ScreenHeight - 20
 }
