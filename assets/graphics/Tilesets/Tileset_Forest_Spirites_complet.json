@@ -1,0 +1,14 @@
+{ "columns":15,
+ "image":"TilesetForestSpirites.png",
+ "imageheight":352,
+ "imagewidth":480,
+ "margin":0,
+ "name":"Tileset_Forest_Spirites_complet",
+ "spacing":0,
+ "tilecount":165,
+ "tiledversion":"1.8.4",
+ "tileheight":32,
+ "tilewidth":32,
+ "type":"tileset",
+ "version":"1.8"
+}

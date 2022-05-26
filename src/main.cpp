@@ -19,7 +19,7 @@ int main() {
 
     
 
-    typedef enum GameScreen { LOGO = 0, TITLE, GAMEPLAY, FIGHT } Gamescreen;
+    typedef enum GameScreen { TITLE = 0, GAMEPLAY, FIGHT } Gamescreen; //LOGO = 0
     
 
 #ifdef GAME_START_FULLSCREEN
@@ -27,8 +27,7 @@ int main() {
 #endif
 
     // Your own initialization code here
-    // ...
-    // ...
+
     Camera2D* this_camera = new Camera2D;
     map* this_map = new map;
     player* this_player = new player(this_map);
@@ -47,7 +46,7 @@ int main() {
     int framesCounter = 0;
       
     //sets default to screen whith which the game shall start when being executed
-    GameScreen currentScreen = LOGO;
+    GameScreen currentScreen = TITLE; //LOGO
 
     //Frames Per Second are kept to 60 frames per second
     SetTargetFPS(60);
@@ -61,13 +60,12 @@ int main() {
     while (!WindowShouldClose()) // Detect window close button or ESC key
     {
         // Updates that are made by frame are coded here
-        // ...
-        // ...
-        
 
+        //which screen is currently used
+        //switch between frames by events
         switch (currentScreen) {
             
-            
+            /*
             case LOGO:
             {
                 //update frames variables here
@@ -82,6 +80,7 @@ int main() {
 
 
             } break;
+            */
             case TITLE:
             {
                 // TODO: Update TITLE screen variables here!
@@ -151,7 +150,7 @@ int main() {
             
             switch (currentScreen)
             {
-                
+                /*
                 case LOGO:
                 {
                     //Draw LOGO screen here!
@@ -161,7 +160,7 @@ int main() {
                     
 
                 } break;
-                
+                */
                 case TITLE:
                 {
                     //Draw TITLE screen here!
@@ -178,7 +177,8 @@ int main() {
                     DrawRectangle(0, 0, Game::ScreenWidth, Game::ScreenHeight, BROWN);
 
                     BeginMode2D(*this_camera);
-                    DrawTexture(this_map->texture, 0, 0, WHITE);
+                    //DrawTexture(this_map->texture, 0, 0, WHITE);
+                    this_map->draw();
                     this_player->draw();
                     EndMode2D();
 
