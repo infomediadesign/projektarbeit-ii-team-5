@@ -4,6 +4,7 @@
 
 #include "raymath.h"
 
+#include "controllInput.h"
 #include "sprite.h"
 #include "player.h"
 #include "map.h"

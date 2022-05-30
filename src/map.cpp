@@ -51,6 +51,7 @@ void map::draw()
 			for(auto const& tileId : layer["data"])
 			{
 				if (tileId != 0)
+					//THIS HAS TO BE REWRITTEN SO IT CAN WÖRK
 				{
 					this->rec.x = (float)((((int)tileId - 1) % (int)tilesetDescription["columns"]) * (float)levelMap["tilewidth"]);
 					this->rec.y = (float)floor((float)tileId / (float)tilesetDescription["columns"]) * (float)levelMap["tilewidth"];
