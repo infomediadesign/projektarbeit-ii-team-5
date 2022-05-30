@@ -1,6 +1,7 @@
 #include "map.h"
 
 #include "filesystem"
+#include <iostream>
 
 map::map()
 {
@@ -47,17 +48,17 @@ void map::draw()
 		if (layer["type"] == "tilelayer" && layer["visible"])
 		{
 
-			for (auto const& tileId : layer["data"])
+			for(auto const& tileId : layer["data"])
 			{
 				if (tileId != 0)
 				{
-					this->rec.x = (float)((int)tileId - 1 % (int)tilesetDescription["columns"]) * (float)levelMap["tilewidth"];
+					this->rec.x = (float)((((int)tileId - 1) % (int)tilesetDescription["columns"]) * (float)levelMap["tilewidth"]);
 					this->rec.y = (float)floor((float)tileId / (float)tilesetDescription["columns"]) * (float)levelMap["tilewidth"];
-
 					DrawTextureRec(this->tileAtlasTexture, this->rec, this->vec, WHITE);
+					std::cout << "Drew a Tile: " << tileId << std::endl; //this is an output to help me understand what is happening
 				}
 
-				this->vec.x += (float)levelMap["tilewidth"];
+				this->vec.x += (float)levelMap["tilewidth"];  //der vec zeigt wo in der welt das Tile hingedrawt wird.
 				if (this->vec.x >= (float)layer["width"] * (float)levelMap["tilewidth"])
 				{
 					this->vec.x = 0;
