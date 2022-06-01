@@ -18,14 +18,14 @@ map::map()
 	//load tilesets
 	std::ifstream tilesetDescriptionFile("assets/graphics/Tilesets/Tileset_Forest_Spirites_complet.json");
 	this->tilesetDescription = nlohmann::json::parse(tilesetDescriptionFile);
-	tilesetDescriptionFile.close();
+	//tilesetDescriptionFile.close();
 
 	std::ifstream levelMapFile("assets/graphics/Maps/Level_mit_Interaktionsebene.json");
 	this->levelMap = nlohmann::json::parse(levelMapFile);
 	levelMapFile.close();
 
-	//this->tileAtlasTexture = LoadTexture((tilesetDescription["image"].get<std::string>()).c_str());
-	this->tileAtlasTexture = LoadTexture("assets/graphics/Tilesets/TilesetForestSpirites.png");
+	this->tileAtlasTexture = LoadTexture((tilesetDescription["image"].get<std::string>()).c_str());
+	//this->tileAtlasTexture = LoadTexture("assets/graphics/Tilesets/TilesetForestSpirites.png");
 
 	this->vec = { 0, 0 };
 	this->rec = { 0, 0, levelMap["tilewidth"], levelMap["tileheight"] };
@@ -56,7 +56,7 @@ void map::draw()
 					this->rec.x = (float)((((int)tileId - 1) % (int)tilesetDescription["columns"]) * (float)levelMap["tilewidth"]);
 					this->rec.y = (float)floor((float)tileId / (float)tilesetDescription["columns"]) * (float)levelMap["tilewidth"];
 					DrawTextureRec(this->tileAtlasTexture, this->rec, this->vec, WHITE);
-					//std::cout << "Drew a Tile: " << tileId << std::endl; //this is an output to help me understand what is happening
+					std::cout << "Drew a Tile: " << tileId << std::endl; //this is an output to help me understand what is happening
 				}
 
 				this->vec.x += (float)levelMap["tilewidth"];  //der vec zeigt wo in der welt das Tile hingedrawt wird.

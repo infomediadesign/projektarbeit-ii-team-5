@@ -182,9 +182,11 @@ int main() {
 
                     DrawRectangle(0, 0, Game::ScreenWidth, Game::ScreenHeight, BROWN);
 
+                    
+
                     BeginMode2D(*this_camera);
-                    //DrawTexture(this_map->texture, 0, 0, WHITE);
-                    this_map->draw();
+                    DrawTexture(this_map->texture, 0, 0, WHITE);
+                    //this_map->draw();
                     this_player->draw();
                     EndMode2D();
 
@@ -252,7 +254,7 @@ void updateControls(controlInput* x) {
     else
         x->cancel = 0;
     //First option, Apostrophe equals "Ä"
-    if (IsKeyDown(KEY_APOSTROPHE) || IsGamepadButtonDown(0, GAMEPAD_BUTTON_RIGHT_FACE_LEFT))
+    if (IsKeyDown(KEY_APOSTROPHE) || IsGamepadButtonDown(0, GAMEPAD_BUTTON_RIGHT_FACE_LEFT) || IsKeyDown(KEY_I))
         x->opt1++;
     else
         x->opt1 = 0;
