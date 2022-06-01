@@ -1,7 +1,8 @@
 #include "inventory.h"
 #include "player.h"
+#include <iostream>
 
-inventory::inventory()
+inventory::inventory(controlInput* x)
 {
 	//image initialization
 	this->image = LoadImage("assets/graphics/backgrounds/UI/Inventory/InventoryBlank.png");
@@ -18,6 +19,8 @@ inventory::inventory()
 	this->bag_img = LoadImage("assets/graphics/backgrounds/UI/Inventory/BagOpen.png");
 	ImageResizeNN(&this->bag_img, this->bag_img.width * 2, this->bag_img.height * 2);
 	this->bag_o_texu = LoadTextureFromImage(this->bag_img);
+	this->controlInputs = x;
+	return;
 }
 
 inventory::~inventory()
@@ -30,13 +33,10 @@ inventory::~inventory()
 void inventory::update()
 {
 	
-	if (IsKeyPressed(KEY_I))
+	if (this->controlInputs->opt1 == 1)
 	{
-		this->visible = true;
-	}
-	if (IsKeyPressed(KEY_O))
-	{
-		this->visible = false;
+		this->visible = !this->visible;
+		std::cout << "Inventory bool has been flipped to: " << this->visible << std::endl;
 	}
 }
 

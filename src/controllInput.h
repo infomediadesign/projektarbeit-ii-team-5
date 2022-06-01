@@ -1,7 +1,7 @@
 #pragma once
 #include "raylib.h"
 
-struct{
+struct controlInput{
 	int up;
 	int down;
 	int left;
@@ -10,49 +10,51 @@ struct{
 	int cancel;
 	int opt1;
 	int opt2;
-}controlInputs; //Das ist ine globale Variable.
+};
 
-void updateControls() {
+
+
+void updateControls(controlInput* x) {
 	//Upwards
 	if (IsKeyDown(KEY_W) || IsGamepadButtonDown(0, GAMEPAD_BUTTON_LEFT_FACE_UP))
-		controlInputs.up++;
+		x->up++;
 	else
-		controlInputs.up = 0;
+		x->up = 0;
 	//Downwards
 	if (IsKeyDown(KEY_S) || IsGamepadButtonDown(0, GAMEPAD_BUTTON_LEFT_FACE_DOWN))
-		controlInputs.down++;
+		x->down++;
 	else
-		controlInputs.down = 0;
+		x->down = 0;
 	//Leftwards
 	if (IsKeyDown(KEY_A) || IsGamepadButtonDown(0, GAMEPAD_BUTTON_LEFT_FACE_LEFT))
-		controlInputs.left++;
+		x->left++;
 	else
-		controlInputs.left = 0;
+		x->left = 0;
 	//Rightwards
 	if (IsKeyDown(KEY_D) || IsGamepadButtonDown(0, GAMEPAD_BUTTON_LEFT_FACE_RIGHT))
-		controlInputs.right++;
+		x->right++;
 	else
-		controlInputs.right = 0;
+		x->right = 0;
 	//Confirmwards
 	if (IsKeyDown(KEY_ENTER) || IsGamepadButtonDown(0, GAMEPAD_BUTTON_RIGHT_FACE_DOWN))
-		controlInputs.confirm++;
+		x->confirm++;
 	else
-		controlInputs.confirm = 0;
+		x->confirm = 0;
 	//Cancelwards
 	if (IsKeyDown(KEY_RIGHT_SHIFT) || IsGamepadButtonDown(0, GAMEPAD_BUTTON_RIGHT_FACE_RIGHT))
-		controlInputs.cancel++;
+		x->cancel++;
 	else
-		controlInputs.cancel = 0;
+		x->cancel = 0;
 	//First option, Apostrophe equals "Ä"
 	if (IsKeyDown(KEY_APOSTROPHE) || IsGamepadButtonDown(0, GAMEPAD_BUTTON_RIGHT_FACE_LEFT))
-		controlInputs.opt1++;
+		x->opt1++;
 	else
-		controlInputs.opt1 = 0;
+		x->opt1 = 0;
 	//Second option, Slash equals "-"
 	if (IsKeyDown(KEY_SLASH) || IsGamepadButtonDown(0, GAMEPAD_BUTTON_RIGHT_FACE_UP))
-		controlInputs.opt2++;
+		x->opt2++;
 	else
-		controlInputs.opt2 = 0;
+		x->opt2 = 0;
 
 }
 	

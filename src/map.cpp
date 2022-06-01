@@ -56,7 +56,7 @@ void map::draw()
 					this->rec.x = (float)((((int)tileId - 1) % (int)tilesetDescription["columns"]) * (float)levelMap["tilewidth"]);
 					this->rec.y = (float)floor((float)tileId / (float)tilesetDescription["columns"]) * (float)levelMap["tilewidth"];
 					DrawTextureRec(this->tileAtlasTexture, this->rec, this->vec, WHITE);
-					std::cout << "Drew a Tile: " << tileId << std::endl; //this is an output to help me understand what is happening
+					//std::cout << "Drew a Tile: " << tileId << std::endl; //this is an output to help me understand what is happening
 				}
 
 				this->vec.x += (float)levelMap["tilewidth"];  //der vec zeigt wo in der welt das Tile hingedrawt wird.

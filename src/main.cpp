@@ -1,15 +1,19 @@
 ﻿#include <cstdlib>
+#pragma once
 #include "raylib.h"
 #include "config.h"
 
 #include "raymath.h"
 
 #include "controllInput.h"
+
 #include "sprite.h"
 #include "player.h"
 #include "map.h"
 #include "inventory.h"
 
+
+controlInput controlInputs{};
 
 //initialization within main()
 int main() {
@@ -32,7 +36,7 @@ int main() {
     Camera2D* this_camera = new Camera2D;
     map* this_map = new map;
     player* this_player = new player(this_map);
-    inventory* this_inventory = new inventory;
+    inventory* this_inventory = new inventory(&controlInputs);
     
     this_camera->target = this_player->position;
     this_camera->offset = Vector2 {Game::ScreenWidth / 2.0f - this_player->texture.width/2, Game::ScreenHeight / 2.0f - this_player->texture.height/2};
@@ -64,6 +68,7 @@ int main() {
 
         //which screen is currently used
         //switch between frames by events
+        updateControls(&controlInputs);
         switch (currentScreen) {
             
             /*
