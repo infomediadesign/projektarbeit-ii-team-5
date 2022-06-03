@@ -26,6 +26,21 @@ public:
 	nlohmann::json levelMap;
 	Texture2D tileAtlasTexture;
 	nlohmann::json tilesetDescription;
+	//structs for tilemaps
+	struct {
+		Texture2D tilemap;
+		int tileWidht;
+		int rowLength;
+	} tilemapData;
 
-	
+	struct {
+		std::vector<int> layerGround;
+		std::vector<int> layerObjects; //each non-0 tile references an Event.
+		std::vector<int> layerDecoration; 
+		std::vector<int> layerForegroundTransparent;
+		std::vector<int> layerForegroundOpaque;
+		std::vector<bool> layerCollision; //saves walls and what not
+		int mapWidth;
+		int mapHeight;
+	} mapData;
 };

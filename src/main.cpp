@@ -185,8 +185,8 @@ int main() {
                     
 
                     BeginMode2D(*this_camera);
-                    DrawTexture(this_map->texture, 0, 0, WHITE);
-                    //this_map->draw();
+                    //DrawTexture(this_map->texture, 0, 0, WHITE);
+                    this_map->draw();
                     this_player->draw();
                     EndMode2D();
 
