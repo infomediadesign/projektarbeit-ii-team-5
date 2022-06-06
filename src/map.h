@@ -11,7 +11,9 @@ public:
 	map();
 	~map();
 
-	void draw();
+	void drawBackground();
+	void drawForeground();
+	void drawCollision();
 
 	Image image;
 	Texture2D texture;

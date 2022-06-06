@@ -186,8 +186,9 @@ int main() {
 
                     BeginMode2D(*this_camera);
                     //DrawTexture(this_map->texture, 0, 0, WHITE);
-                    this_map->draw();
+                    this_map->drawBackground();
                     this_player->draw();
+                    this_map->drawForeground();
                     EndMode2D();
 
                     this_inventory->draw();
