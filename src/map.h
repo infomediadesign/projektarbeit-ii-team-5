@@ -13,7 +13,7 @@ public:
 
 	void drawBackground();
 	void drawForeground();
-	void drawCollision();
+	void addCollision();
 
 	Image image;
 	Texture2D texture;
@@ -32,6 +32,7 @@ public:
 	struct {
 		Texture2D tilemap;
 		int tileWidht;
+		int tileMapWidth;
 		int rowLength;
 	} tilemapData;
 

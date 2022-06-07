@@ -102,7 +102,7 @@ int main() {
             case GAMEPLAY:
             {
                 // Press enter to change to ENDING screen
-                if (IsKeyPressed(KEY_ENTER))
+                if (IsKeyPressed(KEY_ENTER) || this_player->position.x < 15*32 && this_player->position.x > 14*32 && this_player->position.y < 9*32 && this_player->position.y > 8*32)
                 {
                     currentScreen = FIGHT;
                 }
@@ -188,6 +188,7 @@ int main() {
                     //DrawTexture(this_map->texture, 0, 0, WHITE);
                     this_map->drawBackground();
                     this_player->draw();
+                    DrawRectangle(14 * 32, 8 * 32, 32, 32, RED);
                     this_map->drawForeground();
                     EndMode2D();
 
