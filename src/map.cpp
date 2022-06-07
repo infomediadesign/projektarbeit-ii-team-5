@@ -14,8 +14,10 @@ map::map()
 	this->position.x = 0;
 	this->position.y = 0;
 
-	this->player_start_pos.x = this->texture.width - 50; //need to parse from json
-	this->player_start_pos.y = this->texture.height - 30;
+	this->player_start_pos.x = this->texture.width - 20; //need to parse from json
+	this->player_start_pos.y = this->texture.height - 350;
+
+
 	std::ifstream tilesetDescriptionFile("assets/graphics/Tilesets/Forest_Spirites_-_Testlevel_-_Tileset_v2.json"); //
 	//Beginn des Parsens
 	std::ifstream levelMapFile("assets/graphics/Maps/ForestSpirits_Testlevel_V2.json"); //

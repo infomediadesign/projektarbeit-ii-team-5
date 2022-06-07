@@ -46,6 +46,8 @@ int main() {
     Image img_fightScreen = LoadImage ("assets/graphics/backgrounds/UI/Fightscreen/Fightscreen_scaled_down.png");
     ImageResizeNN(&img_fightScreen, img_fightScreen.width * 4, img_fightScreen.height * 4);
     Texture2D fightScreen = LoadTextureFromImage(img_fightScreen);
+        
+    Texture2D homeScreen = LoadTexture("assets/graphics/backgrounds/MenuScreens/Homescreen_WIP.png");
 
 
     int framesCounter = 0;
@@ -173,6 +175,7 @@ int main() {
                     DrawRectangle(0, 0, Game::ScreenWidth, Game::ScreenHeight, GREEN);
                     DrawText("TITLE SCREEN", 20, 20, 40, DARKGREEN);
                     DrawText("PRESS ENTER to JUMP to GAMEPLAY SCREEN", 240, 500, 20, DARKGREEN);
+                    DrawTexture(homeScreen, 0, 0, WHITE);
 
                 } break;
                 case GAMEPLAY:
