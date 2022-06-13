@@ -43,7 +43,7 @@ int main() {
 	this_camera->zoom = 1.0f;
 	this_camera->rotation = 0.0f;
 
-	Image img_fightScreen = LoadImage("assets/graphics/backgrounds/UI/Fightscreen/Fightscreen_scaled_down.png");
+	Image img_fightScreen = LoadImage("assets/graphics/backgrounds/UI/Fightscreen/Fightscreen_scaled_down_Enemies.png");
 	ImageResizeNN(&img_fightScreen, img_fightScreen.width * 4, img_fightScreen.height * 4);
 	Texture2D fightScreen = LoadTextureFromImage(img_fightScreen);
 
@@ -74,22 +74,6 @@ int main() {
 		updateControls(&controlInputs);
 		switch (currentScreen) {
 
-			/*
-			case LOGO:
-			{
-				//update frames variables here
-
-				framesCounter++;
-
-				//wait 2 seconds (120 frames) before jumping to next frame
-				if (framesCounter > 120)
-				{
-					currentScreen = TITLE;
-				}
-
-
-			} break;
-			*/
 		case TITLE:
 		{
 			// TODO: Update TITLE screen variables here!
@@ -105,7 +89,7 @@ int main() {
 		case GAMEPLAY:
 		{
 			// Press enter to change to ENDING screen
-			if (IsKeyPressed(KEY_ENTER) || this_player->position.x < 15 * 32 && this_player->position.x > 14 * 32 && this_player->position.y < 9 * 32 && this_player->position.y > 8 * 32)
+			if (IsKeyPressed(KEY_ENTER)) // || this_player->position.x < 15 * 32 && this_player->position.x > 14 * 32 && this_player->position.y < 9 * 32 && this_player->position.y > 8 * 32)
 			{
 				currentScreen = FIGHT;
 			}
@@ -195,7 +179,7 @@ int main() {
 			//DrawTexture(this_map->texture, 0, 0, WHITE);
 			this_map->drawBackground();
 			this_player->draw();
-			DrawRectangle(14 * 32, 8 * 32, 32, 32, RED);
+			//DrawRectangle(14 * 32, 8 * 32, 32, 32, RED);
 			this_map->drawForeground();
 			EndMode2D();
 
