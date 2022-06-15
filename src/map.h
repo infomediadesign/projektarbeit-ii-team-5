@@ -13,7 +13,7 @@ public:
 
 	void drawBackground();
 	void drawForeground();
-	void checkCollision();
+	void drawCollision();
 
 	Image image;
 	Texture2D texture;
@@ -24,6 +24,9 @@ public:
 	//from tutorial to include tiled by Christoph
 	Vector2 vec;
 	Rectangle rec;
+
+	//Here come Collision Rectangles Vector
+	std::vector<Rectangle> collisionRectangles;
 
 	nlohmann::json levelMap;
 	Texture2D tileAtlasTexture;

@@ -94,7 +94,14 @@ map::map()
 		}
 		
 	}
-	
+	for (int i = 0; i < mapData.layerCollision.size(); i++) {
+		if (mapData.layerCollision[i]) {
+			Rectangle createdRectangle = { i % this->mapData.mapWidth * 128, i / this->mapData.mapWidth * 128, 128, 128 };
+			collisionRectangles.push_back(createdRectangle);
+		}
+	}
+	std::cout << "INFO: All collision  boxes were created" << std::endl;
+
 }
 
 map::~map()
@@ -150,4 +157,13 @@ void map::drawForeground()
 		}
 	}
 
+}
+
+void map::drawCollision() {
+	for (int y{}; y < mapData.mapHeight; y++) {
+		for (int x{}; x < mapData.mapWidth; x++) {
+			if (mapData.layerCollision[y*mapData.mapWidth+x])
+			DrawRectangle(x * 128, y * 128, 128, 128, RED);
+		}
+	}
 }

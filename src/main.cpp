@@ -11,6 +11,7 @@
 #include "player.h"
 #include "map.h"
 #include "inventory.h"
+#include <iostream>
 
 
 controlInput controlInputs{};
@@ -109,9 +110,17 @@ int main() {
 			{
 				this_camera->target = this_player->position;
 				this_player->update();
+				//@OLI
+				for (int i = 0; i < this_map->collisionRectangles.size();i++) {
+					if (CheckCollisionRecs(this_player->getCollision(), this_map->collisionRectangles[i]))
+					{
+						std::cout << "We touch" << std::endl;
+					};
+				}
 			}
 
 			this_inventory->update();
+
 
 
 
@@ -197,6 +206,10 @@ int main() {
 			this_player->draw();
 			//DrawRectangle(14 * 32, 8 * 32, 32, 32, RED);
 			this_map->drawForeground();
+			if (IsKeyDown(KEY_H))
+			{
+				this_map->drawCollision();
+			}
 			EndMode2D();
 
 			this_inventory->draw();
@@ -212,10 +225,10 @@ int main() {
 			DrawTexture(fightScreen, 0, 0, WHITE);
 		} break;
 		case DEATH:
-		{	
+		{
 			DrawTexturePro(deathScreen, { 0,0,(float)deathScreen.width,(float)deathScreen.height }, { 0,0,(float)GetScreenWidth(),(float)GetScreenHeight() }, {}, 0.0, WHITE);
 
-		} break; 
+		} break;
 		default: break;
 		}
 

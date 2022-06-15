@@ -74,3 +74,8 @@ void player::draw()
     }
     
 }
+
+Rectangle player::getCollision()
+{
+    return {this->position.x,this->position.y, 128, 128};
+}
