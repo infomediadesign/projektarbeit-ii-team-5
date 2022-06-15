@@ -211,7 +211,7 @@ int main() {
 		} break;
 		case DEATH:
 		{	
-			DrawTexture(deathScreen, 0, 0, WHITE);
+			DrawTexturePro(deathScreen, { 0,0,(float)deathScreen.width,(float)deathScreen.height }, { 0,0,(float)GetScreenWidth(),(float)GetScreenHeight() }, {}, 0.0, WHITE);
 
 		} break; 
 		default: break;
