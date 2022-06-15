@@ -11,6 +11,10 @@ player::player(map* current_map) : current_map(current_map)
     ImageResizeNN(&this->image2, this->image2.width * scale_factor, this->image2.height * scale_factor);
     this->texture2 = LoadTextureFromImage(this->image2); //walking up
 
+    this->movement_img = LoadImage("assets/graphics/Sprites/Character/MainCharacter/walkCycle_Blaize.png");
+    ImageResizeNN(&this->movement_img, this->movement_img.width * scale_factor, this->movement_img.height * scale_factor);
+    this->movement_texture = LoadTextureFromImage(this->movement_img); //walking up
+
 	//this->position.x = Game::ScreenWidth / 2 - this->texture.width / 2;
     this->position.x = current_map->player_start_pos.x - 80;
     this->position.y = current_map->player_start_pos.y- 1700;
@@ -24,6 +28,20 @@ player::~player()
 
 void player::update()
 {
+    //walking animation setup
+    this->frames_counter++;
+
+    if (this->frames_counter >= (60 / 8))
+    {
+        this->frames_counter = 0;
+        this->current_frame++;
+
+        if (this->current_frame > 7) this->current_frame = 0;
+
+        this->frame_rec.x = (float)this->current_frame * (float)this->movement_img.width / 8;
+    }
+
+
     //movement
     // 
     //press W A S D to move
@@ -60,7 +78,9 @@ void player::draw()
 {
     if (this->facingDirection == false)
     {
-        DrawTexture(this->texture, this->position.x, this->position.y, WHITE);
+        
+        DrawTextureRec(this->movement_texture, this->frame_rec, position, WHITE);  // Draw part of the texture
+        //DrawTexture(this->texture, this->position.x, this->position.y, WHITE);
     }
 
     else if (this->facingDirection == true)
