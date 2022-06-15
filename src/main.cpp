@@ -24,7 +24,7 @@ int main() {
 
 
 
-	typedef enum GameScreen { TITLE = 0, GAMEPLAY, FIGHT } Gamescreen; //LOGO = 0
+	typedef enum GameScreen { HOME = 0, GAMEPLAY, FIGHT, DEATH } Gamescreen; //LOGO = 0
 
 
 #ifdef GAME_START_FULLSCREEN
@@ -49,12 +49,13 @@ int main() {
 
 	Texture2D homeScreen = LoadTexture("assets/graphics/backgrounds/MenuScreens/Homescreen_WIP.png");
 	Texture2D homScreen = LoadTexture("assets/graphics/backgrounds/MenuScreens/Homscreen_WIP.png");
+	Texture2D deathScreen = LoadTexture("assets/graphics/backgrounds/MenuScreens/DeathScreen.png");
 
 
 	int framesCounter = 0;
 
 	//sets default to screen whith which the game shall start when being executed
-	GameScreen currentScreen = TITLE; //LOGO
+	GameScreen currentScreen = HOME; //LOGO
 
 	//Frames Per Second are kept to 60 frames per second
 	SetTargetFPS(60);
@@ -74,7 +75,7 @@ int main() {
 		updateControls(&controlInputs);
 		switch (currentScreen) {
 
-		case TITLE:
+		case HOME:
 		{
 			// TODO: Update TITLE screen variables here!
 
@@ -96,7 +97,7 @@ int main() {
 
 			if (IsKeyPressed(KEY_T))
 			{
-				currentScreen = TITLE;
+				currentScreen = HOME;
 			}
 
 			//TODO: wenn camera nicht border berührt
@@ -126,6 +127,19 @@ int main() {
 				currentScreen = GAMEPLAY;
 			}
 
+			//press space to death screen
+			if (IsKeyPressed(KEY_SPACE))
+			{
+				currentScreen = DEATH;
+			}
+
+		} break;
+		case DEATH:
+		{
+			if (IsKeyPressed(KEY_ENTER))
+			{
+				currentScreen = HOME;
+			}
 		} break;
 		default: break;
 
@@ -154,7 +168,7 @@ int main() {
 
 			} break;
 			*/
-		case TITLE:
+		case HOME:
 		{
 			//Draw TITLE screen here!
 			DrawRectangle(0, 0, Game::ScreenWidth, Game::ScreenHeight, GREEN);
@@ -195,6 +209,11 @@ int main() {
 
 			DrawTexture(fightScreen, 0, 0, WHITE);
 		} break;
+		case DEATH:
+		{	
+			DrawTexture(deathScreen, 0, 0, WHITE);
+
+		} break; 
 		default: break;
 		}
 
