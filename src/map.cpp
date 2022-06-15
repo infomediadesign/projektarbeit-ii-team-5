@@ -146,14 +146,18 @@ void map::drawForeground()
 
 // @OLI MACH MAL
 // MUSST ES ABER AUCH IN MAIN HINZUFÜGEN DANN
+// Olis : Das sollte niemals aufgeruft werden. Kollision wird nicht gedrawt.
 void map::addCollision()
 {
+	return;
+}
 	//collision doesnt work because of bool
 	
+	/*
 	for (int y{}; y < mapData.mapHeight; y++) {
 		for (int x{}; x < mapData.mapWidth; x++) {
 			DrawTexturePro(tileAtlasTexture, { (float)(mapData.layerCollision[x + y * mapData.mapWidth] % 15) * 32,(float)(mapData.layerCollision[x + y * mapData.mapWidth] / 15) * 32 ,32,32 }, { (float)(x * 32 * 4),(float)(y * 32 * 4),32 * 4,32 * 4 }, {}, 0, WHITE);
 		}
 	}
 	
-}
+}*/
