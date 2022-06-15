@@ -136,6 +136,8 @@ int main() {
 		} break;
 		case DEATH:
 		{
+			DrawTexturePro(deathScreen, { 0,0,(float)deathScreen.width,(float)deathScreen.height }, { 0,0,(float)GetScreenWidth(),(float)GetScreenHeight() }, {}, 0.0, WHITE);
+
 			if (IsKeyPressed(KEY_ENTER))
 			{
 				currentScreen = HOME;
