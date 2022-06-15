@@ -13,7 +13,7 @@ public:
 
 	void drawBackground();
 	void drawForeground();
-	void addCollision();
+	void checkCollision();
 
 	Image image;
 	Texture2D texture;

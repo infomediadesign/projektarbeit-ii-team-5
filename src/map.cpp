@@ -80,9 +80,17 @@ map::map()
 		//layerCollision
 		if (layer["name"] == "Collision") {
 			for (auto const& tileID : layer["data"]) {
-				mapData.layerForegroundOpaque.push_back(tileID);
-
+				if (tileID == 0)
+				{
+					mapData.layerCollision.push_back(false);
+				}
+				else
+				{
+					mapData.layerCollision.push_back(true);
+				}
 			}
+
+			std::cout << "INFO: All Layers have been parsed." << std::endl;
 		}
 		
 	}
@@ -146,6 +154,7 @@ void map::drawForeground()
 
 // @OLI MACH MAL
 // MUSST ES ABER AUCH IN MAIN HINZUFÜGEN DANN
+<<<<<<< Updated upstream
 // Olis : Das sollte niemals aufgeruft werden. Kollision wird nicht gedrawt.
 void map::addCollision()
 {
@@ -159,5 +168,9 @@ void map::addCollision()
 			DrawTexturePro(tileAtlasTexture, { (float)(mapData.layerCollision[x + y * mapData.mapWidth] % 15) * 32,(float)(mapData.layerCollision[x + y * mapData.mapWidth] / 15) * 32 ,32,32 }, { (float)(x * 32 * 4),(float)(y * 32 * 4),32 * 4,32 * 4 }, {}, 0, WHITE);
 		}
 	}
+=======
+void map::checkCollision()
+{
+>>>>>>> Stashed changes
 	
 }*/
