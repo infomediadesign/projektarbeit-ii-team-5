@@ -1,5 +1,6 @@
 #include "player.h"
 #include "map.h"
+#include <iostream>
 
 player::player(map* current_map) : current_map(current_map)
 {
@@ -26,7 +27,7 @@ player::~player()
 	UnloadTexture(this->texture);
 }
 
-void player::update()
+void player::update(controlInput controlInputs,std::vector<Rectangle> walls)
 {
     //walking animation setup
     this->frames_counter++;
@@ -48,29 +49,45 @@ void player::update()
     //stop at borders
     // 
     //right
-    if (IsKeyDown(KEY_D) && this->position.x <= player::current_map->texture.width - this->texture.width)
+    if (controlInputs.right && this->position.x <= player::current_map->texture.width - this->texture.width)
     {
         this->position.x += this->movement_speed;
     }
     //left
     //else 
-    if (IsKeyDown(KEY_A) && this->position.x >= 0)
+    if (controlInputs.left && this->position.x >= 0)
     {
         this->position.x -= this->movement_speed;
     }
     //up
     //else 
-    if (IsKeyDown(KEY_W) && this->position.y >= 0)
+    if (controlInputs.up && this->position.y >= 0)
     {
         this->position.y -= this->movement_speed;
         this->facingDirection = true;
     }
     //down
     //else
-    if (IsKeyDown(KEY_S) && this->position.y <= player::current_map->texture.height - this->texture.height)
+    if (controlInputs.down && this->position.y <= player::current_map->texture.height - this->texture.height)
     {
         this->position.y += this->movement_speed;
         this->facingDirection = false;
+    }
+    //Whenever a collision is found the player will be pushed slightly back into the world until they are out of collisons
+    while (checkForAnyCollisions(walls))
+    {
+        if (controlInputs.left){
+            this->position.x += 1.0;
+    }
+        if (controlInputs.right) {
+            this->position.x -= 1.0;
+        }
+        if (controlInputs.up) {
+            this->position.y += 1.0;
+        }
+        if (controlInputs.down) {
+            this->position.y -= 1.0;
+        }
     }
 }
 
@@ -79,8 +96,8 @@ void player::draw()
     if (this->facingDirection == false)
     {
         
-        DrawTextureRec(this->movement_texture, this->frame_rec, position, WHITE);  // Draw part of the texture
-        //DrawTexture(this->texture, this->position.x, this->position.y, WHITE);
+        //DrawTextureRec(this->movement_texture, this->frame_rec, position, WHITE);  // Draw part of the texture
+        DrawTexture(this->texture, this->position.x, this->position.y, WHITE);
     }
 
     else if (this->facingDirection == true)
@@ -95,7 +112,19 @@ void player::draw()
     
 }
 
+bool player::checkForAnyCollisions(std::vector<Rectangle> walls)
+{
+    for (int i = 0; i < walls.size(); i++) {
+        if (CheckCollisionRecs(this->getCollision(), walls[i])) {
+            std::cout << "wall has been found";
+            return true;
+        }
+        
+    }
+    return false;
+}
+
 Rectangle player::getCollision()
 {
-    return {this->position.x,this->position.y, 128, 128};
+    return {this->position.x + 6 * 4,this->position.y + 4 * 4, 20*4, 24*4};
 }

@@ -158,10 +158,7 @@ void map::drawForeground()
 }
 
 void map::drawCollision() {
-	for (int y{}; y < mapData.mapHeight; y++) {
-		for (int x{}; x < mapData.mapWidth; x++) {
-			if (mapData.layerCollision[y*mapData.mapWidth+x])
-			DrawRectangle(x * 128, y * 128, 128, 128, RED);
-		}
+	for (int i = 0; i < collisionRectangles.size(); i++) {
+		DrawRectangleRec(collisionRectangles[i], RED);
 	}
 }

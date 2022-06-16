@@ -108,15 +108,10 @@ int main() {
 
 			if (!this_inventory->visible)
 			{
+				
+				this_player->update(controlInputs,this_map->collisionRectangles);
 				this_camera->target = this_player->position;
-				this_player->update();
-				//@OLI
-				for (int i = 0; i < this_map->collisionRectangles.size();i++) {
-					if (CheckCollisionRecs(this_player->getCollision(), this_map->collisionRectangles[i]))
-					{
-						std::cout << "We touch" << std::endl;
-					};
-				}
+				
 			}
 
 			this_inventory->update();
