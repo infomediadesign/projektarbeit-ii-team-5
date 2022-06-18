@@ -5,7 +5,7 @@
 inventory::inventory(controlInput* x)
 {
 	//image initialization
-	this->image = LoadImage("assets/graphics/backgrounds/UI/Inventory/InventoryBlank.png");
+	this->image = LoadImage("assets/graphics/backgrounds/UI/Inventory/InventoryTest.png");
 	ImageResizeNN(&this->image, this->image.width * 2, this->image.height * 2);
 	this->texture = LoadTextureFromImage(this->image);
 	//this->texture = LoadTexture("assets/graphics/backgrounds/UI/Inventory/InventoryBlank.png");
