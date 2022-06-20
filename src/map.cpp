@@ -20,7 +20,7 @@ map::map()
 
 	std::ifstream tilesetDescriptionFile("assets/graphics/Tilesets/Forest_Spirites_-_Testlevel_-_Tileset_v2.json"); //
 	//Beginn des Parsens
-	std::ifstream levelMapFile("assets/graphics/Maps/ForestSpirits_Testlevel_V2.json"); //
+	std::ifstream levelMapFile("assets/graphics/Maps/Forest_Spirits_-_Testlevel_V2"); //json file that says which tile number goes were
 	this->levelMap = nlohmann::json::parse(levelMapFile);
 	levelMapFile.close();
 	this->mapData.mapWidth = levelMap["width"]; //schreibe in mapData die weite des Levels
