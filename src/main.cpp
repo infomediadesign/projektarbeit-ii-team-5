@@ -14,7 +14,7 @@
 #include <iostream>
 
 
-controlInput controlInputs{};
+
 
 //initialization within main()
 int main() {
@@ -33,7 +33,7 @@ int main() {
 #endif
 
 	// Your own initialization code here
-
+	controlInput controlInputs{};
 	Camera2D* this_camera = new Camera2D;
 	map* this_map = new map;
 	player* this_player = new player(this_map);
@@ -81,7 +81,7 @@ int main() {
 			// TODO: Update TITLE screen variables here!
 
 			// Press enter to change to GAMEPLAY screen
-			if (IsKeyPressed(KEY_ENTER))
+			if (controlInputs.confirm == 1)
 			{
 				currentScreen = GAMEPLAY;
 			}
@@ -91,7 +91,7 @@ int main() {
 		case GAMEPLAY:
 		{
 			// Press enter to change to ENDING screen
-			if (IsKeyPressed(KEY_ENTER)) // || this_player->position.x < 15 * 32 && this_player->position.x > 14 * 32 && this_player->position.y < 9 * 32 && this_player->position.y > 8 * 32)
+			if (controlInputs.confirm == 1) // || this_player->position.x < 15 * 32 && this_player->position.x > 14 * 32 && this_player->position.y < 9 * 32 && this_player->position.y > 8 * 32)
 			{
 				currentScreen = FIGHT;
 			}
@@ -108,10 +108,10 @@ int main() {
 
 			if (!this_inventory->visible)
 			{
-				
-				this_player->update(controlInputs,this_map->collisionRectangles);
+
+				this_player->update(controlInputs, this_map->collisionRectangles);
 				this_camera->target = this_player->position;
-				
+
 			}
 
 			this_inventory->update();
@@ -196,6 +196,10 @@ int main() {
 
 
 			BeginMode2D(*this_camera);
+			//Here the Camera can be controlled with Help of the right stick.
+			this_camera->offset = Vector2{ Game::ScreenWidth / 2.0f - this_player->texture.width / 2, Game::ScreenHeight / 2.0f - this_player->texture.height / 2 };
+			this_camera->offset.x -= 128 * 2 * GetGamepadAxisMovement(0, 2);
+			this_camera->offset.y -= 128 * 2 * GetGamepadAxisMovement(0, 3);
 			//DrawTexture(this_map->texture, 0, 0, WHITE);
 			this_map->drawBackground();
 			this_player->draw();
@@ -245,23 +249,24 @@ int main() {
 
 
 void updateControls(controlInput* x) {
+	float deadzone = 0.65;
 	//Upwards
-	if (IsKeyDown(KEY_W) || IsGamepadButtonDown(0, GAMEPAD_BUTTON_LEFT_FACE_UP))
+	if (IsKeyDown(KEY_W) || IsGamepadButtonDown(0, GAMEPAD_BUTTON_LEFT_FACE_UP) || (GetGamepadAxisMovement(0, 1) < -deadzone))
 		x->up++;
 	else
 		x->up = 0;
 	//Downwards
-	if (IsKeyDown(KEY_S) || IsGamepadButtonDown(0, GAMEPAD_BUTTON_LEFT_FACE_DOWN))
+	if (IsKeyDown(KEY_S) || IsGamepadButtonDown(0, GAMEPAD_BUTTON_LEFT_FACE_DOWN) || (GetGamepadAxisMovement(0, 1) > deadzone))
 		x->down++;
 	else
 		x->down = 0;
 	//Leftwards
-	if (IsKeyDown(KEY_A) || IsGamepadButtonDown(0, GAMEPAD_BUTTON_LEFT_FACE_LEFT))
+	if (IsKeyDown(KEY_A) || IsGamepadButtonDown(0, GAMEPAD_BUTTON_LEFT_FACE_LEFT) || (GetGamepadAxisMovement(0, 0) < -deadzone))
 		x->left++;
 	else
 		x->left = 0;
 	//Rightwards
-	if (IsKeyDown(KEY_D) || IsGamepadButtonDown(0, GAMEPAD_BUTTON_LEFT_FACE_RIGHT))
+	if (IsKeyDown(KEY_D) || IsGamepadButtonDown(0, GAMEPAD_BUTTON_LEFT_FACE_RIGHT) || (GetGamepadAxisMovement(0, 0) > deadzone))
 		x->right++;
 	else
 		x->right = 0;
