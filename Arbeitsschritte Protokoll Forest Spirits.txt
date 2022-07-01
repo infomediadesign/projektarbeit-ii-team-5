@@ -9,3 +9,4 @@
 - Kampfsystem aufbauen
 - Datein auslesen und beschreiben in C++ --> Save Files, Dialog, Events, etc.
 - Interactions im Level einbauen und nutzen --> auf Grundlage der Möglichkeit Datein auszulesen
+- Animationen einbauen (Player Walkcycle, Enemies Walkcycle)
