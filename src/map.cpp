@@ -75,7 +75,6 @@ map::map()
 			}
 		}
 
-		//collision doesnt work because of bool
 		
 		//layerCollision
 		if (layer["name"] == "Collision") {
@@ -90,7 +89,7 @@ map::map()
 				}
 			}
 
-			std::cout << "INFO: All Layers have been parsed." << std::endl;
+			//std::cout << "INFO: All Layers have been parsed." << std::endl;
 		}
 		
 	}
