@@ -1,0 +1,12 @@
+1. Screen-Wechsel - (Mai 2022)
+2. Movement des Players (W-A-S-D, testen der Geschwindigkeit etc.) - (Mai 2022)
+3. Inventar- und UI-Test als png Platzhalter einfügen (um die Conrtols zu testen) - (Mai 2022)
+3. Level .json aus Tiled einbauen - (Mai 2022)
+4. Methoden zur Tastenbelegung --> Controllersupport (Juni 2022)
+5. Methoden zur Verwendung der .json des Levels --> Daten in Vektoren geparsed um effizienter zu laufen (Juni 2022)
+6. Hitboxen die nicht vom Spieler betreten werden können + rote Ausgabe im Level (Juni 2022)
+-------
+- Kampfsystem aufbauen
+- Datein auslesen und beschreiben in C++ --> Save Files, Dialog, Events, etc.
+- Interactions im Level einbauen und nutzen --> auf Grundlage der Möglichkeit Datein auszulesen
+- Animationen einbauen (Player Walkcycle, Enemies Walkcycle)
