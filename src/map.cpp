@@ -34,28 +34,28 @@ map::map()
 		//dann wird die id jedes tiles in die richtige struct geladen
 		if (layer["name"] == "Ground") {
 			for (auto const& tileID : layer["data"]) {
-				mapData.layerGround.push_back(tileID-1);
+				mapData.layerGround.push_back(((int)tileID)-1);
 
 			}
 		}
 
 		if (layer["name"] == "Interactables") {
 			for (auto const& tileID : layer["data"]) {
-				mapData.layerObjects.push_back(tileID-1);
+				mapData.layerObjects.push_back(((int)tileID)-1);
 
 			}
 		}
 
 		if (layer["name"] == "Decoration") {
 			for (auto const& tileID : layer["data"]) {
-				mapData.layerDecoration.push_back(tileID-1);
+				mapData.layerDecoration.push_back(((int)tileID)-1);
 
 			}
 		}
 
 		if (layer["name"] == "Interactables") {
 			for (auto const& tileID : layer["data"]) {
-				mapData.layerObjects.push_back(tileID-1);
+				mapData.layerObjects.push_back(((int)tileID)-1);
 
 			}
 		}
@@ -63,14 +63,14 @@ map::map()
 		//layerForegroundTransparent
 		if (layer["name"] == "Foreground transparent") {
 		for (auto const& tileID : layer["data"]) {
-			mapData.layerForegroundTransparent.push_back(tileID-1);
+			mapData.layerForegroundTransparent.push_back(((int)tileID)-1);
 
 		}
 	}
 		//layerForegroundOpaque
 		if (layer["name"] == "Foreground") {
 			for (auto const& tileID : layer["data"]) {
-				mapData.layerForegroundOpaque.push_back(tileID-1);
+				mapData.layerForegroundOpaque.push_back(((int)tileID)-1);
 
 			}
 		}
