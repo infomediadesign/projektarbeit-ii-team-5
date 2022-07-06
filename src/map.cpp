@@ -32,6 +32,7 @@ map::map()
 	for (auto const& layer : levelMap["layers"]) {
 		//hier wird nach dem jeweiligen namen des layers gefragt
 		//dann wird die id jedes tiles in die richtige struct geladen
+        
 		if (layer["name"] == "Ground") {
 			for (auto const& tileID : layer["data"]) {
 				mapData.layerGround.push_back(((int)tileID)-1);
