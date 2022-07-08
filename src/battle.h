@@ -1,11 +1,13 @@
 #pragma once
 #include <vector>
 #include "BattleActor.h"
+#include <string>
 
 class Battle {
 	//attributes
 private:
-	std::vector<BattleActor> BattleActors;
+	std::vector<BattleActor> theBattleActors;
+    BattleActor hans;
 	int currentTurn = 0;
 	int currentTurnStep;
 	int waitingForAnimtaion = 0;

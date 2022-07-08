@@ -1,7 +1,7 @@
 #pragma once
 
 #include "actor.h"
-#include "controllInput.h"
+#include "forestSpiritsStructs.h"
 
 class inventory : public actor
 {

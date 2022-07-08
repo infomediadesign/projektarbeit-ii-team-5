@@ -2,7 +2,7 @@
 
 #include "actor.h"
 #include "map.h"
-#include "controllInput.h"
+#include "forestSpiritsStructs.h"
 
 class player : public actor
 {

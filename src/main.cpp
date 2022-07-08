@@ -5,7 +5,7 @@
 
 #include "raymath.h"
 
-#include "controllInput.h"
+#include "forestSpiritsStructs.h"
 
 #include "sprite.h"
 #include "player.h"
