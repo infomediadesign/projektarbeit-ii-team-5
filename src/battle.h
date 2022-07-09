@@ -7,7 +7,6 @@ class Battle {
 	//attributes
 private:
 	std::vector<BattleActor> theBattleActors;
-    BattleActor hans;
 	int currentTurn = 0;
 	int currentTurnStep;
 	int waitingForAnimtaion = 0;

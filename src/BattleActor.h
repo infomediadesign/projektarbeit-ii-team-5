@@ -1,4 +1,5 @@
 #pragma once
+#include <vector>
 
 
 class BattleActor {
@@ -15,15 +16,18 @@ private:
     float maxHP = 100;
     float maxMana = 100;
     int dNat = 10;
-    //Battle* up;
+    std::vector<BattleActor>* otherActors;
+    int nextAttack = -1;
+    bool needAttackMenu;
 public:
 
 private:
 
 public:
-    BattleActor();
+    BattleActor(std::vector<BattleActor>* otherActors, int actorType);
     //getter
-    BattleActor *getAddress();
+    BattleActor* getAddress();
 
     void startTurn();
+    int evaluateAttack();
 };
