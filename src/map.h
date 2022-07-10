@@ -21,9 +21,10 @@ public:
 
 	Vector2 player_start_pos;
 
-	//from tutorial to include tiled by Christoph
+	/*//from tutorial to include tiled by Christoph
 	Vector2 vec;
 	Rectangle rec;
+    //we dont use them*/
 
 	//Here come Collision Rectangles Vector
 	std::vector<Rectangle> collisionRectangles;

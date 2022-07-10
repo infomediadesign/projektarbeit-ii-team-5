@@ -19,7 +19,7 @@ map::map()
 
 
 	std::ifstream tilesetDescriptionFile("assets/graphics/Tilesets/Forest_Spirites_-_Testlevel_-_Tileset_v2.json"); //
-	//Beginn des Parsens
+	//begin of parsing
 	std::ifstream levelMapFile("assets/graphics/Maps/Forest_Spirits_-_Testlevel_V2.json"); //json file that says which tile number goes were
 	this->levelMap = nlohmann::json::parse(levelMapFile);
 	levelMapFile.close();
@@ -28,10 +28,10 @@ map::map()
 
 	this->tileAtlasTexture = LoadTexture("assets/graphics/tilesets/Tileset_ForestSpirites_V2.png");
 
-	//geh durch alle inhalte von layers
+	//go through all contents of "layers"
 	for (auto const& layer : levelMap["layers"]) {
-		//hier wird nach dem jeweiligen namen des layers gefragt
-		//dann wird die id jedes tiles in die richtige struct geladen
+		//this asks for the name of each layer
+		//then inserts its data into the vectors of the mapdata
         
 		if (layer["name"] == "Ground") {
 			for (auto const& tileID : layer["data"]) {
@@ -96,7 +96,7 @@ map::map()
 	}
 	for (int i = 0; i < mapData.layerCollision.size(); i++) {
 		if (mapData.layerCollision[i]) {
-			Rectangle createdRectangle = { i % this->mapData.mapWidth * 128, i / this->mapData.mapWidth * 128, 128, 128 };
+			Rectangle createdRectangle = { i % this->mapData.mapWidth * 128.0f, (i / this->mapData.mapWidth * 128.0f), 128, 128 };
 			collisionRectangles.push_back(createdRectangle);
 		}
 	}
@@ -113,9 +113,21 @@ void map::drawBackground()
 {
 	for (int y{}; y < mapData.mapHeight; y++) {
 		for (int x{}; x < mapData.mapWidth; x++) {
-			DrawTexturePro(tileAtlasTexture, { (float)(mapData.layerGround[x + y * mapData.mapWidth] % this->tilemapData.tileMapWidth) * 32,(float)(mapData.layerGround[x + y * mapData.mapWidth] / this->tilemapData.tileMapWidth) * 32 ,32,32 }, { (float)(x * 32 * 4),(float)(y * 32 * 4),32 * 4,32 * 4 }, {}, 0, WHITE);
-		}		
-	}
+			DrawTexturePro(tileAtlasTexture,
+                {
+                    (float)(mapData.layerGround[x + y * mapData.mapWidth] % this->tilemapData.tileMapWidth) * 32,
+                    (float)(mapData.layerGround[x + y * mapData.mapWidth] / this->tilemapData.tileMapWidth) * 32 ,
+                    32,32
+                },
+                {
+                    (float)(x * 32 * 4),
+                    (float)(y * 32 * 4),
+                    32 * 4,32 * 4
+                },
+                {}, 0, WHITE);
+		}	//this draws the tiles on screen. This uses a loop for each dimension to make the readability a *bit* easier. Those lines are fairly long, but its not too complex once you get into it
+	}   //also maybe these should be a function but that's for future me -o
+        //I'm future me and still dont want to -o
 	
 	for (int y{}; y < mapData.mapHeight; y++) {
 		for (int x{}; x < mapData.mapWidth; x++) {
@@ -155,7 +167,7 @@ void map::drawForeground()
 
 }
 
-void map::drawCollision() {
+void map::drawCollision() { //debugging feature
 	for (int i = 0; i < collisionRectangles.size(); i++) {
 		DrawRectangleRec(collisionRectangles[i], RED);
 	}

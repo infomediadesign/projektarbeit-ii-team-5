@@ -16,3 +16,7 @@ void BattleActor::startTurn()
         nextAttack = evaluateAttack();
     }
 }
+
+int BattleActor::evaluateAttack(){
+    return 0;
+}
