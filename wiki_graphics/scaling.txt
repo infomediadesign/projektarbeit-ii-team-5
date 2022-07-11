@@ -1,4 +1,3 @@
-32x32 pixel	--> 300x300 pixel
-32x32 character --> 200x200
+32x32 pixel	--> 200x200pixel
 
 walkcycles  	--> 700 or 800 in width
