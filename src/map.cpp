@@ -18,15 +18,17 @@ map::map()
 	this->player_start_pos.y = this->texture.height - 350;
 
 
-	std::ifstream tilesetDescriptionFile("assets/graphics/Tilesets/Forest_Spirites_-_Testlevel_-_Tileset_v2.json"); //
+    //tileset Description File
+	std::ifstream tilesetDescriptionFile("assets/graphics/Testlevel/Testlevel_Tileset_V2.json"); //
 	//begin of parsing
-	std::ifstream levelMapFile("assets/graphics/Maps/Forest_Spirits_-_Testlevel_V2.json"); //json file that says which tile number goes were
+    //level map file
+	std::ifstream levelMapFile("assets/graphics/Testlevel/Testlevel_V2.json"); //json file that says which tile number goes were
 	this->levelMap = nlohmann::json::parse(levelMapFile);
 	levelMapFile.close();
 	this->mapData.mapWidth = levelMap["width"]; //schreibe in mapData die weite des Levels
 	this->mapData.mapHeight = levelMap["height"];
 
-	this->tileAtlasTexture = LoadTexture("assets/graphics/tilesets/Tileset_ForestSpirites_V2.png");
+	this->tileAtlasTexture = LoadTexture("assets/graphics/Testlevel/Testlevel_Tileset_V2.png");
 
 	//go through all contents of "layers"
 	for (auto const& layer : levelMap["layers"]) {
