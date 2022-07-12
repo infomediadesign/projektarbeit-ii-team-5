@@ -3,6 +3,67 @@
 
 
 class BattleActor {
+public:
+    bool isPlayerControlled1() const;
+
+    void setIsPlayerControlled(bool isPlayerControlled);
+
+    bool isAlive1() const;
+
+    void setIsAlive(bool isAlive);
+
+    float getHp() const;
+
+    void setHp(float hp);
+
+    float getMana() const;
+
+    void setMana(float mana);
+
+    int getNat() const;
+
+    void setNat(int nat);
+
+    float getPat() const;
+
+    void setPat(float pat);
+
+    float getMat() const;
+
+    void setMat(float mat);
+
+    float getPdf() const;
+
+    void setPdf(float pdf);
+
+    float getMdf() const;
+
+    void setMdf(float mdf);
+
+    float getMaxHp() const;
+
+    void setMaxHp(float maxHp);
+
+    float getMaxMana() const;
+
+    void setMaxMana(float maxMana);
+
+    int getDNat() const;
+
+    void setDNat(int dNat);
+
+    std::vector<BattleActor> *getOtherActors() const;
+
+    void setOtherActors(std::vector<BattleActor> *otherActors);
+
+    int getNextAttack() const;
+
+    void setNextAttack(int nextAttack);
+
+    bool isNeedAttackMenu() const;
+
+    void setNeedAttackMenu(bool needAttackMenu);
+
 private:
     bool isPlayerControlled = false;
     bool isAlive = true;
@@ -19,7 +80,6 @@ private:
     std::vector<BattleActor>* otherActors;
     int nextAttack = -1;
     bool needAttackMenu;
-public:
 
 private:
 

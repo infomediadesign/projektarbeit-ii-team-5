@@ -10,7 +10,7 @@ private:
 	int currentTurn = 0;
 	int currentTurnStep;
 	int waitingForAnimtaion = 0;
-	bool waitingForPlayerInput;
+	bool isWaitingForPlayerInput;
 	BattleActor* currentlyActing;
 public:
 	
@@ -22,6 +22,7 @@ private:
 	void calculatePrognosis(); 
 	void receiveUIAnswer(std::string);
 	BattleActor* getRandomPlayerPointer(int target);
+    void playTurn();
 public:
 	Battle(int advantage, int encounternumber); //constructor
 	void frameRoutine(); //wird jeden frame aufgerufen
