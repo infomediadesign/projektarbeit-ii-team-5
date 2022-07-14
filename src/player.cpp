@@ -54,26 +54,28 @@ void player::update(controlInput controlInputs,std::vector<Rectangle> walls)
     if (controlInputs.right && this->position.x <= player::current_map->texture.width - this->texture.width)
     {
         this->position.x += this->movement_speed;
+        this->facingDirection = right; // enum
     }
     //left
-    //else 
+    //else
     if (controlInputs.left && this->position.x >= 0)
     {
         this->position.x -= this->movement_speed;
+        this->facingDirection = left; // enum
     }
     //up
     //else 
     if (controlInputs.up && this->position.y >= 0)
     {
         this->position.y -= this->movement_speed;
-        this->facingDirection = true;
+        this->facingDirection = up; // enum
     }
     //down
     //else
     if (controlInputs.down && this->position.y <= player::current_map->texture.height - this->texture.height)
     {
         this->position.y += this->movement_speed;
-        this->facingDirection = false;
+        this->facingDirection = down; // enum
     }
     //Whenever a collision is found the player will be pushed slightly back into the world until they are out of collisons
     while (checkForAnyCollisions(walls))
@@ -95,30 +97,12 @@ void player::update(controlInput controlInputs,std::vector<Rectangle> walls)
 
 void player::draw()
 {
-    if (this->facingDirection == false)
-    {
-        
-        //DrawTextureRec(this->movement_texture, this->frame_rec, position, WHITE);  // Draw part of the texture
-        DrawTexture(this->texture, this->position.x, this->position.y, WHITE);
-    }
-
-    else if (this->facingDirection == true)
-    {
-        DrawTexture(this->texture2, this->position.x, this->position.y, WHITE);
-    }
-
-    else
-    {
-        DrawTexture(this->texture, this->position.x, this->position.y, WHITE);
-    }
-    
-}
-
-void player::animate()
-{
     this->framesCounter++;
-    this->framesOffset = framesCounter / 7 % 8;
-    DrawTexturePro(textureAnimated, {(float)framesOffset * 32, 0, 32, 32}, {this->position.x, this->position.y, 128, 128}, {}, 0, WHITE );
+    this->framesOffset = framesCounter / frame_speed % (this->textureAnimated.width/32);
+    DrawTexturePro(textureAnimated,
+                   {(float)framesOffset * 32, (float)facingDirection*32, 32, 32},
+                   {this->position.x, this->position.y, 128, 128},
+                   {},0, WHITE );
 }
 
 bool player::checkForAnyCollisions(std::vector<Rectangle> walls)

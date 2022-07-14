@@ -21,6 +21,10 @@ public:
 	int frame_speed = 8;
 	Rectangle frame_rec = { 0.0f, 0.0f, (float)movement_texture.width / frame_speed, (float)movement_texture.height };
 
+    bool isMoving = false;
+    enum Direction {down, up, left, right};
+    Direction facingDirection = down;
+
 	int movement_speed = 5;
 	int scale_factor = 4;
 

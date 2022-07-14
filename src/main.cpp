@@ -191,7 +191,7 @@ int main() {
 			this_camera->offset.y -= 128 * GetGamepadAxisMovement(0, 3);
 			//DrawTexture(this_map->texture, 0, 0, WHITE);
 			this_map->drawBackground();
-			this_player->animate();
+			this_player->draw();
 			//DrawRectangle(14 * 32, 8 * 32, 32, 32, RED);
 			this_map->drawForeground();
 			if (IsKeyDown(KEY_H))
