@@ -20,6 +20,8 @@ player::player(map* current_map) : current_map(current_map)
     this->position.x = current_map->player_start_pos.x - 80;
     this->position.y = current_map->player_start_pos.y- 1700;
 
+
+    this->textureAnimated = LoadTexture("assets/graphics/Sprites/Character/MainCharacter/walkCycle_Blaize_02.png");
 }
 
 player::~player()
@@ -110,6 +112,13 @@ void player::draw()
         DrawTexture(this->texture, this->position.x, this->position.y, WHITE);
     }
     
+}
+
+void player::animate()
+{
+    this->framesCounter++;
+    this->framesOffset = framesCounter / 7 % 8;
+    DrawTexturePro(textureAnimated, {(float)framesOffset * 32, 0, 32, 32}, {this->position.x, this->position.y, 128, 128}, {}, 0, WHITE );
 }
 
 bool player::checkForAnyCollisions(std::vector<Rectangle> walls)

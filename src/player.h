@@ -10,6 +10,9 @@ public:
 	player(map* current_map);
 	~player();
 
+    Texture2D textureAnimated;
+    int framesCounter = 0;
+    int framesOffset = 0;
 	
 
 	bool facingDirection; //true == up, false == down
@@ -20,6 +23,7 @@ public:
 
 	void update(controlInput controlInputs, std::vector<Rectangle> walls);
 	void draw();
+    void animate();
 	bool checkForAnyCollisions(std::vector<Rectangle> collisions);
 	Rectangle getCollision();
 	

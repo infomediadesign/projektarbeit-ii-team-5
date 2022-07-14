@@ -163,17 +163,6 @@ int main() {
 
 		switch (currentScreen)
 		{
-			/*
-			case LOGO:
-			{
-				//Draw LOGO screen here!
-				DrawRectangle(0, 0, Game::ScreenWidth, Game::ScreenHeight, LIGHTGRAY);
-				DrawText("LOGO SCREEN", 20, 20, 40, GRAY);
-				DrawText("WAIT for 2 SECONDS...", 370, Game::ScreenHeight /2, 20, GRAY);
-
-
-			} break;
-			*/
 		case HOME:
 		{
 			//Draw TITLE screen here!
@@ -202,7 +191,7 @@ int main() {
 			this_camera->offset.y -= 128 * GetGamepadAxisMovement(0, 3);
 			//DrawTexture(this_map->texture, 0, 0, WHITE);
 			this_map->drawBackground();
-			this_player->draw();
+			this_player->animate();
 			//DrawRectangle(14 * 32, 8 * 32, 32, 32, RED);
 			this_map->drawForeground();
 			if (IsKeyDown(KEY_H))
