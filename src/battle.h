@@ -3,15 +3,25 @@
 #include "BattleActor.h"
 #include <string>
 
+enum enumBattleState{
+    startOfTick = 0,
+    actorsActionSelection = 1,
+    playerActionSelect = 2,
+    playOutRound = 3,
+    textBubble = 4,
+    playingAnimation = 5,
+    winningScreen = 6
+};
+
 class Battle {
 	//attributes
 private:
 	std::vector<BattleActor> theBattleActors;
 	int currentTurn = 0;
-	int currentTurnStep;
 	int waitingForAnimtaion = 0;
 	bool isWaitingForPlayerInput;
 	BattleActor* currentlyActing;
+    enumBattleState battleState;
 public:
 	
 
