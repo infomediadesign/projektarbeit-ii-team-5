@@ -12,7 +12,7 @@ player::player(map* current_map) : current_map(current_map)
     ImageResizeNN(&this->image2, this->image2.width * scale_factor, this->image2.height * scale_factor);
     this->texture2 = LoadTextureFromImage(this->image2); //walking up
 
-    this->movement_img = LoadImage("assets/graphics/Sprites/Character/MainCharacter/walkCycle_Blaize.png");
+    this->movement_img = LoadImage("assets/graphics/Sprites/Character/MainCharacter/Blaize_Walkcycle_02");
     ImageResizeNN(&this->movement_img, this->movement_img.width * scale_factor, this->movement_img.height * scale_factor);
     this->movement_texture = LoadTextureFromImage(this->movement_img); //walking up
 

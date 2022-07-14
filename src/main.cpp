@@ -44,13 +44,13 @@ int main() {
 	this_camera->zoom = 1.0f;
 	this_camera->rotation = 0.0f;
 
-	Image img_fightScreen = LoadImage("assets/graphics/backgrounds/UI/Fightscreen/Fightscreen_scaled_down_Enemies.png");
+	Image img_fightScreen = LoadImage("assets/graphics/UI/Fightscreen/Fightscreen_scaled_down_Enemies.png");
 	ImageResizeNN(&img_fightScreen, img_fightScreen.width * 4, img_fightScreen.height * 4);
 	Texture2D fightScreen = LoadTextureFromImage(img_fightScreen);
 
-	Texture2D homeScreen = LoadTexture("assets/graphics/backgrounds/MenuScreens/Homescreen_WIP.png");
-	Texture2D homScreen = LoadTexture("assets/graphics/backgrounds/MenuScreens/Homscreen_WIP.png");
-	Texture2D deathScreen = LoadTexture("assets/graphics/backgrounds/MenuScreens/DeathScreen.png");
+	Texture2D homeScreen = LoadTexture("assets/graphics/UI/MenuScreens/Homescreen_WIP.png");
+	Texture2D homScreen = LoadTexture("assets/graphics/UI/MenuScreens/Homscreen_WIP.png");
+	Texture2D deathScreen = LoadTexture("assets/graphics/UI/MenuScreens/DeathScreen.png");
 
 
 	int framesCounter = 0;

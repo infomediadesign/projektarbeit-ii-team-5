@@ -5,18 +5,18 @@
 inventory::inventory(controlInput* x)
 {
 	//image initialization
-	this->image = LoadImage("assets/graphics/backgrounds/UI/Inventory/InventoryTest.png");
+	this->image = LoadImage("assets/graphics/UI/Inventory/InventoryTest.png");
 	ImageResizeNN(&this->image, this->image.width * 2, this->image.height * 2);
 	this->texture = LoadTextureFromImage(this->image);
 	//this->texture = LoadTexture("assets/graphics/backgrounds/UI/Inventory/InventoryBlank.png");
 	this->position.x = 0;
 	this->position.y = 0;
 
-	this->bag_img = LoadImage("assets/graphics/backgrounds/UI/Inventory/BagClosed.png");
+	this->bag_img = LoadImage("assets/graphics/UI/Inventory/BagClosed.png");
 	ImageResizeNN(&this->bag_img, this->bag_img.width * 2, this->bag_img.height * 2);
 	this->bag_c_texu = LoadTextureFromImage(this->bag_img);
 
-	this->bag_img = LoadImage("assets/graphics/backgrounds/UI/Inventory/BagOpen.png");
+	this->bag_img = LoadImage("assets/graphics/UI/Inventory/BagOpen.png");
 	ImageResizeNN(&this->bag_img, this->bag_img.width * 2, this->bag_img.height * 2);
 	this->bag_o_texu = LoadTextureFromImage(this->bag_img);
 	this->controlInputs = x;
