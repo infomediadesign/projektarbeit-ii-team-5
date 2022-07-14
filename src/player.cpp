@@ -6,7 +6,7 @@ player::player(map* current_map) : current_map(current_map)
 {
     this->image = LoadImage("assets/graphics/Sprites/Character/MainCharacter/Player_Front.png");
     ImageResizeNN(&this->image, this->image.width * scale_factor, this->image.height * scale_factor);
-	this->texture = LoadTextureFromImage(this->image); //walking down
+    this->texture = LoadTextureFromImage(this->image); //walking down
 
     this->image2 = LoadImage("assets/graphics/Sprites/Character/MainCharacter/Player_Back.png");
     ImageResizeNN(&this->image2, this->image2.width * scale_factor, this->image2.height * scale_factor);
@@ -16,12 +16,11 @@ player::player(map* current_map) : current_map(current_map)
     ImageResizeNN(&this->movement_img, this->movement_img.width * scale_factor, this->movement_img.height * scale_factor);
     this->movement_texture = LoadTextureFromImage(this->movement_img); //walking up
 
-	//this->position.x = Game::ScreenWidth / 2 - this->texture.width / 2;
     this->position.x = current_map->player_start_pos.x - 80;
     this->position.y = current_map->player_start_pos.y- 1700;
 
 
-    this->textureAnimated = LoadTexture("assets/graphics/Sprites/Character/MainCharacter/walkCycle_Blaize_02.png");
+    this->textureAnimated = LoadTexture("assets/graphics/Sprites/Character/Player/walkCycle_Blaize_02.png");
 }
 
 player::~player()
