@@ -19,12 +19,18 @@ public:
 	int current_frame;
 	int frames_counter;
 	int frame_speed = 8;
+    int actor_frames;  // only used within actor class
+    int actor_frame_offset;  // only used within actor class
+
 	Rectangle frame_rec = { 0.0f, 0.0f, (float)movement_texture.width / frame_speed, (float)movement_texture.height };
 
     bool isMoving = false;
     enum Direction {down, up, left, right};
     Direction facingDirection = down;
 
+    void drawActor(Texture2D texture, Vector2 pos);
+
+    //
 	int movement_speed = 5;
 	int scale_factor = 4;
 

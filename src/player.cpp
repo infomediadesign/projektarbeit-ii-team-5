@@ -104,23 +104,7 @@ void player::update(controlInput controlInputs,std::vector<Rectangle> walls)
 
 void player::draw()
 {
-    this->framesCounter++;
-    this->framesOffset = framesCounter / frame_speed % (this->textureAnimated.width/32);
-
-    if (this->isMoving == true)
-    {
-        DrawTexturePro(textureAnimated,
-                       {(float)framesOffset * 32, (float)facingDirection*32, 32, 32},
-                       {this->position.x, this->position.y, 128, 128},
-                       {},0, WHITE );
-    }
-    else
-    {
-        DrawTexturePro(textureAnimated,
-                       {0,(float)facingDirection*32, 32, 32},
-                       {this->position.x, this->position.y, 128, 128},
-                       {},0, WHITE );
-    }
+    this->drawActor(this->textureAnimated, this->position);
 }
 
 bool player::checkForAnyCollisions(std::vector<Rectangle> walls)
