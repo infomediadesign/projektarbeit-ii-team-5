@@ -1,21 +1,21 @@
-/*
+
 #include "battle.h"
 
-void Battle::update(){
-    if (!allActorsReadyForTurn()){
-        playTurn();
-
+void Battle::frameRoutine() {
+    switch(battleState){
+        case startOfTick:
+            break;
+        case playerActionSelect:
+            break;
+        case actorsActionSelection:
+            break;
+        case textBubble:
+            break;
+        case winningScreen:
+            break;
+        case playOutRound:
+            break;
+        case playingAnimation:
+            break;
     }
-    else {
-        for (const auto& it = theBattleActors.begin();it != theBattleActors.end();it++)
-        this->isWaitingForPlayerInput = true;
-        for (auto it = theBattleActors.begin():theBattleActors){
-            if (it->getNextAttack() < 0)
-        }
-    }
-}
-
-void Battle::playTurn() {
-
-}
-*/
+};
