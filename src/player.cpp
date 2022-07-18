@@ -12,7 +12,7 @@ player::player(map* current_map) : current_map(current_map)
     ImageResizeNN(&this->image2, this->image2.width * scale_factor, this->image2.height * scale_factor);
     this->texture2 = LoadTextureFromImage(this->image2); //walking up
 
-    this->movement_img = LoadImage("assets/graphics/Sprites/Character/MainCharacter/Blaize_Walkcycle_02");
+    this->movement_img = LoadImage("assets/graphics/Sprites/Character/MainCharacter/Blaize_Walkcycle_02.png");
     ImageResizeNN(&this->movement_img, this->movement_img.width * scale_factor, this->movement_img.height * scale_factor);
     this->movement_texture = LoadTextureFromImage(this->movement_img); //walking up
 
@@ -20,7 +20,7 @@ player::player(map* current_map) : current_map(current_map)
     this->position.y = current_map->player_start_pos.y- 1700;
 
 
-    this->textureAnimated = LoadTexture("assets/graphics/Sprites/Character/Player/walkCycle_Blaize_02.png");
+    this->textureAnimated = LoadTexture("assets/graphics/Sprites/Character/MainCharacter/Blaize_Walkcycle_02.png");
 }
 
 player::~player()
@@ -28,7 +28,7 @@ player::~player()
 	UnloadTexture(this->texture);
 }
 
-void player::update(controlInput controlInputs,std::vector<Rectangle> walls)
+void player::update(controlInput controlInputs,std::vector<Rectangle>& walls)
 {
     //walking animation setup
     this->frames_counter++;

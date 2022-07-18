@@ -84,6 +84,7 @@ int main() {
 			if (controlInputs.confirm == 1)
 			{
 				currentScreen = GAMEPLAY;
+
 			}
 
 
@@ -126,7 +127,7 @@ int main() {
 			// TODO: Update ENDING screen variables here!
 
 			// Press enter to return to TITLE screen
-			if (IsKeyPressed(KEY_ENTER))
+			if (controlInputs.confirm==1)
 			{
 				currentScreen = GAMEPLAY;
 			}
@@ -142,12 +143,11 @@ int main() {
 		{
 			DrawTexturePro(deathScreen, { 0,0,(float)deathScreen.width,(float)deathScreen.height }, { 0,0,(float)GetScreenWidth(),(float)GetScreenHeight() }, {}, 0.0, WHITE);
 
-			if (IsKeyPressed(KEY_ENTER))
+			if (controlInputs.confirm==1)
 			{
 				currentScreen = HOME;
 			}
-		} break;
-		default: break;
+		}
 
 		}
 
@@ -189,10 +189,8 @@ int main() {
 			this_camera->offset = Vector2{ Game::ScreenWidth / 2.0f - this_player->texture.width / 2, Game::ScreenHeight / 2.0f - this_player->texture.height / 2 };
 			this_camera->offset.x -= 128 * GetGamepadAxisMovement(0, 2);
 			this_camera->offset.y -= 128 * GetGamepadAxisMovement(0, 3);
-			//DrawTexture(this_map->texture, 0, 0, WHITE);
 			this_map->drawBackground();
 			this_player->draw();
-			//DrawRectangle(14 * 32, 8 * 32, 32, 32, RED);
 			this_map->drawForeground();
 			if (IsKeyDown(KEY_H))
 			{

@@ -28,7 +28,7 @@ public:
     enum Direction {down, up, left, right};
     Direction facingDirection = down;
 
-    void drawActor(Texture2D texture, Vector2 pos);
+    void drawActor(Texture2D& texture, Vector2 pos);
 
     //
 	int movement_speed = 5;

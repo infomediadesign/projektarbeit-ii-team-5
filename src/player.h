@@ -18,7 +18,7 @@ public:
 
 	//int movement_speed;
 
-	void update(controlInput controlInputs, std::vector<Rectangle> walls);
+	void update(controlInput controlInputs, std::vector<Rectangle>& walls);
 	void draw();
 	bool checkForAnyCollisions(std::vector<Rectangle> collisions);
 	Rectangle getCollision();
