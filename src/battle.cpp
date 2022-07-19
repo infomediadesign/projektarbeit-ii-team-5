@@ -8,6 +8,20 @@ void Battle::frameRoutine() {
         case playerActionSelect:
             break;
         case actorsActionSelection:
+            if (currentlyActingNumber >= theBattleActors .size()){
+                this->battleState = playOutRound;
+                currentlyActingNumber = 0;
+            }
+            else {
+                if (theBattleActors[currentlyActingNumber].getNextAttack() == -1) {
+                    if (theBattleActors[currentlyActingNumber].isPlayerControlled1()) {
+                        this->battleState = playerActionSelect;
+                    } else {
+                        theBattleActors[currentlyActingNumber].evaluateAttack();
+                        currentlyActingNumber++;
+                    }
+                }
+            }
             break;
         case textBubble:
             break;

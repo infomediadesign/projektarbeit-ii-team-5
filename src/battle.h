@@ -17,11 +17,13 @@ class Battle {
 	//attributes
 private:
 	std::vector<BattleActor> theBattleActors;
-	int currentTurn = 0;
+
 	int waitingForAnimtaion = 0;
 	bool isWaitingForPlayerInput;
-	BattleActor* currentlyActing;
+	BattleActor* currentlyActingPointer;
     enumBattleState battleState;
+    int currentTurn = 0;
+    int currentlyActingNumber; //secndary state switch
 public:
 	
 

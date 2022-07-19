@@ -186,7 +186,7 @@ int main() {
 
 			BeginMode2D(*this_camera);
 			//Here the Camera can be controlled with Help of the right stick.
-			this_camera->offset = Vector2{ Game::ScreenWidth / 2.0f - this_player->texture.width / 2, Game::ScreenHeight / 2.0f - this_player->texture.height / 2 };
+			this_camera->offset = Vector2{ Game::ScreenWidth / 2.0f - 32, Game::ScreenHeight / 2.0f - 32 };
 			this_camera->offset.x -= 128 * GetGamepadAxisMovement(0, 2);
 			this_camera->offset.y -= 128 * GetGamepadAxisMovement(0, 3);
 			this_map->drawBackground();
