@@ -6,20 +6,20 @@
 void actor::drawActor(Texture2D& texture, Vector2 pos)
 {
     this->actor_frames++;
-    this->actor_frame_offset = actor_frames / frame_speed % (texture.width/32);
+    this->actor_frame_offset = actor_frames / frame_speed % (texture.width/64);
 
     if (this->isMoving == true)
     {
         DrawTexturePro(texture,
-                       {(float)actor_frame_offset * 32, (float)facingDirection * 32, 32, 32},
-                       {this->position.x, this->position.y, 128, 128},
-                       {},0, WHITE );
+                       {(float)actor_frame_offset * 64, (float)facingDirection * 64, 64, 64},
+                       {this->position.x, this->position.y, 128*2, 128*2},
+                       {16*4, 16*4},0, WHITE );
     }
     else
     {
         DrawTexturePro(texture,
-                       {0,(float)facingDirection*32, 32, 32},
-                       {this->position.x, this->position.y, 128, 128},
-                       {},0, WHITE );
+                       {0,(float)facingDirection*64, 64, 64},
+                       {this->position.x, this->position.y, 256, 256},
+                       {64,64},0, WHITE );
     }
 }
