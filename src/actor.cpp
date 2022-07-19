@@ -7,6 +7,9 @@ void actor::drawActor(Texture2D& texture, Vector2 pos)
 {
     this->actor_frames++;
     this->actor_frame_offset = actor_frames / frame_speed % (texture.width/64);
+    if (IsKeyDown(KEY_H)){
+        DrawRectangleRec({this->position.x+24,this->position.y+24,80,80},GetColor(0xFF00FFFF));
+    }
 
     if (this->isMoving == true)
     {

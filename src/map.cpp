@@ -171,6 +171,6 @@ void map::drawForeground()
 
 void map::drawCollision() { //debugging feature
 	for (int i = 0; i < collisionRectangles.size(); i++) {
-		DrawRectangleRec(collisionRectangles[i], RED);
+		DrawRectangleRec(collisionRectangles[i], {(unsigned char)255,(unsigned char) 0,(unsigned char) 0,(unsigned char) 128 });
 	}
 }
