@@ -120,5 +120,5 @@ bool player::checkForAnyCollisions(std::vector<Rectangle> walls)
 
 Rectangle player::getCollision()
 {
-    return {this->position.x + 6 * 4,this->position.y + 6 * 4, 20*4, 20hhh*4};
+    return {this->position.x + 6 * 4,this->position.y + 6 * 4, 20*4, 20*4};
 }
