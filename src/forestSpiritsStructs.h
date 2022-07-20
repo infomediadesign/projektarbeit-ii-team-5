@@ -15,3 +15,5 @@ struct controlInput{
 
 
 void updateControls(controlInput* x);
+void SmartToggleFullscreen(Camera2D* cam);
+void DrawOrnaments(Texture& borderLeft, Texture& borderRight);

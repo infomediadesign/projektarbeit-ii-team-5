@@ -24,7 +24,7 @@ int main() {
 	SetTargetFPS(60);
 
 
-    // initialize enum for screens
+	// initialize enum for screens
 	typedef enum GameScreen { HOME = 0, GAMEPLAY, FIGHT, DEATH } Gamescreen; //LOGO = 0
 
 
@@ -51,6 +51,8 @@ int main() {
 	Texture2D homeScreen = LoadTexture("assets/graphics/UI/MenuScreens/Homescreen_WIP.png");
 	Texture2D homScreen = LoadTexture("assets/graphics/UI/MenuScreens/Homscreen_WIP.png");
 	Texture2D deathScreen = LoadTexture("assets/graphics/UI/MenuScreens/DeathScreen.png");
+	Texture2D borderLeft = LoadTexture("assets/graphics/UI/LeftBorder.png");
+	Texture2D borderRight = LoadTexture("assets/graphics/UI/RightBorder.png");
 
 
 	int framesCounter = 0;
@@ -74,6 +76,9 @@ int main() {
 		//which screen is currently used
 		//switch between frames by events
 		updateControls(&controlInputs);
+		if (IsKeyDown(KEY_F)) {
+			SmartToggleFullscreen(this_camera);
+		}
 		switch (currentScreen) {
 
 		case HOME:
@@ -122,7 +127,7 @@ int main() {
 			// TODO: Update ENDING screen variables here!
 
 			// Press enter to return to TITLE screen
-			if (controlInputs.confirm==1)
+			if (controlInputs.confirm == 1)
 			{
 				currentScreen = GAMEPLAY;
 			}
@@ -138,7 +143,7 @@ int main() {
 		{
 			DrawTexturePro(deathScreen, { 0,0,(float)deathScreen.width,(float)deathScreen.height }, { 0,0,(float)GetScreenWidth(),(float)GetScreenHeight() }, {}, 0.0, WHITE);
 
-			if (controlInputs.confirm==1)
+			if (controlInputs.confirm == 1)
 			{
 				currentScreen = HOME;
 			}
@@ -175,13 +180,13 @@ int main() {
 			//Draw Game Screen here
 			//order equals order of layers
 
-			DrawRectangle(0, 0, Game::ScreenWidth, Game::ScreenHeight, BROWN);
+			ClearBackground(BROWN);
 
 
 
 			BeginMode2D(*this_camera);
 			//Here the Camera can be controlled with Help of the right stick.
-			this_camera->offset = Vector2{ Game::ScreenWidth / 2.0f - 32, Game::ScreenHeight / 2.0f - 32 };
+			this_camera->offset = Vector2{ GetScreenWidth() / 2.0f - 32, GetScreenHeight() / 2.0f - 32 };
 			this_camera->offset.x -= 128 * GetGamepadAxisMovement(0, 2);
 			this_camera->offset.y -= 128 * GetGamepadAxisMovement(0, 3);
 			this_map->drawBackground();
@@ -194,6 +199,7 @@ int main() {
 			EndMode2D();
 
 			this_inventory->draw();
+			DrawOrnaments(borderLeft, borderRight);
 
 		} break;
 		case FIGHT:
@@ -274,3 +280,36 @@ void updateControls(controlInput* x) {
 		x->opt2 = 0;
 
 }
+
+void SmartToggleFullscreen(Camera2D* cam) {
+	if (IsWindowFullscreen()) {
+		ToggleFullscreen();
+		cam->zoom = 1.0;
+
+		SetWindowSize(1280, 960);
+		
+	}
+	else {
+		cam->zoom = (float)GetMonitorHeight(0) / 960.0f;
+		SetWindowSize(GetMonitorWidth(0), GetMonitorHeight(0));
+		ToggleFullscreen();
+	}
+	return;
+}
+
+void DrawOrnaments(Texture& borderLeft, Texture& borderRight) {
+	float scalefactor = ((float)GetScreenHeight() / (float)borderLeft.height) * ((float)GetMonitorHeight(0) / 960.0f);
+	float coverspace = (float)(GetScreenWidth() - 1280.0f) / 2;
+	DrawTexturePro(
+		borderLeft,
+		{0,0,(float)borderLeft.width,(float)borderLeft.height},
+		{coverspace-(borderLeft.width*scalefactor), 0, borderLeft.width*scalefactor, borderLeft.height*scalefactor},
+		{},0,WHITE
+	);
+	DrawTexturePro(
+		borderRight,
+		{ 0,0,(float)borderRight.width,(float)borderRight.height },
+		{ GetScreenWidth()-coverspace, 0, borderRight.width * scalefactor, borderRight.height * scalefactor},
+		{}, 0, WHITE
+	);
+};

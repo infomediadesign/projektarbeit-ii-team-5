@@ -44,7 +44,7 @@ void inventory::draw()
 {
 	if (this->visible == true)
 	{
-		DrawTexture(this->bag_o_texu, Game::ScreenWidth - 150, Game::ScreenHeight - 150, WHITE);
+		DrawTexture(this->bag_o_texu, GetScreenWidth() - ((GetScreenWidth() -Game::ScreenWidth)/2) - 150, GetScreenHeight() - 150, WHITE);
 		DrawTexture(this->texture, Game::ScreenWidth/2 - this->texture.width/2, Game::ScreenHeight/2 - this->texture.height/2, WHITE);
 	}
 	else
