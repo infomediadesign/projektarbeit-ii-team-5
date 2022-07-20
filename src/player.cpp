@@ -74,6 +74,7 @@ void player::update(controlInput controlInputs,std::vector<Rectangle>& walls)
     //Whenever a collision is found the player will be pushed slightly back into the world until they are out of collisons
     while (checkForAnyCollisions(walls))
     {
+
         if (controlInputs.left){
             this->position.x += 1.0;
     }
@@ -86,6 +87,9 @@ void player::update(controlInput controlInputs,std::vector<Rectangle>& walls)
         if (controlInputs.down) {
             this->position.y -= 1.0;
         }
+        if (controlInputs.down + controlInputs.left + controlInputs.up + controlInputs.right == 0){
+        break;
+        }
     }
 }
 
@@ -96,8 +100,9 @@ void player::draw()
 
 bool player::checkForAnyCollisions(std::vector<Rectangle> walls)
 {
+    Rectangle playercollision = this->getCollision();
     for (int i = 0; i < walls.size(); i++) {
-        if (CheckCollisionRecs(this->getCollision(), walls[i])) {
+        if (CheckCollisionRecs(playercollision, walls[i])) {
             std::cout << "wall has been found";
             return true;
         }
