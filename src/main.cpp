@@ -24,7 +24,7 @@ int main() {
 	SetTargetFPS(60);
 
 
-
+    // initialize enum for screens
 	typedef enum GameScreen { HOME = 0, GAMEPLAY, FIGHT, DEATH } Gamescreen; //LOGO = 0
 
 
@@ -55,10 +55,10 @@ int main() {
 
 	int framesCounter = 0;
 
-	//sets default to screen whith which the game shall start when being executed
+	// sets default to screen whith which the game shall start when being executed
 	GameScreen currentScreen = HOME; //LOGO
 
-	//Frames Per Second are kept to 60 frames per second
+	// Frames Per Second are kept to 60 frames per second
 	SetTargetFPS(60);
 
 
@@ -116,11 +116,6 @@ int main() {
 			}
 
 			this_inventory->update();
-
-
-
-
-
 		} break;
 		case FIGHT:
 		{
@@ -147,7 +142,7 @@ int main() {
 			{
 				currentScreen = HOME;
 			}
-		}
+		} break;
 
 		}
 
