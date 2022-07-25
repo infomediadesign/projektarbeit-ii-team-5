@@ -2,6 +2,7 @@
 #include <vector>
 #include "BattleActor.h"
 #include <string>
+#include <memory>
 #include "forestSpiritsStructs.h"
 
 enum enumBattleState{
@@ -21,7 +22,6 @@ public:
     int getConfirmIndex(){return this->confirmIndex;}
 private:
     int confirmIndex;
-
 };
 class battleMenu{
     battleMenu* cancelMenu;
@@ -40,8 +40,10 @@ private:
     enumBattleState battleState;
     int currentTurn = 0;
     int currentlyActingNumber; //secndary state switch
+    std::string infoText = "";
 public:
 	controlInput* controlInputs;
+    bool killMe = false;
 
 
 	//methods
