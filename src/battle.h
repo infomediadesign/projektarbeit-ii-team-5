@@ -2,6 +2,7 @@
 #include <vector>
 #include "BattleActor.h"
 #include <string>
+#include "forestSpiritsStructs.h"
 
 enum enumBattleState{
     startOfTick = 0,
@@ -11,6 +12,21 @@ enum enumBattleState{
     textBubble = 4,
     playingAnimation = 5,
     winningScreen = 6
+};
+
+class battleButton{
+public:
+    battleButton* aboveButton;
+    battleButton* belowButton;
+    int getConfirmIndex(){return this->confirmIndex;}
+private:
+    int confirmIndex;
+
+};
+class battleMenu{
+    battleMenu* cancelMenu;
+    std::vector<battleButton> buttons;
+    battleButton* selectedButton;
 };
 
 class Battle {
@@ -25,7 +41,7 @@ private:
     int currentTurn = 0;
     int currentlyActingNumber; //secndary state switch
 public:
-	
+	controlInput* controlInputs;
 
 
 	//methods
