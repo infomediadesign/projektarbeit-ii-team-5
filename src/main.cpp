@@ -11,6 +11,7 @@
 #include "player.h"
 #include "map.h"
 #include "inventory.h"
+#include "screenDeath.h"
 #include <iostream>
 
 
@@ -34,10 +35,13 @@ int main() {
 
 	// Your own initialization code here
 	controlInput controlInputs{};
+
 	Camera2D* this_camera = new Camera2D;
 	map* this_map = new map;
 	player* this_player = new player(this_map);
 	inventory* this_inventory = new inventory(&controlInputs);
+    screenDeath* screen_death = new screenDeath();
+    screen_death->controlInputs = &controlInputs;
 
 	this_camera->target = this_player->position;
 	this_camera->offset = Vector2{ Game::ScreenWidth / 2.0f - this_player->texture.width / 2, Game::ScreenHeight / 2.0f - this_player->texture.height / 2 };
@@ -50,7 +54,7 @@ int main() {
 
 	Texture2D homeScreen = LoadTexture("assets/graphics/UI/MenuScreens/Homescreen_WIP.png");
 	Texture2D homScreen = LoadTexture("assets/graphics/UI/MenuScreens/Homscreen_WIP.png");
-	Texture2D deathScreen = LoadTexture("assets/graphics/UI/MenuScreens/DeathScreen.png");
+
 	Texture2D borderLeft = LoadTexture("assets/graphics/UI/LeftBorder.png");
 	Texture2D borderRight = LoadTexture("assets/graphics/UI/RightBorder.png");
 
@@ -141,12 +145,19 @@ int main() {
 		} break;
 		case DEATH:
 		{
-			DrawTexturePro(deathScreen, { 0,0,(float)deathScreen.width,(float)deathScreen.height }, { 0,0,(float)GetScreenWidth(),(float)GetScreenHeight() }, {}, 0.0, WHITE);
+            screen_death->update();
 
-			if (controlInputs.confirm == 1)
-			{
-				currentScreen = HOME;
-			}
+            if (screen_death->buttons == screenDeath::giveUp && controlInputs.confirm == 1)
+            {
+                currentScreen = HOME;
+            }
+            else if (screen_death->buttons == screenDeath::tryAgain && controlInputs.confirm == 1)
+            {
+                this_player->position = this_map->player_start_pos;
+                currentScreen = GAMEPLAY;
+            }
+
+
 		} break;
 
 		}
@@ -213,8 +224,7 @@ int main() {
 		} break;
 		case DEATH:
 		{
-			DrawTexturePro(deathScreen, { 0,0,(float)deathScreen.width,(float)deathScreen.height }, { 0,0,(float)GetScreenWidth(),(float)GetScreenHeight() }, {}, 0.0, WHITE);
-
+            screen_death->draw();
 		} break;
 		default: break;
 		}
@@ -228,6 +238,7 @@ int main() {
 	this_player->~player();
 	this_map->~map();
 	this_inventory->~inventory();
+    screen_death->~screenDeath();
 	// Close window and OpenGL context
 	CloseWindow();
 

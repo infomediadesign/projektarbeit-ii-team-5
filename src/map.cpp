@@ -14,8 +14,8 @@ map::map()
 	this->position.x = 0;
 	this->position.y = 0;
 
-	this->player_start_pos.x = this->texture.width - 20; //need to parse from json
-	this->player_start_pos.y = this->texture.height - 350;
+	this->player_start_pos.x = this->texture.width - 80; //need to parse from json
+	this->player_start_pos.y = this->texture.height - 2050;
 
 
     //tileset Description File

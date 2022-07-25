@@ -4,8 +4,8 @@
 
 player::player(map* current_map) : current_map(current_map)
 {
-    this->position.x = current_map->player_start_pos.x - 80;
-    this->position.y = current_map->player_start_pos.y- 1700;
+    this->position.x = current_map->player_start_pos.x;
+    this->position.y = current_map->player_start_pos.y;
 
 
     this->textureAnimated = LoadTexture("assets/graphics/Sprites/Character/Player/Blaize_Walkcycle_01.png");
