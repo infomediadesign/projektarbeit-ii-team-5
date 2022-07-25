@@ -80,14 +80,13 @@ int main() {
 		//which screen is currently used
 		//switch between frames by events
 		updateControls(&controlInputs);
-		/*if (IsKeyPressed(KEY_F)) {
-			SmartToggleFullscreen(this_camera);
-		}*/
+
 		switch (currentScreen) {
 
 		case HOME:
 		{
-			// TODO: Update TITLE screen variables here!
+            // reset player position everytime when home screen opens
+            //this_player->position = this_map->player_start_pos;
 
 			// Press enter to change to GAMEPLAY screen
 			if (controlInputs.confirm == 1)
@@ -95,9 +94,8 @@ int main() {
 				currentScreen = GAMEPLAY;
 
 			}
-
-
 		} break;
+
 		case GAMEPLAY:
 		{
 			// Press enter to change to ENDING screen
@@ -111,9 +109,6 @@ int main() {
 				currentScreen = HOME;
 			}
 
-			//TODO: wenn camera nicht border berührt
-
-
 			//player cant move while inventory open
 
 			if (!this_inventory->visible)
@@ -126,9 +121,9 @@ int main() {
 
 			this_inventory->update();
 		} break;
+
 		case FIGHT:
 		{
-			// TODO: Update ENDING screen variables here!
 
 			// Press enter to return to TITLE screen
 			if (controlInputs.confirm == 1)
@@ -143,17 +138,19 @@ int main() {
 			}
 
 		} break;
+
 		case DEATH:
 		{
-            screen_death->update();
+            // reset player position to begin of map
+            this_player->position = this_map->player_start_pos;
 
+            screen_death->update();
             if (screen_death->buttons == screenDeath::giveUp && controlInputs.confirm == 1)
             {
                 currentScreen = HOME;
             }
             else if (screen_death->buttons == screenDeath::tryAgain && controlInputs.confirm == 1)
             {
-                this_player->position = this_map->player_start_pos;
                 currentScreen = GAMEPLAY;
             }
 
