@@ -4,23 +4,16 @@
 
 inventory::inventory(controlInput* x)
 {
-	//image initialization
-	this->image = LoadImage("assets/graphics/UI/Inventory/InventoryTest.png");
-	ImageResizeNN(&this->image, this->image.width * 2, this->image.height * 2);
-	this->texture = LoadTextureFromImage(this->image);
-	//this->texture = LoadTexture("assets/graphics/backgrounds/UI/Inventory/InventoryBlank.png");
+    // inventory
+	this->texture = LoadTexture("assets/graphics/UI/Inventory/InventoryTest.png");
 	this->position.x = 0;
 	this->position.y = 0;
 
-	this->bag_img = LoadImage("assets/graphics/UI/Inventory/BagClosed.png");
-	ImageResizeNN(&this->bag_img, this->bag_img.width * 2, this->bag_img.height * 2);
-	this->bag_c_texu = LoadTextureFromImage(this->bag_img);
+    this->bag_c_texu = LoadTexture("assets/graphics/UI/Inventory/BagClosed.png");
+    this->bag_o_texu = LoadTexture("assets/graphics/UI/Inventory/BagOpen.png");
 
-	this->bag_img = LoadImage("assets/graphics/UI/Inventory/BagOpen.png");
-	ImageResizeNN(&this->bag_img, this->bag_img.width * 2, this->bag_img.height * 2);
-	this->bag_o_texu = LoadTextureFromImage(this->bag_img);
-	this->controlInputs = x;
-	return;
+    this->controlInputs = x;
+    return;
 }
 
 inventory::~inventory()
@@ -44,12 +37,25 @@ void inventory::draw()
 {
 	if (this->visible == true)
 	{
-		DrawTexture(this->bag_o_texu, GetScreenWidth() - ((GetScreenWidth() -Game::ScreenWidth)/2) - 150, GetScreenHeight() - 150, WHITE);
-		DrawTexture(this->texture, Game::ScreenWidth/2 - this->texture.width/2, Game::ScreenHeight/2 - this->texture.height/2, WHITE);
+        DrawTexturePro(this->bag_o_texu,
+                       Rectangle{0, 0, this->bag_o_texu.width, this->bag_o_texu.height},
+                       Rectangle{GetScreenWidth() - ((GetScreenWidth() -Game::ScreenWidth)/2) - 150,  GetScreenHeight() - 150 , (int)this->bag_o_texu.width * 2, this->bag_o_texu.height*2},
+                       {0, 0}, 0.0, WHITE);
+
+        DrawTexturePro(this->texture,
+                       Rectangle{0, 0, this->texture.width, this->texture.height},
+                       Rectangle{0,  0, this->texture.width*2, this->texture.height*2},
+                       {0, 0}, 0.0, WHITE);
+
+		//DrawTexture(this->bag_o_texu, , GetScreenHeight() - 150, WHITE);
+		//DrawTexture(this->texture, Game::ScreenWidth/2 - this->texture.width/2, Game::ScreenHeight/2 - this->texture.height/2, WHITE);
 	}
 	else
 	{
-		DrawTexture(this->bag_c_texu, Game::ScreenWidth - 150, Game::ScreenHeight - 150, WHITE);
+        DrawTexturePro(this->bag_c_texu,
+                       Rectangle{0, 0, this->bag_o_texu.width, this->bag_o_texu.height},
+                       Rectangle{GetScreenWidth() - ((GetScreenWidth() -Game::ScreenWidth)/2) - 150,  GetScreenHeight() - 150 , (int)this->bag_o_texu.width * 2, this->bag_o_texu.height*2},
+                       {0, 0}, 0.0, WHITE);
 	}
 
 	

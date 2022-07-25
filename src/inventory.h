@@ -2,6 +2,7 @@
 
 #include "actor.h"
 #include "forestSpiritsStructs.h"
+#include "raylib.h"
 
 class inventory : public actor
 {
