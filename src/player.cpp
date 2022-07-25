@@ -41,7 +41,7 @@ void player::update(controlInput controlInputs,std::vector<Rectangle>& walls)
     this->isMoving = false;
 
     //right
-    if (controlInputs.right && this->position.x <= player::current_map->texture.width - this->texture.width)
+    if (controlInputs.right)
     {
         this->position.x += this->movement_speed;
         this->facingDirection = right; // enum
@@ -49,7 +49,7 @@ void player::update(controlInput controlInputs,std::vector<Rectangle>& walls)
     }
     //left
     //else
-    if (controlInputs.left && this->position.x >= 0)
+    if (controlInputs.left)
     {
         this->position.x -= this->movement_speed;
         this->facingDirection = left; // enum
@@ -57,14 +57,14 @@ void player::update(controlInput controlInputs,std::vector<Rectangle>& walls)
     }
     //up
     //else 
-    if (controlInputs.up && this->position.y >= 0)
+    if (controlInputs.up)
     {
         this->position.y -= this->movement_speed;
         this->facingDirection = up; // enum
         this->isMoving = true;
     }
     //down
-    if (controlInputs.down && this->position.y <= player::current_map->texture.height - this->texture.height)
+    if (controlInputs.down)
     {
         this->position.y += this->movement_speed;
         this->facingDirection = down; // enum
