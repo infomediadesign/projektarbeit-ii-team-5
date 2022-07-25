@@ -76,9 +76,9 @@ int main() {
 		//which screen is currently used
 		//switch between frames by events
 		updateControls(&controlInputs);
-		if (IsKeyDown(KEY_F)) {
+		/*if (IsKeyPressed(KEY_F)) {
 			SmartToggleFullscreen(this_camera);
-		}
+		}*/
 		switch (currentScreen) {
 
 		case HOME:
@@ -228,7 +228,6 @@ int main() {
 	this_player->~player();
 	this_map->~map();
 	this_inventory->~inventory();
-
 	// Close window and OpenGL context
 	CloseWindow();
 
@@ -283,10 +282,11 @@ void updateControls(controlInput* x) {
 
 void SmartToggleFullscreen(Camera2D* cam) {
 	if (IsWindowFullscreen()) {
+        SetWindowSize(1280, 960);
 		ToggleFullscreen();
 		cam->zoom = 1.0;
 
-		SetWindowSize(1280, 960);
+
 		
 	}
 	else {
