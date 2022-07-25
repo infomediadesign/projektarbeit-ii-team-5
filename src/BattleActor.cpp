@@ -13,11 +13,11 @@ void BattleActor::startTurn()
     }
     else
     {
-        nextAttack = evaluateAttack();
+        nextAttack = evaluateAction();
     }
 }
 
-int BattleActor::evaluateAttack(){
+int BattleActor::evaluateAction(){
     return 0;
 }
 
@@ -139,4 +139,8 @@ bool BattleActor::isNeedAttackMenu() const {
 
 void BattleActor::setNeedAttackMenu(bool needAttackMenu) {
     BattleActor::needAttackMenu = needAttackMenu;
+}
+
+void BattleActor::executeAction() {
+    //TODO
 }

@@ -89,5 +89,6 @@ public:
     BattleActor* getAddress();
 
     void startTurn();
-    int evaluateAttack();
+    int evaluateAction();
+    void executeAction();
 };
