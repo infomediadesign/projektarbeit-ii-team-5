@@ -394,3 +394,4 @@ FodyWeavers.xsd
 # JetBrains Rider
 .idea/
 *.sln.iml
+assets/graphics/Sprites/Character/Player/Blaize_Walkcycle_01.png
