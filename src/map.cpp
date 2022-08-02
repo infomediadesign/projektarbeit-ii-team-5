@@ -1,6 +1,5 @@
 #include "map.h"
 
-#include "filesystem"
 #include <iostream>
 
 map::map()
@@ -127,9 +126,9 @@ void map::drawBackground()
                     32 * 4,32 * 4
                 },
                 {}, 0, WHITE);
-		}	//this draws the tiles on screen. This uses a loop for each dimension to make the readability a *bit* easier. Those lines are fairly long, but its not too complex once you get into it
+		}	//this draws the tiles on screen. This uses a loop for each dimension to make the readability a *bit* easier. Those lines are fairly long, but it's not too complex once you get into it
 	}   //also maybe these should be a function but that's for future me -o
-        //I'm future me and still dont want to -o
+        //I'm future me and still don't want to -o
 	
 	for (int y{}; y < mapData.mapHeight; y++) {
 		for (int x{}; x < mapData.mapWidth; x++) {
