@@ -38,13 +38,13 @@ void inventory::draw()
 	if (this->visible == true)
 	{
         DrawTexturePro(this->bag_o_texu,
-                       Rectangle{0, 0, this->bag_o_texu.width, this->bag_o_texu.height},
-                       Rectangle{GetScreenWidth() - ((GetScreenWidth() -Game::ScreenWidth)/2) - 150,  GetScreenHeight() - 150 , (int)this->bag_o_texu.width * 2, this->bag_o_texu.height*2},
+                       Rectangle{0, 0, (float)this->bag_o_texu.width,(float) this->bag_o_texu.height},
+                       Rectangle{(float)GetScreenWidth() - ((GetScreenWidth() -Game::ScreenWidth)/2) - 150,  (float)GetScreenHeight() - 150 ,(float) (int)this->bag_o_texu.width * 2,(float) this->bag_o_texu.height*2},
                        {0, 0}, 0.0, WHITE);
 
         DrawTexturePro(this->texture,
-                       Rectangle{0, 0, this->texture.width, this->texture.height},
-                       Rectangle{0,  0, this->texture.width*2, this->texture.height*2},
+                       Rectangle{0, 0,(float) this->texture.width,(float) this->texture.height},
+                       Rectangle{0,  0,(float) this->texture.width*2,(float) this->texture.height*2},
                        {0, 0}, 0.0, WHITE);
 
 		//DrawTexture(this->bag_o_texu, , GetScreenHeight() - 150, WHITE);
@@ -53,8 +53,8 @@ void inventory::draw()
 	else
 	{
         DrawTexturePro(this->bag_c_texu,
-                       Rectangle{0, 0, this->bag_o_texu.width, this->bag_o_texu.height},
-                       Rectangle{GetScreenWidth() - ((GetScreenWidth() -Game::ScreenWidth)/2) - 150,  GetScreenHeight() - 150 , (int)this->bag_o_texu.width * 2, this->bag_o_texu.height*2},
+                       Rectangle{0, 0, (float)this->bag_o_texu.width, (float)this->bag_o_texu.height},
+                       Rectangle{(float)GetScreenWidth() - ((GetScreenWidth() -Game::ScreenWidth)/2) - 150,  (float)GetScreenHeight() - 150 , (float)(int)this->bag_o_texu.width * 2, (float)this->bag_o_texu.height*2},
                        {0, 0}, 0.0, WHITE);
 	}
 
