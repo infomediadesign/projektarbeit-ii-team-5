@@ -13,6 +13,7 @@
 #include "inventory.h"
 #include "screenDeath.h"
 #include <iostream>
+#include "battle.h"
 
 
 
@@ -42,6 +43,9 @@ int main() {
 	inventory* this_inventory = new inventory(&controlInputs);
     screenDeath* screen_death = new screenDeath();
     screen_death->controlInputs = &controlInputs;
+    Battle* theBattle= new Battle(0,0);
+    theBattle->initTestBattle();
+    theBattle->controlInputs = &controlInputs;
 
 	this_camera->target = this_player->position;
 	this_camera->offset = Vector2{ Game::ScreenWidth / 2.0f - this_player->texture.width / 2, Game::ScreenHeight / 2.0f - this_player->texture.height / 2 };
@@ -126,7 +130,7 @@ int main() {
 		{
 
 			// Press enter to return to TITLE screen
-			if (controlInputs.confirm == 1)
+			/*if (controlInputs.confirm == 1)
 			{
 				currentScreen = GAMEPLAY;
 			}
@@ -135,8 +139,8 @@ int main() {
 			if (IsKeyPressed(KEY_SPACE))
 			{
 				currentScreen = DEATH;
-			}
-
+			}*/
+            theBattle->frameRoutine();
 		} break;
 
 		case DEATH:

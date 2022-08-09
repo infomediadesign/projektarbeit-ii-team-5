@@ -5,16 +5,28 @@ BattleActor *BattleActor::getAddress() {
     return this;
 }
 
-void BattleActor::startTurn()
-{
-    if (isPlayerControlled)
-    {
-        needAttackMenu = true;
+BattleActor::BattleActor(bool player, int archetype, std::vector<BattleActor*>* others) {
+    this->isPlayerControlled = player;
+    this->otherActors = others;
+    switch (archetype){
+        case (0): //Blaize
+        this->maxHP = 500;
+        this->hp = 500;
+        this->pat = 40;
+        this->pdf = 40;
+        this->dNat = 7;
+        this->nat = 7;
+        this->attackStr = 50;
+        break;
+        case (1): //EVERYBODY WANTS TO BE, MY ENEMY!
+        this->maxHP = 300;
+        this->hp = 300;
+        this->pat = 50;
+        this->pdf = 60;
+        this->dNat = 9;
+        this->nat = 3;
     }
-    else
-    {
-        nextAttack = evaluateAction();
-    }
+
 }
 
 int BattleActor::evaluateAction(){
@@ -117,12 +129,12 @@ void BattleActor::setDNat(int dNat) {
     BattleActor::dNat = dNat;
 }
 
-std::vector<BattleActor> *BattleActor::getOtherActors() const {
+std::vector<BattleActor*> *BattleActor::getOtherActors() const {
     return otherActors;
 }
 
-void BattleActor::setOtherActors(std::vector<BattleActor> *otherActors) {
-    BattleActor::otherActors = otherActors;
+void BattleActor::setOtherActors(std::vector<BattleActor*> *otherActors) {
+    this->otherActors = otherActors;
 }
 
 int BattleActor::getNextAttack() const {
@@ -130,7 +142,7 @@ int BattleActor::getNextAttack() const {
 }
 
 void BattleActor::setNextAttack(int nextAttack) {
-    BattleActor::nextAttack = nextAttack;
+    this->nextAttack = nextAttack;
 }
 
 bool BattleActor::isNeedAttackMenu() const {
@@ -138,9 +150,26 @@ bool BattleActor::isNeedAttackMenu() const {
 }
 
 void BattleActor::setNeedAttackMenu(bool needAttackMenu) {
-    BattleActor::needAttackMenu = needAttackMenu;
+    this->needAttackMenu = needAttackMenu;
 }
 
 void BattleActor::executeAction() {
     //TODO
+}
+
+BattleActor *BattleActor::getTarget() const {
+    return target;
+}
+
+void BattleActor::setTarget(BattleActor *target) {
+    BattleActor::target = target;
+}
+
+void BattleActor::autoTarget(){
+    for (auto it = otherActors->begin();it!=otherActors->end();it++)
+    {
+        if((*it)->isPlayerControlled1()){
+            this->target = *it;
+        }
+    }
 }

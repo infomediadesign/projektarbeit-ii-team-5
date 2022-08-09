@@ -52,9 +52,9 @@ public:
 
     void setDNat(int dNat);
 
-    std::vector<BattleActor> *getOtherActors() const;
+    std::vector<BattleActor*> *getOtherActors() const;
 
-    void setOtherActors(std::vector<BattleActor> *otherActors);
+    void setOtherActors(std::vector<BattleActor*> *otherActors);
 
     int getNextAttack() const;
 
@@ -76,9 +76,17 @@ private:
     float mdf = 10;
     float maxHP = 100;
     float maxMana = 100;
+    float attackStr;
     int dNat = 10;
-    std::vector<BattleActor>* otherActors;
+    std::vector<BattleActor*>* otherActors;
     int nextAttack = -1;
+    BattleActor* target;
+public:
+    BattleActor *getTarget() const;
+    void autoTarget();
+    void setTarget(BattleActor *target);
+
+private:
     bool needAttackMenu;
 
 private:
@@ -91,4 +99,5 @@ public:
     void startTurn();
     int evaluateAction();
     void executeAction();
+    BattleActor(bool player, int archetype,std::vector<BattleActor*>* others);
 };

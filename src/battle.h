@@ -32,17 +32,17 @@ class battleMenu{
 class Battle {
 	//attributes
 private:
-	std::vector<BattleActor> theBattleActors;
+	std::vector<BattleActor*> theBattleActors{};
 
 	int waitingForAnimtaion = 0;
-	bool isWaitingForPlayerInput;
-	BattleActor* currentlyActingPointer;
-    enumBattleState battleState;
+	bool isWaitingForPlayerInput{};
+	BattleActor* currentlyActingPointer{};
+    enumBattleState battleState = startOfTick;
     int currentTurn = 0;
-    int currentlyActingNumber; //secndary state switch
+    int currentlyActingNumber = 0; //secondary state switch
     std::string infoText = "";
 public:
-	controlInput* controlInputs;
+	controlInput* controlInputs{};
     bool killMe = false;
 
 
@@ -58,4 +58,5 @@ public:
 	void frameRoutine(); //wird jeden frame aufgerufen
 	void drawBattle();
 	bool toBeDestroyed();
+    void initTestBattle();
 };
