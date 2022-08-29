@@ -9,7 +9,7 @@
 #include <iostream>
 
 template <typename T, int size>
-class Inventory_Template
+class inventoryTemplate
 {
 public:
     T items_container[size] {};

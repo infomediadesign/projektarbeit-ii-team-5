@@ -3,6 +3,9 @@
 #include "actor.h"
 #include "map.h"
 #include "forestSpiritsStructs.h"
+#include "inventoryTemplate.h"
+#include "itemBase.h"
+#include "itemHeilbeere.h"
 
 class player : public actor
 {
@@ -22,7 +25,14 @@ public:
 protected:
 	map* current_map;
 
+    int currentSlot = 0;
+
+    // add an inventory container with 12 slots
+    inventoryTemplate<itemBase*, 12> inventory;
+    itemHeilbeere* heilbeere = new itemHeilbeere;
+
     void movement(controlInput controlInputs,std::vector<Rectangle>& walls);
+    void addItem(itemBase* item);
 
 	//int movement_speed;
 

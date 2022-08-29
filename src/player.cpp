@@ -19,6 +19,13 @@ player::~player()
 void player::update(controlInput controlInputs,std::vector<Rectangle>& walls)
 {
     movement(controlInputs, walls);
+
+    if (IsKeyPressed(KEY_K) && currentSlot < 12)
+    {
+        addItem(heilbeere);
+        currentSlot++;
+    }
+
 }
 
 void player::draw()
@@ -42,6 +49,11 @@ bool player::checkForAnyCollisions(std::vector<Rectangle> walls)
 Rectangle player::getCollision()
 {
     return {this->position.x + 6 * 4,this->position.y + 6 * 4, 20*4, 20*4};
+}
+
+void player::addItem(itemBase* item)
+{
+    this->inventory.setItem(item, this->currentSlot);
 }
 
 void player::movement(controlInput controlInputs,std::vector<Rectangle>& walls)
