@@ -1,5 +1,5 @@
 ﻿#include <cstdlib>
-#pragma once
+// #pragma once
 #include "raylib.h"
 #include "config.h"
 
@@ -40,6 +40,7 @@ int main() {
 	Camera2D* this_camera = new Camera2D;
 	map* this_map = new map;
 	player* this_player = new player(this_map);
+    this_player->controlInputs = &controlInputs;
 	inventory* this_inventory = new inventory(&controlInputs);
     screenDeath* screen_death = new screenDeath();
     screen_death->controlInputs = &controlInputs;
@@ -115,7 +116,7 @@ int main() {
 
 			//player cant move while inventory open
 
-			if (!this_inventory->visible)
+			if (!this_inventory->isActive())
 			{
 
 				this_player->update(controlInputs, this_map->collisionRectangles);
@@ -130,7 +131,7 @@ int main() {
 		{
 
 			// Press enter to return to TITLE screen
-			/*if (controlInputs.confirm == 1)
+			if (controlInputs.confirm == 1)
 			{
 				currentScreen = GAMEPLAY;
 			}
@@ -139,8 +140,9 @@ int main() {
 			if (IsKeyPressed(KEY_SPACE))
 			{
 				currentScreen = DEATH;
-			}*/
-            theBattle->frameRoutine();
+			}
+
+            //theBattle->frameRoutine();
 		} break;
 
 		case DEATH:

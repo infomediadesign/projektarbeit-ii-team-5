@@ -3,21 +3,52 @@
 #include "actor.h"
 #include "forestSpiritsStructs.h"
 #include "raylib.h"
+#include "inventoryTemplate.h"
+#include "itemBase.h"
+#include "itemHeilbeere.h"
+#include "itemMudbomb.h"
+#include "itemSeifenblase.h"
 
 class inventory : public actor
 {
 public:
+    inventory(controlInput* controlInputs);
+    ~inventory();
+    void update();
+    void draw();
+    bool isActive();
 
-	inventory(controlInput* controlInputs);
-	~inventory();
+    // use this methods from player to add items
+    void addMudbomb();
+    void addHeilbeere();
+    void addSeifenblase();
+
+protected:
 
 	Image bag_img;
-	Texture2D bag_c_texu;
-	Texture2D bag_o_texu;
+	Texture2D bag_closed;
+	Texture2D bag_open;
+    Texture2D selection;
+    void setSlots();
+    void navigateInventory();
+    void drawItems(int i);
 
-	controlInput* controlInputs{};
-	bool visible = false;
+    Rectangle slot_positions[12];
 
-	void update();
-	void draw();
+    controlInput* controlInputs{};
+
+    // add an inventory container with 12 slots
+    inventoryTemplate<itemBase*, 12> inventoryContainer;
+    itemHeilbeere* heilbeere = new itemHeilbeere;
+    itemMudbomb* mudbomb = new itemMudbomb;
+    itemSeifenblase* seifenblase = new itemSeifenblase;
+
+    void addItem(itemBase* item);
+
+    int container_slot = 0;
+
+	bool isVisible = false;
+    int slot_offset = (32 + 16) * scale_factor;
+    int current_slot = 0;
+
 };
