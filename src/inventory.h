@@ -3,6 +3,9 @@
 #include "actor.h"
 #include "forestSpiritsStructs.h"
 #include "raylib.h"
+#include "inventoryTemplate.h"
+#include "itemBase.h"
+#include "itemHeilbeere.h"
 
 class inventory : public actor
 {
@@ -24,7 +27,15 @@ protected:
 
     Rectangle slot_positions[12];
 
-	controlInput* controlInputs{};
+    controlInput* controlInputs{};
+
+    // add an inventory container with 12 slots
+    inventoryTemplate<itemBase*, 12> inventoryContainer;
+    itemHeilbeere* heilbeere = new itemHeilbeere;
+    void addItem(itemBase* item);
+
+    int container_slot = 0;
+
 	bool isVisible = false;
     int slot_offset = (32 + 16) * scale_factor;
     int current_slot = 0;

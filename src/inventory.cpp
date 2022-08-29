@@ -38,6 +38,11 @@ void inventory::update()
 		std::cout << "Inventory bool has been flipped to: " << this->isVisible << std::endl;
 	}
 
+    if (IsKeyPressed(KEY_J) && container_slot < 12)
+    {
+        addItem(heilbeere);
+    }
+
     navigateInventory();
 }
 
@@ -59,6 +64,17 @@ void inventory::draw()
                        {0, 0, (float)this->selection.width, (float)this->selection.height},
                        this->slot_positions[this->current_slot],
                        {0, 0}, 0, WHITE);
+
+        // draw Items
+
+        if (inventoryContainer.getItem(0) != NULL)
+        {
+            DrawTexturePro(inventoryContainer.getItem(0)->GetTexture(),
+                           {0, 0, (float)inventoryContainer.getItem(0)->GetTexture().width, (float)inventoryContainer.getItem(0)->GetTexture().height},
+                           slot_positions[current_slot],
+                           {0, 0}, 0, WHITE);
+        }
+
 	}
 	else
 	{
@@ -180,6 +196,12 @@ void inventory::navigateInventory()
                 current_slot = 7;
         }
     }
+}
+
+void inventory::addItem(itemBase *item)
+{
+    inventoryContainer.setItem(item, container_slot);
+    container_slot++;
 }
 
 bool inventory::isActive() { return this->isVisible; }
