@@ -38,6 +38,19 @@ void inventory::update()
 		std::cout << "Inventory bool has been flipped to: " << this->isVisible << std::endl;
 	}
 
+    if (IsKeyPressed(KEY_J))
+    {
+        addItem(heilbeere);
+    }
+    else if (IsKeyPressed(KEY_K))
+    {
+        addItem(mudbomb);
+    }
+    else if (IsKeyPressed(KEY_L))
+    {
+        addItem(seifenblase);
+    }
+
     navigateInventory();
 }
 
@@ -115,89 +128,93 @@ void inventory::drawItems(int i)
 
 void inventory::navigateInventory()
 {
-    // inventory slot navigation
-    if (IsKeyPressed(KEY_D) && current_slot < 11)
+    if (isVisible == true)
     {
-        this->current_slot++;
-    }
-    else if (IsKeyPressed(KEY_A) && current_slot > 0)
-    {
-        this->current_slot--;
-    }
-    else if (IsKeyPressed(KEY_S))
-    {
-        switch (current_slot)
+
+        // inventory slot navigation
+        if (IsKeyPressed(KEY_D) && current_slot < 11)
         {
-            // first row
-            case 0:
-                current_slot = 4;
-                break;
-
-            case 1:
-                current_slot = 5;
-                break;
-
-            case 2:
-                current_slot = 6;
-                break;
-
-            case 3:
-                current_slot = 7;
-                break;
-
-                //second row
-            case 4:
-                current_slot = 8;
-                break;
-
-            case 5:
-                current_slot = 9;
-                break;
-
-            case 6:
-                current_slot = 10;
-                break;
-
-            case 7:
-                current_slot = 11;
-
+            this->current_slot++;
         }
-    }
-    else if (IsKeyPressed(KEY_W))
-    {
-        switch (current_slot)
+        else if (IsKeyPressed(KEY_A) && current_slot > 0)
         {
-            // second row
-            case 4:
-                current_slot = 0;
-                break;
+            this->current_slot--;
+        }
+        else if (IsKeyPressed(KEY_S))
+        {
+            switch (current_slot)
+            {
+                // first row
+                case 0:
+                    current_slot = 4;
+                    break;
 
-            case 5:
-                current_slot = 1;
-                break;
+                case 1:
+                    current_slot = 5;
+                    break;
 
-            case 6:
-                current_slot = 2;
-                break;
+                case 2:
+                    current_slot = 6;
+                    break;
 
-            case 7:
-                current_slot = 3;
+                case 3:
+                    current_slot = 7;
+                    break;
 
-            // third row
-            case 8:
-                current_slot = 4;
-                break;
+                    //second row
+                case 4:
+                    current_slot = 8;
+                    break;
 
-            case 9:
-                current_slot = 5;
-                break;
+                case 5:
+                    current_slot = 9;
+                    break;
 
-            case 10:
-                current_slot = 6;
-                break;
+                case 6:
+                    current_slot = 10;
+                    break;
 
-            case 11:
-                current_slot = 7;
+                case 7:
+                    current_slot = 11;
+
+            }
+        }
+        else if (IsKeyPressed(KEY_W))
+        {
+            switch (current_slot)
+            {
+                // second row
+                case 4:
+                    current_slot = 0;
+                    break;
+
+                case 5:
+                    current_slot = 1;
+                    break;
+
+                case 6:
+                    current_slot = 2;
+                    break;
+
+                case 7:
+                    current_slot = 3;
+
+                    // third row
+                case 8:
+                    current_slot = 4;
+                    break;
+
+                case 9:
+                    current_slot = 5;
+                    break;
+
+                case 10:
+                    current_slot = 6;
+                    break;
+
+                case 11:
+                    current_slot = 7;
+            }
         }
     }
 }
