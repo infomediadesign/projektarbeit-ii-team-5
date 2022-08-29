@@ -38,19 +38,6 @@ void inventory::update()
 		std::cout << "Inventory bool has been flipped to: " << this->isVisible << std::endl;
 	}
 
-    if (IsKeyPressed(KEY_J))
-    {
-        addHeilbeere();
-    }
-    else if (IsKeyPressed(KEY_K))
-    {
-        addMudbomb();
-    }
-    else if (IsKeyPressed(KEY_L))
-    {
-        addSeifenblase();
-    }
-
     navigateInventory();
 }
 

@@ -20,7 +20,18 @@ void player::update(controlInput controlInputs,std::vector<Rectangle>& walls)
 {
     movement(walls);
 
-
+    if (IsKeyPressed(KEY_J))
+    {
+        Inventory->addHeilbeere();
+    }
+    else if (IsKeyPressed(KEY_K))
+    {
+        Inventory->addMudbomb();
+    }
+    else if (IsKeyPressed(KEY_L))
+    {
+        Inventory->addSeifenblase();
+    }
 }
 
 void player::draw()
