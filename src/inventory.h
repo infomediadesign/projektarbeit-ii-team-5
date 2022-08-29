@@ -24,6 +24,7 @@ protected:
     Texture2D selection;
     void setSlots();
     void navigateInventory();
+    void drawItems(int i);
 
     Rectangle slot_positions[12];
 

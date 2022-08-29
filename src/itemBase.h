@@ -14,6 +14,7 @@ protected:
     std::string description;
     Texture2D texture_item;
     Texture2D texture_infos;
+    Vector2 position;
 
 public:
     Texture2D GetTexture() { return texture_item; }

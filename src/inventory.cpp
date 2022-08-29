@@ -65,14 +65,11 @@ void inventory::draw()
                        this->slot_positions[this->current_slot],
                        {0, 0}, 0, WHITE);
 
-        // draw Items
 
-        if (inventoryContainer.getItem(0) != NULL)
+        // go through every slot and draw every single item
+        for (int i = 0; i < 12; i++)
         {
-            DrawTexturePro(inventoryContainer.getItem(0)->GetTexture(),
-                           {0, 0, (float)inventoryContainer.getItem(0)->GetTexture().width, (float)inventoryContainer.getItem(0)->GetTexture().height},
-                           slot_positions[current_slot],
-                           {0, 0}, 0, WHITE);
+            drawItems(i);
         }
 
 	}
@@ -107,6 +104,18 @@ void inventory::setSlots()
     this->slot_positions[9] = {slot_positions[8].x + slot_offset, slot_positions[8].y, (float)selection.width*scale_factor, (float)selection.height*scale_factor};
     this->slot_positions[10] = {slot_positions[9].x + slot_offset, slot_positions[9].y, (float)selection.width*scale_factor, (float)selection.height*scale_factor};
     this->slot_positions[11] = {slot_positions[10].x + slot_offset, slot_positions[10].y, (float)selection.width*scale_factor, (float)selection.height*scale_factor};
+}
+
+void inventory::drawItems(int i)
+{
+    // draw every occupied slot
+    if (this->container_slot > i)
+    {
+        DrawTexturePro(inventoryContainer.getItem(i)->GetTexture(),
+                       {0, 0, (float)inventoryContainer.getItem(i)->GetTexture().width, (float)inventoryContainer.getItem(i)->GetTexture().height},
+                       slot_positions[i],
+                       {0, 0}, 0, WHITE);
+    }
 }
 
 void inventory::navigateInventory()
