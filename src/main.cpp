@@ -130,7 +130,7 @@ int main() {
 		{
 
 			// Press enter to return to TITLE screen
-			/*if (controlInputs.confirm == 1)
+			if (controlInputs.confirm == 1)
 			{
 				currentScreen = GAMEPLAY;
 			}
@@ -139,8 +139,9 @@ int main() {
 			if (IsKeyPressed(KEY_SPACE))
 			{
 				currentScreen = DEATH;
-			}*/
-            theBattle->frameRoutine();
+			}
+
+            //theBattle->frameRoutine();
 		} break;
 
 		case DEATH:
