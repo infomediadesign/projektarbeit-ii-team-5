@@ -38,14 +38,7 @@ void inventory::update()
 		std::cout << "Inventory bool has been flipped to: " << this->isVisible << std::endl;
 	}
 
-    if (IsKeyPressed(KEY_D) && current_slot < 3)
-    {
-        this->current_slot++;
-    }
-    else if (IsKeyPressed(KEY_A) && current_slot > 0)
-    {
-        this->current_slot--;
-    }
+    navigateInventory();
 }
 
 void inventory::draw()
@@ -78,10 +71,115 @@ void inventory::draw()
 
 void inventory::setSlots()
 {
+    // all slot positions depend on the slot before them
+    // first one in each row always sets the y value, then there is only x offset
+
+    // first row
     this->slot_positions[0] = {position.x + 16*scale_factor, position.y + 32*scale_factor, (float)selection.width*scale_factor, (float)selection.height*scale_factor};
-    this->slot_positions[1] = {slot_positions[0].x + this->slot_offset_x, slot_positions[0].y, (float)selection.width*scale_factor, (float)selection.height*scale_factor};
-    this->slot_positions[2] = {slot_positions[1].x + this->slot_offset_x, slot_positions[1].y, (float)selection.width*scale_factor, (float)selection.height*scale_factor};
-    this->slot_positions[3] = {slot_positions[2].x + this->slot_offset_x, slot_positions[2].y, (float)selection.width*scale_factor, (float)selection.height*scale_factor};
+    this->slot_positions[1] = {slot_positions[0].x + this->slot_offset, slot_positions[0].y, (float)selection.width * scale_factor, (float)selection.height * scale_factor};
+    this->slot_positions[2] = {slot_positions[1].x + this->slot_offset, slot_positions[1].y, (float)selection.width * scale_factor, (float)selection.height * scale_factor};
+    this->slot_positions[3] = {slot_positions[2].x + this->slot_offset, slot_positions[2].y, (float)selection.width * scale_factor, (float)selection.height * scale_factor};
+
+    // second row
+    this->slot_positions[4] = {slot_positions[0].x, slot_positions[0].y + slot_offset, (float)selection.width*scale_factor, (float)selection.height*scale_factor};
+    this->slot_positions[5] = {slot_positions[4].x + slot_offset, slot_positions[4].y, (float)selection.width*scale_factor, (float)selection.height*scale_factor};
+    this->slot_positions[6] = {slot_positions[5].x + slot_offset, slot_positions[5].y, (float)selection.width*scale_factor, (float)selection.height*scale_factor};
+    this->slot_positions[7] = {slot_positions[6].x + slot_offset, slot_positions[6].y, (float)selection.width*scale_factor, (float)selection.height*scale_factor};
+
+    // third row
+    this->slot_positions[8] = {slot_positions[0].x, slot_positions[4].y + slot_offset, (float)selection.width*scale_factor, (float)selection.height*scale_factor};
+    this->slot_positions[9] = {slot_positions[8].x + slot_offset, slot_positions[8].y, (float)selection.width*scale_factor, (float)selection.height*scale_factor};
+    this->slot_positions[10] = {slot_positions[9].x + slot_offset, slot_positions[9].y, (float)selection.width*scale_factor, (float)selection.height*scale_factor};
+    this->slot_positions[11] = {slot_positions[10].x + slot_offset, slot_positions[10].y, (float)selection.width*scale_factor, (float)selection.height*scale_factor};
+}
+
+void inventory::navigateInventory()
+{
+    // inventory slot navigation
+    if (IsKeyPressed(KEY_D) && current_slot < 11)
+    {
+        this->current_slot++;
+    }
+    else if (IsKeyPressed(KEY_A) && current_slot > 0)
+    {
+        this->current_slot--;
+    }
+    else if (IsKeyPressed(KEY_S))
+    {
+        switch (current_slot)
+        {
+            // first row
+            case 0:
+                current_slot = 4;
+                break;
+
+            case 1:
+                current_slot = 5;
+                break;
+
+            case 2:
+                current_slot = 6;
+                break;
+
+            case 3:
+                current_slot = 7;
+                break;
+
+                //second row
+            case 4:
+                current_slot = 8;
+                break;
+
+            case 5:
+                current_slot = 9;
+                break;
+
+            case 6:
+                current_slot = 10;
+                break;
+
+            case 7:
+                current_slot = 11;
+
+        }
+    }
+    else if (IsKeyPressed(KEY_W))
+    {
+        switch (current_slot)
+        {
+            // second row
+            case 4:
+                current_slot = 0;
+                break;
+
+            case 5:
+                current_slot = 1;
+                break;
+
+            case 6:
+                current_slot = 2;
+                break;
+
+            case 7:
+                current_slot = 3;
+
+            // third row
+            case 8:
+                current_slot = 4;
+                break;
+
+            case 9:
+                current_slot = 5;
+                break;
+
+            case 10:
+                current_slot = 6;
+                break;
+
+            case 11:
+                current_slot = 7;
+        }
+    }
 }
 
 bool inventory::isActive() { return this->isVisible; }
