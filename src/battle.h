@@ -66,11 +66,23 @@ protected:
     Texture2D baseActors;
     Texture2D baseAttacks;
     Texture2D baseItems;
+    Texture2D marker_1;
+    Texture2D marker_2;
+    Texture2D markerInfo;
+
+    Vector2 box1Positions[3];
+    Vector2 boxAttacksPositions[4];
+    Vector2 boxInfoPosition;
 
     int gui_currentBox = 1;
+    int gui_scaleFactor = 5;
+
+    void gui_setSlots();
+    void drawGUIBox(Texture2D texture);
+    void drawGUISelection(Texture2D texture, Vector2 position);
 
 public:
     void draw();
-    void drawGUIBox(Texture2D texture);
+
     void update_gui();
 };

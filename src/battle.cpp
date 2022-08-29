@@ -9,6 +9,12 @@ Battle::Battle(int advantage, int encounternumber)
     this->baseActors = LoadTexture("assets/graphics/UI/Fightscreen/Fightscreen_Actors_Base.png");
     this->baseAttacks = LoadTexture("assets/graphics/UI/Fightscreen/Fightscreen_Attacks_Base.png");
     this->baseItems = LoadTexture("assets/graphics/UI/Fightscreen/Fightscreen_Items_Base.png");
+
+    this->marker_1 = LoadTexture("assets/graphics/UI/Fightscreen/Fightscreen_Box_1_Marker.png");
+    this->marker_2 = LoadTexture("assets/graphics/UI/Fightscreen/Fightscreen_Box_2_Marker.png");
+    this->markerInfo = LoadTexture("assets/graphics/UI/Fightscreen/Fightscreen_Info_Marker.png");
+
+    gui_setSlots();
 }
 
 // GUI Stuff
@@ -33,6 +39,7 @@ void Battle::draw()
     {
         case 1:
             drawGUIBox(this->baseActors);
+            drawGUISelection(this->marker_1, box1Positions[0]);
             break;
 
         case 2:
@@ -49,8 +56,22 @@ void Battle::drawGUIBox(Texture2D currentTexture)
 {
     DrawTexturePro(currentTexture,
                    {0, 0, (float)currentTexture.width, (float)currentTexture.height},
-                   {0, 0, (float)GetScreenWidth(), (float)GetScreenHeight()},
+                   {(float)GetScreenWidth()/2 - ((float)currentTexture.width * gui_scaleFactor)/2, (float)GetScreenHeight()/2 - ((float)currentTexture.height * gui_scaleFactor)/2, (float)currentTexture.width * gui_scaleFactor, (float)currentTexture.height * gui_scaleFactor},
                    {0, 0}, 0, WHITE);
+}
+
+void Battle::drawGUISelection(Texture2D currentTexture, Vector2 position)
+{
+    DrawTexturePro(currentTexture,
+                   {0, 0, (float)currentTexture.width, (float)currentTexture.height},
+                   {position.x, position.y, (float)currentTexture.width * gui_scaleFactor, (float)currentTexture.height * gui_scaleFactor},
+                   {0, 0}, 0, WHITE);
+}
+
+void Battle::gui_setSlots()
+{
+    this->box1Positions[0] = {(float)6 * gui_scaleFactor, (float)GetScreenHeight() - (39 * gui_scaleFactor)};
+
 }
 
 // Battle Stuff
