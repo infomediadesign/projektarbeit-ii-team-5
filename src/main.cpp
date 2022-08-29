@@ -129,6 +129,7 @@ int main() {
 
 		case FIGHT:
 		{
+            theBattle->update_gui();
 
 			// Press enter to return to TITLE screen
 			if (controlInputs.confirm == 1)

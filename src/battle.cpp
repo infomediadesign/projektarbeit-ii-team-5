@@ -12,7 +12,28 @@ Battle::Battle(int advantage, int encounternumber)
 }
 
 // GUI Stuff
-void Battle::update_gui() {}
+void Battle::update_gui()
+{
+    // down
+    if (IsKeyPressed(KEY_S) && gui_currentBox == gui_actors)
+    {
+        gui_currentBox = gui_attacks;
+    }
+    else if (IsKeyPressed(KEY_S && gui_currentBox == gui_attacks))
+    {
+        gui_currentBox = gui_items;
+    }
+
+    // up
+    if (IsKeyPressed(KEY_W) && gui_currentBox == gui_attacks)
+    {
+        gui_currentBox = gui_actors;
+    }
+    else if (IsKeyPressed(KEY_W) && gui_currentBox == gui_items)
+    {
+        gui_currentBox = gui_attacks;
+    }
+}
 
 void Battle::draw()
 {
@@ -21,7 +42,6 @@ void Battle::draw()
     switch (gui_currentBox)
     {
         case gui_actors:
-
             drawGUIBox(this->baseActors);
             break;
 
