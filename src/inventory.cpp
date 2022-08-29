@@ -38,17 +38,17 @@ void inventory::update()
 		std::cout << "Inventory bool has been flipped to: " << this->isVisible << std::endl;
 	}
 
-    if (IsKeyPressed(KEY_J) && container_slot < 12)
+    if (IsKeyPressed(KEY_J))
     {
-        addItem(heilbeere);
+        addHeilbeere();
     }
-    else if (IsKeyPressed(KEY_K) && container_slot < 12)
+    else if (IsKeyPressed(KEY_K))
     {
-        addItem(mudbomb);
+        addMudbomb();
     }
-    else if (IsKeyPressed(KEY_L) && container_slot < 12)
+    else if (IsKeyPressed(KEY_L))
     {
-        addItem(seifenblase);
+        addSeifenblase();
     }
 
     navigateInventory();
@@ -117,7 +117,7 @@ void inventory::setSlots()
 void inventory::drawItems(int i)
 {
     // draw every occupied slot
-    if (this->container_slot > i)
+    if (this->container_slot > i && this->container_slot < 12)
     {
         DrawTexturePro(inventoryContainer.getItem(i)->GetTexture(),
                        {0, 0, (float)inventoryContainer.getItem(i)->GetTexture().width, (float)inventoryContainer.getItem(i)->GetTexture().height},

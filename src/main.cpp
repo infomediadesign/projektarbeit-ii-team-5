@@ -40,6 +40,7 @@ int main() {
 	Camera2D* this_camera = new Camera2D;
 	map* this_map = new map;
 	player* this_player = new player(this_map);
+    this_player->controlInputs = &controlInputs;
 	inventory* this_inventory = new inventory(&controlInputs);
     screenDeath* screen_death = new screenDeath();
     screen_death->controlInputs = &controlInputs;

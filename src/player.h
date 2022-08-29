@@ -3,9 +3,7 @@
 #include "actor.h"
 #include "map.h"
 #include "forestSpiritsStructs.h"
-#include "inventoryTemplate.h"
-#include "itemBase.h"
-#include "itemHeilbeere.h"
+#include "inventory.h"
 
 class player : public actor
 {
@@ -17,6 +15,8 @@ public:
     int framesCounter = 0;
     int framesOffset = 0;
 
+    controlInput* controlInputs = nullptr;
+
     void update(controlInput controlInputs, std::vector<Rectangle>& walls);
     void draw();
     bool checkForAnyCollisions(std::vector<Rectangle> collisions);
@@ -24,14 +24,11 @@ public:
 
 protected:
 	map* current_map;
+    inventory* Inventory = new inventory(controlInputs);
 
     int currentSlot = 0;
 
-    // add an inventory container with 12 slots
-    inventoryTemplate<itemBase*, 12> inventory;
-    itemHeilbeere* heilbeere = new itemHeilbeere;
-
-    void movement(controlInput controlInputs,std::vector<Rectangle>& walls);
+    void movement(std::vector<Rectangle>& walls);
     void addItem(itemBase* item);
 
 	//int movement_speed;

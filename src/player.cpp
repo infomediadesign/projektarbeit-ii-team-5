@@ -18,13 +18,8 @@ player::~player()
 
 void player::update(controlInput controlInputs,std::vector<Rectangle>& walls)
 {
-    movement(controlInputs, walls);
+    movement(walls);
 
-    if (IsKeyPressed(KEY_K) && currentSlot < 12)
-    {
-        addItem(heilbeere);
-        currentSlot++;
-    }
 
 }
 
@@ -51,12 +46,7 @@ Rectangle player::getCollision()
     return {this->position.x + 6 * 4,this->position.y + 6 * 4, 20*4, 20*4};
 }
 
-void player::addItem(itemBase* item)
-{
-    this->inventory.setItem(item, this->currentSlot);
-}
-
-void player::movement(controlInput controlInputs,std::vector<Rectangle>& walls)
+void player::movement(std::vector<Rectangle>& walls)
 {
 
     //walking animation setup
@@ -82,7 +72,7 @@ void player::movement(controlInput controlInputs,std::vector<Rectangle>& walls)
     this->isMoving = false;
 
     //right
-    if (controlInputs.right)
+    if (controlInputs->right)
     {
         this->position.x += this->movement_speed;
         this->facingDirection = right; // enum
@@ -90,7 +80,7 @@ void player::movement(controlInput controlInputs,std::vector<Rectangle>& walls)
     }
     //left
     //else
-    if (controlInputs.left)
+    if (controlInputs->left)
     {
         this->position.x -= this->movement_speed;
         this->facingDirection = left; // enum
@@ -98,14 +88,14 @@ void player::movement(controlInput controlInputs,std::vector<Rectangle>& walls)
     }
     //up
     //else
-    if (controlInputs.up)
+    if (controlInputs->up)
     {
         this->position.y -= this->movement_speed;
         this->facingDirection = up; // enum
         this->isMoving = true;
     }
     //down
-    if (controlInputs.down)
+    if (controlInputs->down)
     {
         this->position.y += this->movement_speed;
         this->facingDirection = down; // enum
@@ -116,19 +106,19 @@ void player::movement(controlInput controlInputs,std::vector<Rectangle>& walls)
     while (checkForAnyCollisions(walls))
     {
 
-        if (controlInputs.left){
+        if (controlInputs->left){
             this->position.x += 1.0;
         }
-        if (controlInputs.right) {
+        if (controlInputs->right) {
             this->position.x -= 1.0;
         }
-        if (controlInputs.up) {
+        if (controlInputs->up) {
             this->position.y += 1.0;
         }
-        if (controlInputs.down) {
+        if (controlInputs->down) {
             this->position.y -= 1.0;
         }
-        if (controlInputs.down + controlInputs.left + controlInputs.up + controlInputs.right == 0){
+        if (controlInputs->down + controlInputs->left + controlInputs->up + controlInputs->right == 0){
             break;
         }
     }
