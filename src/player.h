@@ -22,6 +22,8 @@ public:
 protected:
 	map* current_map;
 
+    void movement(controlInput controlInputs,std::vector<Rectangle>& walls);
+
 	//int movement_speed;
 
 
