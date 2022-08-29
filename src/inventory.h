@@ -6,6 +6,7 @@
 #include "inventoryTemplate.h"
 #include "itemBase.h"
 #include "itemHeilbeere.h"
+#include "itemMudbomb.h"
 
 class inventory : public actor
 {
@@ -33,6 +34,8 @@ protected:
     // add an inventory container with 12 slots
     inventoryTemplate<itemBase*, 12> inventoryContainer;
     itemHeilbeere* heilbeere = new itemHeilbeere;
+    itemMudbomb* mudbomb = new itemMudbomb;
+
     void addItem(itemBase* item);
 
     int container_slot = 0;

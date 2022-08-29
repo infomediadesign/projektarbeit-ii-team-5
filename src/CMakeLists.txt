@@ -9,7 +9,7 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
-add_executable(${PROJECT_NAME} main.cpp   "sprite.h" "sprite.cpp" "actor.h" "player.h" "player.cpp" "map.h" "map.cpp" "inventory.h" "inventory.cpp" "forestSpiritsStructs.h" "overworldEnemy.cpp" "overworldEnemy.h" "battle.h" "battle.cpp" "BattleActor.h" "BattleActor.cpp" actor.cpp screenDeath.cpp screenDeath.h inventoryTemplate.h itemBase.h itemHeilbeere.cpp itemHeilbeere.h)
+add_executable(${PROJECT_NAME} main.cpp   "sprite.h" "sprite.cpp" "actor.h" "player.h" "player.cpp" "map.h" "map.cpp" "inventory.h" "inventory.cpp" "forestSpiritsStructs.h" "overworldEnemy.cpp" "overworldEnemy.h" "battle.h" "battle.cpp" "BattleActor.h" "BattleActor.cpp" actor.cpp screenDeath.cpp screenDeath.h inventoryTemplate.h itemBase.h itemHeilbeere.cpp itemHeilbeere.h itemMudbomb.cpp itemMudbomb.h)
 
 # Add config.h.in file
 configure_file(config.h.in config.h)

@@ -42,6 +42,10 @@ void inventory::update()
     {
         addItem(heilbeere);
     }
+    else if (IsKeyPressed(KEY_K) && container_slot < 12)
+    {
+        addItem(mudbomb);
+    }
 
     navigateInventory();
 }
