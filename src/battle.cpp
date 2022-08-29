@@ -21,14 +21,66 @@ Battle::Battle(int advantage, int encounternumber)
 void Battle::update_gui()
 {
     // down
-    if (IsKeyPressed(KEY_S) && gui_currentBox < 3)
-    {
-        gui_currentBox++;
+    if (!isActionSelectVisible && !isItemSelectVisible && !isActorSelectVisible) {
+        if (IsKeyPressed(KEY_S) && gui_currentScreen < 2) {
+            gui_currentScreen++;
+        } else if (IsKeyPressed(KEY_W) && gui_currentScreen > 0) {
+            gui_currentScreen--;
+        }
+
     }
-    else if (IsKeyPressed(KEY_W) && gui_currentBox > 1)
+
+    if (IsKeyPressed(KEY_E))
     {
-        gui_currentBox--;
+        switch (gui_currentScreen)
+        {
+            /*
+            case 0:
+                isActorSelectVisible = true;
+                isActionSelectVisible = false;
+                isItemSelectVisible = false;
+                break;
+                */
+
+            case 1:
+                isActorSelectVisible = false;
+                isActionSelectVisible = true;
+                isItemSelectVisible = false;
+                break;
+
+                /*
+            case 2:
+                isActorSelectVisible = false;
+                isActionSelectVisible = false;
+                isItemSelectVisible = true;
+                break;
+                 */
+        }
     }
+    else if (IsKeyPressed(KEY_Q))
+    {
+        isActorSelectVisible = false;
+        isActionSelectVisible = false;
+        isItemSelectVisible = false;
+
+        gui_currentAction = 0;
+    }
+
+
+    if (isActionSelectVisible)
+    {
+        if (IsKeyPressed(KEY_D) && gui_currentAction < 4)
+        {
+        gui_currentAction++;
+        }
+        else if (IsKeyPressed(KEY_A) && gui_currentAction > 0)
+        {
+        gui_currentAction--;
+        }
+    }
+
+
+
 }
 
 void Battle::draw()
@@ -36,23 +88,31 @@ void Battle::draw()
     ClearBackground(BROWN);
     drawGUIBox(background);
 
-    switch (gui_currentBox)
+    switch (gui_currentScreen)
     {
-        case 1:
+        case 0:
             drawGUIBox(this->baseActors);
-            drawGUISelection(this->marker_1, box1Positions[0]);
+            break;
+
+        case 1:
+            drawGUIBox(this->baseAttacks);
             break;
 
         case 2:
-            drawGUIBox(this->baseAttacks);
-            drawGUISelection(this->marker_1, box1Positions[1]);
+            drawGUIBox(this->baseItems);
             break;
 
-        case 3:
-            drawGUIBox(this->baseItems);
-            drawGUISelection(this->marker_1, box1Positions[2]);
-            break;
     }
+
+    if (isActionSelectVisible)
+    {
+        drawGUISelection(this->marker_2, boxActionsPositions[gui_currentAction]);
+    }
+    else
+    {
+        drawGUISelection(this->marker_1, box1Positions[gui_currentScreen]);
+    }
+
 }
 
 void Battle::drawGUIBox(Texture2D currentTexture)
@@ -73,10 +133,17 @@ void Battle::drawGUISelection(Texture2D currentTexture, Vector2 position)
 
 void Battle::gui_setSlots()
 {
+    // Party - Actions - Items
     this->box1Positions[0] = {(float)9 * gui_scaleFactor, (float)GetScreenHeight() - (50 * gui_scaleFactor)};
     this->box1Positions[1] = {(float)box1Positions[0].x, (float)box1Positions[0].y + 13 * gui_scaleFactor};
     this->box1Positions[2] = {(float)box1Positions[1].x, (float)box1Positions[1].y + 13 * gui_scaleFactor};
 
+    // Attack 1-3 - Wait - Infos
+    this->boxActionsPositions[0] = {(float)61 * gui_scaleFactor, (float)GetScreenHeight() - (40 * gui_scaleFactor)};
+    this->boxActionsPositions[1] = {(float)boxActionsPositions[0].x + 35 * gui_scaleFactor, (float)boxActionsPositions[0].y};
+    this->boxActionsPositions[2] = {(float)boxActionsPositions[1].x + 35 * gui_scaleFactor, (float)boxActionsPositions[1].y};
+    this->boxActionsPositions[3] = {(float)boxActionsPositions[2].x + 35 * gui_scaleFactor, (float)boxActionsPositions[2].y};
+    this->boxActionsPositions[4] = {(float)boxActionsPositions[3].x + 47 * gui_scaleFactor, (float)boxActionsPositions[3].y - 2 * gui_scaleFactor};
 
 }
 
