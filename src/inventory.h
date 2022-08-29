@@ -7,6 +7,7 @@
 #include "itemBase.h"
 #include "itemHeilbeere.h"
 #include "itemMudbomb.h"
+#include "itemSeifenblase.h"
 
 class inventory : public actor
 {
@@ -16,6 +17,11 @@ public:
     void update();
     void draw();
     bool isActive();
+
+    // use this methods from player to add items
+    void addMudbomb();
+    void addHeilbeere();
+    void addSeifenblase();
 
 protected:
 
@@ -35,6 +41,7 @@ protected:
     inventoryTemplate<itemBase*, 12> inventoryContainer;
     itemHeilbeere* heilbeere = new itemHeilbeere;
     itemMudbomb* mudbomb = new itemMudbomb;
+    itemSeifenblase* seifenblase = new itemSeifenblase;
 
     void addItem(itemBase* item);
 

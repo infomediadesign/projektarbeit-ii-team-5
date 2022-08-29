@@ -46,6 +46,10 @@ void inventory::update()
     {
         addItem(mudbomb);
     }
+    else if (IsKeyPressed(KEY_L) && container_slot < 12)
+    {
+        addItem(seifenblase);
+    }
 
     navigateInventory();
 }
@@ -210,6 +214,10 @@ void inventory::navigateInventory()
         }
     }
 }
+
+void inventory::addMudbomb(){ addItem(mudbomb);}
+void inventory::addHeilbeere() { addItem(heilbeere);}
+void inventory::addSeifenblase() { addItem(seifenblase);}
 
 void inventory::addItem(itemBase *item)
 {
