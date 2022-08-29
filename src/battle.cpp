@@ -33,7 +33,8 @@ void Battle::update_gui()
 
 void Battle::draw()
 {
-    drawGUIBox(this->background);
+    ClearBackground(BROWN);
+    drawGUIBox(background);
 
     switch (gui_currentBox)
     {
@@ -44,10 +45,12 @@ void Battle::draw()
 
         case 2:
             drawGUIBox(this->baseAttacks);
+            drawGUISelection(this->marker_1, box1Positions[1]);
             break;
 
         case 3:
             drawGUIBox(this->baseItems);
+            drawGUISelection(this->marker_1, box1Positions[2]);
             break;
     }
 }
@@ -70,7 +73,10 @@ void Battle::drawGUISelection(Texture2D currentTexture, Vector2 position)
 
 void Battle::gui_setSlots()
 {
-    this->box1Positions[0] = {(float)6 * gui_scaleFactor, (float)GetScreenHeight() - (39 * gui_scaleFactor)};
+    this->box1Positions[0] = {(float)9 * gui_scaleFactor, (float)GetScreenHeight() - (50 * gui_scaleFactor)};
+    this->box1Positions[1] = {(float)box1Positions[0].x, (float)box1Positions[0].y + 13 * gui_scaleFactor};
+    this->box1Positions[2] = {(float)box1Positions[1].x, (float)box1Positions[1].y + 13 * gui_scaleFactor};
+
 
 }
 
