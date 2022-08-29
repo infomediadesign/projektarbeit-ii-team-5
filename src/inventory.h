@@ -7,17 +7,20 @@
 class inventory : public actor
 {
 public:
+    inventory(controlInput* controlInputs);
+    ~inventory();
+    void update();
+    void draw();
+    bool isActive();
 
-	inventory(controlInput* controlInputs);
-	~inventory();
+protected:
 
 	Image bag_img;
-	Texture2D bag_c_texu;
-	Texture2D bag_o_texu;
+	Texture2D bag_closed;
+	Texture2D bag_open;
 
 	controlInput* controlInputs{};
-	bool visible = false;
+	bool isVisible = false;
+    int scaleFactor = 4;
 
-	void update();
-	void draw();
 };

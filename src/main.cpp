@@ -1,5 +1,5 @@
 ﻿#include <cstdlib>
-#pragma once
+// #pragma once
 #include "raylib.h"
 #include "config.h"
 
@@ -115,7 +115,7 @@ int main() {
 
 			//player cant move while inventory open
 
-			if (!this_inventory->visible)
+			if (!this_inventory->isActive())
 			{
 
 				this_player->update(controlInputs, this_map->collisionRectangles);
