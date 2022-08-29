@@ -22,15 +22,15 @@ void player::update(controlInput controlInputs,std::vector<Rectangle>& walls)
 
     if (IsKeyPressed(KEY_J))
     {
-        Inventory->addHeilbeere();
+        inventory_pointer->addHeilbeere();
     }
     else if (IsKeyPressed(KEY_K))
     {
-        Inventory->addMudbomb();
+        inventory_pointer->addMudbomb();
     }
     else if (IsKeyPressed(KEY_L))
     {
-        Inventory->addSeifenblase();
+        inventory_pointer->addSeifenblase();
     }
 }
 

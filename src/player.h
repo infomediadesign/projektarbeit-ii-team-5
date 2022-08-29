@@ -24,7 +24,7 @@ public:
 
 protected:
 	map* current_map;
-    inventory* Inventory = new inventory(controlInputs);
+    inventory* inventory_pointer = new inventory(controlInputs);
 
     int currentSlot = 0;
 
