@@ -2,6 +2,48 @@
 #include <iostream>
 #include "battle.h"
 
+// constructor
+Battle::Battle(int advantage, int encounternumber)
+{
+    this->background = LoadTexture("assets/graphics/UI/Fightscreen/Fightscreen_Background.png");
+    this->baseActors = LoadTexture("assets/graphics/UI/Fightscreen/Fightscreen_Actors_Base.png");
+    this->baseAttacks = LoadTexture("assets/graphics/UI/Fightscreen/Fightscreen_Attacks_Base.png");
+    this->baseItems = LoadTexture("assets/graphics/UI/Fightscreen/Fightscreen_Items_Base.png");
+}
+
+// GUI Stuff
+void Battle::update_gui() {}
+
+void Battle::draw()
+{
+    drawGUIBox(this->background);
+
+    switch (gui_currentBox)
+    {
+        case gui_actors:
+
+            drawGUIBox(this->baseActors);
+            break;
+
+        case gui_attacks:
+            drawGUIBox(this->baseAttacks);
+            break;
+
+        case gui_items:
+            drawGUIBox(this->baseItems);
+            break;
+    }
+}
+
+void Battle::drawGUIBox(Texture2D currentTexture)
+{
+    DrawTexturePro(currentTexture,
+                   {0, 0, (float)currentTexture.width, (float)currentTexture.height},
+                   {0, 0, (float)GetScreenWidth(), (float)GetScreenHeight()},
+                   {0, 0}, 0, WHITE);
+}
+
+// Battle Stuff
 const bool debug = true;
 
 void Battle::frameRoutine() {
@@ -85,6 +127,3 @@ void Battle::initTestBattle() {
     this->theBattleActors.push_back(new BattleActor(false,1,&this->theBattleActors));
 }
 
-Battle::Battle(int advantage, int encounternumber){
-    ;
-}

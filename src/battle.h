@@ -15,6 +15,12 @@ enum enumBattleState{
     winningScreen = 6
 };
 
+enum GUI_Box{
+    gui_actors,
+    gui_attacks,
+    gui_items
+};
+
 class battleButton{
 public:
     battleButton* aboveButton;
@@ -59,4 +65,18 @@ public:
 	void drawBattle();
 	bool toBeDestroyed();
     void initTestBattle();
+
+    // GUI Stuff
+protected:
+    Texture2D background;
+    Texture2D baseActors;
+    Texture2D baseAttacks;
+    Texture2D baseItems;
+
+    GUI_Box gui_currentBox = gui_actors;
+
+public:
+    void draw();
+    void drawGUIBox(Texture2D texture);
+    void update_gui();
 };

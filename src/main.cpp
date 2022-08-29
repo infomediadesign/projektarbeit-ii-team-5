@@ -44,7 +44,7 @@ int main() {
 	inventory* this_inventory = new inventory(&controlInputs);
     screenDeath* screen_death = new screenDeath();
     screen_death->controlInputs = &controlInputs;
-    Battle* theBattle= new Battle(0,0);
+    Battle* theBattle = new Battle(0,0);
     theBattle->initTestBattle();
     theBattle->controlInputs = &controlInputs;
 
@@ -218,12 +218,8 @@ int main() {
 		} break;
 		case FIGHT:
 		{
-			// TODO: Draw ENDING screen here!
-			DrawRectangle(0, 0, Game::ScreenWidth, Game::ScreenHeight, RED);
-			DrawText("ENDING SCREEN", 20, 20, 40, BLACK);
-			DrawText("PRESS ENTER to RETURN to TITLE SCREEN", 240, 500, 20, BLACK);
+            theBattle->draw();
 
-			DrawTexture(fightScreen, 0, 0, WHITE);
 		} break;
 		case DEATH:
 		{
