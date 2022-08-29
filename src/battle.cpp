@@ -15,23 +15,13 @@ Battle::Battle(int advantage, int encounternumber)
 void Battle::update_gui()
 {
     // down
-    if (IsKeyPressed(KEY_S) && gui_currentBox == gui_actors)
+    if (IsKeyPressed(KEY_S) && gui_currentBox < 3)
     {
-        gui_currentBox = gui_attacks;
+        gui_currentBox++;
     }
-    else if (IsKeyPressed(KEY_S && gui_currentBox == gui_attacks))
+    else if (IsKeyPressed(KEY_W) && gui_currentBox > 1)
     {
-        gui_currentBox = gui_items;
-    }
-
-    // up
-    if (IsKeyPressed(KEY_W) && gui_currentBox == gui_attacks)
-    {
-        gui_currentBox = gui_actors;
-    }
-    else if (IsKeyPressed(KEY_W) && gui_currentBox == gui_items)
-    {
-        gui_currentBox = gui_attacks;
+        gui_currentBox--;
     }
 }
 
@@ -41,15 +31,15 @@ void Battle::draw()
 
     switch (gui_currentBox)
     {
-        case gui_actors:
+        case 1:
             drawGUIBox(this->baseActors);
             break;
 
-        case gui_attacks:
+        case 2:
             drawGUIBox(this->baseAttacks);
             break;
 
-        case gui_items:
+        case 3:
             drawGUIBox(this->baseItems);
             break;
     }

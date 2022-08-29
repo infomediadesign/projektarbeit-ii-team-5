@@ -15,12 +15,6 @@ enum enumBattleState{
     winningScreen = 6
 };
 
-enum GUI_Box{
-    gui_actors,
-    gui_attacks,
-    gui_items
-};
-
 class battleButton{
 public:
     battleButton* aboveButton;
@@ -73,7 +67,7 @@ protected:
     Texture2D baseAttacks;
     Texture2D baseItems;
 
-    GUI_Box gui_currentBox = gui_actors;
+    int gui_currentBox = 1;
 
 public:
     void draw();
