@@ -59,4 +59,42 @@ public:
 	void drawBattle();
 	bool toBeDestroyed();
     void initTestBattle();
+
+    // GUI Stuff
+protected:
+    Texture2D background;
+    Texture2D baseActors;
+    Texture2D baseAttacks;
+    Texture2D baseItems;
+    Texture2D marker_1;
+    Texture2D marker_2;
+    Texture2D markerItems;
+    Texture2D infoActions;
+    Texture2D infoItems;
+
+    Vector2 box1Positions[3];
+    Vector2 boxActionsPositions[5];
+    Vector2 boxItemsPosition[4];
+    Rectangle boxInfoPosition;
+
+    int gui_currentScreen = 0;
+    int gui_currentBox = 0;
+    int gui_currentAction = 0;
+    int gui_currentItem = 0;
+    int gui_scaleFactor = 5;
+
+    // bool isActorSelectVisible = false;
+    bool isActionSelectVisible = false;
+    bool isItemSelectVisible = false;
+    bool showActionInfo = false;
+    bool showItemInfo = false;
+
+    void gui_setSlots();
+    void drawGUIBox(Texture2D texture);
+    void drawGUISelection(Texture2D texture, Vector2 position);
+
+public:
+    void draw();
+
+    void update_gui();
 };
