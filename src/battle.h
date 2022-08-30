@@ -69,7 +69,8 @@ protected:
     Texture2D marker_1;
     Texture2D marker_2;
     Texture2D markerInfo;
-    Texture2D infoScreen;
+    Texture2D infoActions;
+    Texture2D infoItems;
 
     Vector2 box1Positions[3];
     Vector2 boxActionsPositions[5];
@@ -83,7 +84,8 @@ protected:
     bool isActorSelectVisible = false;
     bool isActionSelectVisible = false;
     bool isItemSelectVisible = false;
-    bool showInfo = false;
+    bool showActionInfo = false;
+    bool showItemInfo = false;
 
     void gui_setSlots();
     void drawGUIBox(Texture2D texture);

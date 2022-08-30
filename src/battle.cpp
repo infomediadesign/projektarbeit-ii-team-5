@@ -10,7 +10,8 @@ Battle::Battle(int advantage, int encounternumber)
     this->baseAttacks = LoadTexture("assets/graphics/UI/Fightscreen/Fightscreen_Attacks_Base.png");
     this->baseItems = LoadTexture("assets/graphics/UI/Fightscreen/Fightscreen_Items_Base.png");
 
-    this->infoScreen = LoadTexture("assets/graphics/UI/Fightscreen/Info_Box.png");
+    this->infoActions = LoadTexture("assets/graphics/UI/Fightscreen/Info_Actions.png");
+    this->infoItems = LoadTexture("assets/graphics/UI/Fightscreen/Info_Items.png");
 
     this->marker_1 = LoadTexture("assets/graphics/UI/Fightscreen/Fightscreen_Box_1_Marker.png");
     this->marker_2 = LoadTexture("assets/graphics/UI/Fightscreen/Fightscreen_Box_2_Marker.png");
@@ -53,7 +54,7 @@ void Battle::update_gui()
                  */
         }
     }
-    else if (IsKeyPressed(KEY_Q))
+    else if (IsKeyPressed(KEY_Q) && showActionInfo == false && showItemInfo == false)
     {
         isActorSelectVisible = false;
         isActionSelectVisible = false;
@@ -75,14 +76,17 @@ void Battle::update_gui()
         }
         else if (gui_currentAction == 4 && IsKeyPressed(KEY_E))
         {
-            this->showInfo = true;
+            this->showActionInfo = true;
         }
 
         if (IsKeyPressed(KEY_Q))
         {
-            this->showInfo = false;
+            this->showActionInfo = false;
         }
     }
+
+
+
 
 
 
@@ -91,6 +95,7 @@ void Battle::update_gui()
 void Battle::draw()
 {
     ClearBackground(BROWN);
+
     drawGUIBox(background);
 
     switch (gui_currentScreen)
@@ -118,11 +123,11 @@ void Battle::draw()
         drawGUISelection(this->marker_1, box1Positions[gui_currentScreen]);
     }
 
-    if (showInfo == true)
+    if (showActionInfo == true)
     {
-        DrawTexturePro(this->infoScreen,
-                       {0, 0, (float)this->infoScreen.width, (float)this->infoScreen.height},
-                       {(float)GetScreenWidth()/2 - infoScreen.width/2*gui_scaleFactor, (float)GetScreenHeight()/2 - (infoScreen.height/2)*gui_scaleFactor, (float)this->infoScreen.width*gui_scaleFactor, (float)this->infoScreen.height*gui_scaleFactor},
+        DrawTexturePro(this->infoActions,
+                       {0, 0, (float)this->infoActions.width, (float)this->infoActions.height},
+                       {(float)GetScreenWidth()/2 - infoActions.width / 2 * gui_scaleFactor, (float)GetScreenHeight() / 2 - (infoActions.height / 2) * gui_scaleFactor, (float)this->infoActions.width * gui_scaleFactor, (float)this->infoActions.height * gui_scaleFactor},
                        {0, 0}, 0, WHITE);
     }
 
