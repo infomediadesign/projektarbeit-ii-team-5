@@ -24,7 +24,10 @@ int main() {
 	// Project name, screen size, fullscreen mode etc. can be specified in the config.h.in file
 	InitWindow(Game::ScreenWidth, Game::ScreenHeight, Game::PROJECT_NAME);
 	SetTargetFPS(60);
-
+    Image icon = LoadImage("assets/icon.png");
+    SetWindowIcon(icon);
+    UnloadImage(icon);
+    SetWindowTitle("Forest Spirits Beta");
 
 	// initialize enum for screens
 	typedef enum GameScreen { HOME = 0, GAMEPLAY, FIGHT, DEATH } Gamescreen; //LOGO = 0

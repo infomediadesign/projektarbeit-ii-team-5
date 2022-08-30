@@ -10,8 +10,7 @@ inventory::inventory(controlInput* x)
 	this->position.x = GetScreenWidth()/2 - texture.width*scale_factor/2;
 	this->position.y = GetScreenHeight()/2 - texture.height*scale_factor/2;
 
-    this->bag_closed = LoadTexture("assets/graphics/UI/Inventory/BagClosed.png");
-    this->bag_open = LoadTexture("assets/graphics/UI/Inventory/BagOpen.png");
+    this->backpack = LoadTexture("assets/graphics/UI/Inventory/Backpack.png");
     this->selection = LoadTexture("assets/graphics/UI/Inventory/Slot_Selection.png");
 
     this->controlInputs = x;
@@ -24,8 +23,7 @@ inventory::inventory(controlInput* x)
 inventory::~inventory()
 {
 	UnloadTexture(this->texture);
-	UnloadTexture(this->bag_closed);
-	UnloadTexture(this->bag_open);
+	UnloadTexture(this->backpack);
 
 }
 
@@ -56,12 +54,14 @@ void inventory::update()
 
 void inventory::draw()
 {
+    // always draw backpack aber je nach dem ob open oder nicht ein anderers source rectangle
+    DrawTexturePro(this->backpack,
+                   {(float)isVisible * 16, 0, 16, 16},
+                   {(float)GetScreenWidth() - (backpack.width * 10)/2, (float)GetScreenHeight() - (backpack.width * 10)/2, (float)16*10, (float)16 * 10},
+                   {16*2, 16*2}, 0, WHITE);
+
 	if (this->isVisible == true)
 	{
-        DrawTexturePro(this->bag_open,
-                       Rectangle{0, 0, (float)this->bag_open.width, (float) this->bag_open.height},
-                       Rectangle{(float)GetScreenWidth() - ((GetScreenWidth() -Game::ScreenWidth)/2) - 150,  (float)GetScreenHeight() - 150 , (float) (int)this->bag_open.width * 2, (float) this->bag_open.height * 2},
-                       {0, 0}, 0.0, WHITE);
 
         DrawTexturePro(this->texture,
                        Rectangle{0, 0,(float) this->texture.width,(float) this->texture.height},
@@ -80,13 +80,6 @@ void inventory::draw()
             drawItems(i);
         }
 
-	}
-	else
-	{
-        DrawTexturePro(this->bag_closed,
-                       Rectangle{0, 0, (float)this->bag_open.width, (float)this->bag_open.height},
-                       Rectangle{(float)GetScreenWidth() - ((GetScreenWidth() -Game::ScreenWidth)/2) - 150,  (float)GetScreenHeight() - 150 , (float)(int)this->bag_open.width * 2, (float)this->bag_open.height * 2},
-                       {0, 0}, 0.0, WHITE);
 	}
 }
 

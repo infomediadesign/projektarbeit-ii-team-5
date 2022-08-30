@@ -26,8 +26,7 @@ public:
 protected:
 
 	Image bag_img;
-	Texture2D bag_closed;
-	Texture2D bag_open;
+	Texture2D backpack;
     Texture2D selection;
     void setSlots();
     void navigateInventory();
