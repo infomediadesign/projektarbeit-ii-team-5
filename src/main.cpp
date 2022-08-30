@@ -28,6 +28,7 @@ int main() {
     SetWindowIcon(icon);
     UnloadImage(icon);
     SetWindowTitle("Forest Spirits Beta");
+    SetExitKey(KEY_NULL);
 
 	// initialize enum for screens
 	typedef enum GameScreen { HOME = 0, GAMEPLAY, FIGHT, DEATH } Gamescreen; //LOGO = 0
