@@ -10,6 +10,8 @@ Battle::Battle(int advantage, int encounternumber)
     this->baseAttacks = LoadTexture("assets/graphics/UI/Fightscreen/Fightscreen_Attacks_Base.png");
     this->baseItems = LoadTexture("assets/graphics/UI/Fightscreen/Fightscreen_Items_Base.png");
 
+    this->infoScreen = LoadTexture("assets/graphics/UI/Fightscreen/Info_Box.png");
+
     this->marker_1 = LoadTexture("assets/graphics/UI/Fightscreen/Fightscreen_Box_1_Marker.png");
     this->marker_2 = LoadTexture("assets/graphics/UI/Fightscreen/Fightscreen_Box_2_Marker.png");
     this->markerInfo = LoadTexture("assets/graphics/UI/Fightscreen/Fightscreen_Info_Marker.png");
@@ -34,13 +36,7 @@ void Battle::update_gui()
     {
         switch (gui_currentScreen)
         {
-            /*
-            case 0:
-                isActorSelectVisible = true;
-                isActionSelectVisible = false;
-                isItemSelectVisible = false;
-                break;
-                */
+            // you cant enter the case 0 and do something with actors
 
             case 1:
                 isActorSelectVisible = false;
@@ -77,6 +73,15 @@ void Battle::update_gui()
         {
         gui_currentAction--;
         }
+        else if (gui_currentAction == 4 && IsKeyPressed(KEY_E))
+        {
+            this->showInfo = true;
+        }
+
+        if (IsKeyPressed(KEY_Q))
+        {
+            this->showInfo = false;
+        }
     }
 
 
@@ -111,6 +116,14 @@ void Battle::draw()
     else
     {
         drawGUISelection(this->marker_1, box1Positions[gui_currentScreen]);
+    }
+
+    if (showInfo == true)
+    {
+        DrawTexturePro(this->infoScreen,
+                       {0, 0, (float)this->infoScreen.width, (float)this->infoScreen.height},
+                       {(float)GetScreenWidth()/2 - infoScreen.width/2*gui_scaleFactor, (float)GetScreenHeight()/2 - (infoScreen.height/2)*gui_scaleFactor, (float)this->infoScreen.width*gui_scaleFactor, (float)this->infoScreen.height*gui_scaleFactor},
+                       {0, 0}, 0, WHITE);
     }
 
 }
