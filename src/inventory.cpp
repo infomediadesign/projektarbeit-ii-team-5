@@ -57,7 +57,7 @@ void inventory::draw()
     // always draw backpack aber je nach dem ob open oder nicht ein anderers source rectangle
     DrawTexturePro(this->backpack,
                    {(float)isVisible * 16, 0, 16, 16},
-                   {(float)GetScreenWidth() - 14 * 10, (float)GetScreenHeight() - 125, (float)16*10, (float)16 * 10},
+                   {(float)GetScreenWidth() - (backpack.width * 10)/2, (float)GetScreenHeight() - (backpack.width * 10)/2, (float)16*10, (float)16 * 10},
                    {16*2, 16*2}, 0, WHITE);
 
 	if (this->isVisible == true)
