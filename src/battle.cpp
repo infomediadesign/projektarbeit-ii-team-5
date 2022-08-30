@@ -57,6 +57,7 @@ void Battle::update_gui()
         isItemSelectVisible = false;
 
         gui_currentAction = 0;
+        this->gui_currentItem = 0;
     }
 
 
@@ -78,7 +79,6 @@ void Battle::update_gui()
         if (IsKeyPressed(KEY_Q))
         {
             this->showActionInfo = false;
-            this->gui_currentAction = 0;
         }
     }
 
@@ -100,7 +100,6 @@ void Battle::update_gui()
         if (IsKeyPressed(KEY_Q))
         {
             this->showItemInfo = false;
-            this->gui_currentItem = 0;
         }
     }
 
