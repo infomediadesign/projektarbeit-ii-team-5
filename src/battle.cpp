@@ -15,7 +15,7 @@ Battle::Battle(int advantage, int encounternumber)
 
     this->marker_1 = LoadTexture("assets/graphics/UI/Fightscreen/Fightscreen_Box_1_Marker.png");
     this->marker_2 = LoadTexture("assets/graphics/UI/Fightscreen/Fightscreen_Box_2_Marker.png");
-    this->markerInfo = LoadTexture("assets/graphics/UI/Fightscreen/Fightscreen_Info_Marker.png");
+    this->markerItems = LoadTexture("assets/graphics/UI/Fightscreen/Fightscreen_Box_Items_Marker.png");
 
     gui_setSlots();
 }
@@ -24,7 +24,7 @@ Battle::Battle(int advantage, int encounternumber)
 void Battle::update_gui()
 {
     // down
-    if (!isActionSelectVisible && !isItemSelectVisible && !isActorSelectVisible) {
+    if (!isActionSelectVisible && !isItemSelectVisible) {
         if (IsKeyPressed(KEY_S) && gui_currentScreen < 2) {
             gui_currentScreen++;
         } else if (IsKeyPressed(KEY_W) && gui_currentScreen > 0) {
@@ -40,23 +40,19 @@ void Battle::update_gui()
             // you cant enter the case 0 and do something with actors
 
             case 1:
-                isActorSelectVisible = false;
                 isActionSelectVisible = true;
                 isItemSelectVisible = false;
                 break;
 
-                /*
             case 2:
-                isActorSelectVisible = false;
                 isActionSelectVisible = false;
                 isItemSelectVisible = true;
                 break;
-                 */
+
         }
     }
     else if (IsKeyPressed(KEY_Q) && showActionInfo == false && showItemInfo == false)
     {
-        isActorSelectVisible = false;
         isActionSelectVisible = false;
         isItemSelectVisible = false;
 
@@ -68,11 +64,11 @@ void Battle::update_gui()
     {
         if (IsKeyPressed(KEY_D) && gui_currentAction < 4)
         {
-        gui_currentAction++;
+            gui_currentAction++;
         }
         else if (IsKeyPressed(KEY_A) && gui_currentAction > 0)
         {
-        gui_currentAction--;
+            gui_currentAction--;
         }
         else if (gui_currentAction == 4 && IsKeyPressed(KEY_E))
         {
@@ -82,6 +78,29 @@ void Battle::update_gui()
         if (IsKeyPressed(KEY_Q))
         {
             this->showActionInfo = false;
+            this->gui_currentAction = 0;
+        }
+    }
+
+    if (isItemSelectVisible)
+    {
+        if (IsKeyPressed(KEY_D) && gui_currentItem < 3)
+        {
+            gui_currentItem++;
+        }
+        else if (IsKeyPressed(KEY_A) && gui_currentItem > 0)
+        {
+            gui_currentItem--;
+        }
+        else if (gui_currentItem == 3 && IsKeyPressed(KEY_E))
+        {
+            this->showItemInfo = true;
+        }
+
+        if (IsKeyPressed(KEY_Q))
+        {
+            this->showItemInfo = false;
+            this->gui_currentItem = 0;
         }
     }
 
@@ -118,16 +137,33 @@ void Battle::draw()
     {
         drawGUISelection(this->marker_2, boxActionsPositions[gui_currentAction]);
     }
+    else if (isItemSelectVisible && gui_currentItem <= 2)
+    {
+        drawGUISelection(this->markerItems, boxItemsPosition[gui_currentItem]);
+    }
+    else if (isItemSelectVisible && gui_currentItem == 3)
+    {
+        drawGUISelection(this->marker_2, boxActionsPositions[4]);
+    }
     else
     {
         drawGUISelection(this->marker_1, box1Positions[gui_currentScreen]);
     }
 
+
+
     if (showActionInfo == true)
     {
         DrawTexturePro(this->infoActions,
                        {0, 0, (float)this->infoActions.width, (float)this->infoActions.height},
-                       {(float)GetScreenWidth()/2 - infoActions.width / 2 * gui_scaleFactor, (float)GetScreenHeight() / 2 - (infoActions.height / 2) * gui_scaleFactor, (float)this->infoActions.width * gui_scaleFactor, (float)this->infoActions.height * gui_scaleFactor},
+                       {this->boxInfoPosition},
+                       {0, 0}, 0, WHITE);
+    }
+    else if (showItemInfo == true)
+    {
+        DrawTexturePro(this->infoItems,
+                       {0, 0, (float)this->infoItems.width, (float)this->infoItems.height},
+                       {this->boxInfoPosition},
                        {0, 0}, 0, WHITE);
     }
 
@@ -162,6 +198,14 @@ void Battle::gui_setSlots()
     this->boxActionsPositions[2] = {(float)boxActionsPositions[1].x + 35 * gui_scaleFactor, (float)boxActionsPositions[1].y};
     this->boxActionsPositions[3] = {(float)boxActionsPositions[2].x + 35 * gui_scaleFactor, (float)boxActionsPositions[2].y};
     this->boxActionsPositions[4] = {(float)boxActionsPositions[3].x + 47 * gui_scaleFactor, (float)boxActionsPositions[3].y - 2 * gui_scaleFactor};
+
+    // Items 1-3 - Infos
+    this->boxItemsPosition[0] = {(float)80 * gui_scaleFactor, (float)GetScreenHeight() - 41 *gui_scaleFactor};
+    this->boxItemsPosition[1] = {(float)boxItemsPosition[0].x + 41*gui_scaleFactor, boxItemsPosition[0].y};
+    this->boxItemsPosition[2] = {(float)boxItemsPosition[1].x + 41*gui_scaleFactor, boxItemsPosition[0].y};
+    this->boxItemsPosition[3] = {(float)boxActionsPositions[3].x + 47 * gui_scaleFactor, (float)boxActionsPositions[3].y - 2 * gui_scaleFactor};
+
+    this->boxInfoPosition = {(float)GetScreenWidth()/2 - infoActions.width / 2 * gui_scaleFactor, (float)GetScreenHeight() / 2 - (infoActions.height / 2) * gui_scaleFactor, (float)this->infoActions.width * gui_scaleFactor, (float)this->infoActions.height * gui_scaleFactor};
 
 }
 
