@@ -201,8 +201,8 @@ void Battle::gui_setSlots()
     // Items 1-3 - Infos
     this->boxItemsPosition[0] = {(float)80 * gui_scaleFactor, (float)GetScreenHeight() - 41 *gui_scaleFactor};
     this->boxItemsPosition[1] = {(float)boxItemsPosition[0].x + 41*gui_scaleFactor, boxItemsPosition[0].y};
-    this->boxItemsPosition[2] = {(float)boxItemsPosition[1].x + 41*gui_scaleFactor, boxItemsPosition[0].y};
-    this->boxItemsPosition[3] = {(float)boxActionsPositions[3].x + 47 * gui_scaleFactor, (float)boxActionsPositions[3].y - 2 * gui_scaleFactor};
+    this->boxItemsPosition[2] = {(float)boxItemsPosition[1].x + 38*gui_scaleFactor, boxItemsPosition[0].y};
+    this->boxItemsPosition[3] = {(float)boxActionsPositions[3].x + 43 * gui_scaleFactor, (float)boxActionsPositions[3].y - 2 * gui_scaleFactor};
 
     this->boxInfoPosition = {(float)GetScreenWidth()/2 - infoActions.width / 2 * gui_scaleFactor, (float)GetScreenHeight() / 2 - (infoActions.height / 2) * gui_scaleFactor, (float)this->infoActions.width * gui_scaleFactor, (float)this->infoActions.height * gui_scaleFactor};
 
