@@ -34,7 +34,6 @@ bool player::checkForAnyCollisions(std::vector<Rectangle> walls, int direction) 
     Rectangle playerCollision = this->getCollision(direction);
     for (int i = 0; i < walls.size(); i++) {
         if (CheckCollisionRecs(playerCollision, walls[i])) {
-            std::cout << "wall has been found";
             return true;
         }
 
@@ -74,6 +73,7 @@ Rectangle player::getCollision(int direction) {
                     blockLength};
             break;
         default:
+            std::cout << "function \"Rectangle player::getCollision(int direction)\" has been called with false parameters!\n";
             return {};
             break;
     }
