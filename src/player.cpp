@@ -2,8 +2,7 @@
 #include "map.h"
 #include <iostream>
 
-player::player(map* current_map) : current_map(current_map)
-{
+player::player(map *current_map) : current_map(current_map) {
     this->position.x = current_map->player_start_pos.x;
     this->position.y = current_map->player_start_pos.y;
 
@@ -11,66 +10,87 @@ player::player(map* current_map) : current_map(current_map)
     this->textureAnimated = LoadTexture("assets/graphics/Sprites/Character/Player/Blaize_Walkcycle_01.png");
 }
 
-player::~player()
-{
-	UnloadTexture(this->texture);
+player::~player() {
+    UnloadTexture(this->texture);
 }
 
-void player::update(controlInput controlInputs,std::vector<Rectangle>& walls)
-{
+void player::update(controlInput controlInputs, std::vector<Rectangle> &walls) {
     movement(walls);
 
-    if (IsKeyPressed(KEY_J))
-    {
+    if (IsKeyPressed(KEY_J)) {
         inventory_pointer->addHeilbeere();
-    }
-    else if (IsKeyPressed(KEY_K))
-    {
+    } else if (IsKeyPressed(KEY_K)) {
         inventory_pointer->addMudbomb();
-    }
-    else if (IsKeyPressed(KEY_L))
-    {
+    } else if (IsKeyPressed(KEY_L)) {
         inventory_pointer->addSeifenblase();
     }
 }
 
-void player::draw()
-{
+void player::draw() {
     this->drawActor(this->textureAnimated, this->position);
 }
 
-bool player::checkForAnyCollisions(std::vector<Rectangle> walls)
-{
-    Rectangle playercollision = this->getCollision();
+bool player::checkForAnyCollisions(std::vector<Rectangle> walls, int direction) {
+    Rectangle playerCollision = this->getCollision(direction);
     for (int i = 0; i < walls.size(); i++) {
-        if (CheckCollisionRecs(playercollision, walls[i])) {
+        if (CheckCollisionRecs(playerCollision, walls[i])) {
             std::cout << "wall has been found";
             return true;
         }
-        
+
     }
     return false;
 }
 
-Rectangle player::getCollision()
-{
-    return {this->position.x + 6 * 4,this->position.y + 6 * 4, 20*4, 20*4};
+Rectangle player::getCollision(int direction) {
+    const float margin = 24;
+    const float blockLengthMargin = 6;
+    const float blockThickness = 40;
+    const float blockLength = 68;
+    const float totalSize = blockLength + blockLengthMargin + blockLengthMargin;
+    switch (direction) {
+        case 0:
+            return {this->position.x + margin + blockLengthMargin,
+                    this->position.y + margin,
+                    blockLength,
+                    blockThickness};
+            break;
+        case 1:
+            return {this->position.x + margin,
+                    this->position.y + margin + 4,
+                    blockThickness,
+                    blockLength};
+            break;
+        case 2:
+            return {this->position.x + margin + blockLengthMargin,
+                    this->position.y + margin + totalSize - blockThickness,
+                    blockLength,
+                    blockThickness};
+            break;
+        case 3:
+            return {this->position.x + margin + totalSize - blockThickness,
+                    this->position.y + margin + blockLengthMargin,
+                    blockThickness,
+                    blockLength};
+            break;
+        default:
+            return {};
+            break;
+    }
 }
 
-void player::movement(std::vector<Rectangle>& walls)
-{
+void player::movement(std::vector<Rectangle> &walls) {
 
     //walking animation setup
     this->frames_counter++;
 
-    if (this->frames_counter >= (60 / 8))
-    {
+    if (this->frames_counter >= (60 / 8)) {
         this->frames_counter = 0;
         this->current_frame++;
 
         if (this->current_frame > 7) this->current_frame = 0;
 
-        this->frame_rec.x = (float)this->current_frame * (float)this->movement_img.width / 8;
+        this->frame_rec.x = (float) this->current_frame * (float) this->movement_img.width / 8;
     }
 
 
@@ -83,54 +103,51 @@ void player::movement(std::vector<Rectangle>& walls)
     this->isMoving = false;
 
     //right
-    if (controlInputs->right)
-    {
+    if (controlInputs->right) {
         this->position.x += this->movement_speed;
         this->facingDirection = right; // enum
         this->isMoving = true;
     }
     //left
     //else
-    if (controlInputs->left)
-    {
+    if (controlInputs->left) {
         this->position.x -= this->movement_speed;
         this->facingDirection = left; // enum
         this->isMoving = true;
     }
     //up
     //else
-    if (controlInputs->up)
-    {
+    if (controlInputs->up) {
         this->position.y -= this->movement_speed;
         this->facingDirection = up; // enum
         this->isMoving = true;
     }
     //down
-    if (controlInputs->down)
-    {
+    if (controlInputs->down) {
         this->position.y += this->movement_speed;
         this->facingDirection = down; // enum
         this->isMoving = true;
     }
-
+    const float pushoutStrength = 1;
     //Whenever a collision is found the player will be pushed slightly back into the world until they are out of collisons
-    while (checkForAnyCollisions(walls))
-    {
-
-        if (controlInputs->left){
-            this->position.x += 1.0;
-        }
-        if (controlInputs->right) {
-            this->position.x -= 1.0;
-        }
-        if (controlInputs->up) {
-            this->position.y += 1.0;
-        }
-        if (controlInputs->down) {
-            this->position.y -= 1.0;
-        }
-        if (controlInputs->down + controlInputs->left + controlInputs->up + controlInputs->right == 0){
-            break;
+    for (int i = 0; i < 4; ++i) {
+        while (checkForAnyCollisions(walls, i)) {
+            switch (i) {
+                case 0:
+                    this->position.y += pushoutStrength;
+                    break;
+                case 1:
+                    this->position.x += pushoutStrength;
+                    break;
+                case 2:
+                    this->position.y -= pushoutStrength;
+                    break;
+                case 3:
+                    this->position.x -= pushoutStrength;
+                    break;
+            }
         }
     }
+
+
 }

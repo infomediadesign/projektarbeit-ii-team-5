@@ -19,8 +19,7 @@ public:
 
     void update(controlInput controlInputs, std::vector<Rectangle>& walls);
     void draw();
-    bool checkForAnyCollisions(std::vector<Rectangle> collisions);
-    Rectangle getCollision();
+    Rectangle getCollision(int direction);
 
 protected:
 	map* current_map;
@@ -34,5 +33,6 @@ protected:
 	//int movement_speed;
 
 
-	
+
+    bool checkForAnyCollisions(std::vector<Rectangle> walls, int direction);
 };

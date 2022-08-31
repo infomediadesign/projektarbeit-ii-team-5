@@ -24,7 +24,7 @@ map::map()
 	std::ifstream levelMapFile("assets/graphics/Testlevel/Testlevel_V2.json"); //json file that says which tile number goes were
 	this->levelMap = nlohmann::json::parse(levelMapFile);
 	levelMapFile.close();
-	this->mapData.mapWidth = levelMap["width"]; //schreibe in mapData die weite des Levels
+	this->mapData.mapWidth = levelMap["width"]; //Schreibt in mapData die Weite des Levels
 	this->mapData.mapHeight = levelMap["height"];
 
 	this->tileAtlasTexture = LoadTexture("assets/graphics/Testlevel/Testlevel_Tileset_V2.png");
