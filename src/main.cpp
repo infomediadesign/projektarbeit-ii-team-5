@@ -214,6 +214,10 @@ int main() {
 			if (IsKeyDown(KEY_H))
 			{
 				this_map->drawCollision();
+                for (int i = 0; i < 4; ++i) {
+                    Rectangle rec = this_player->getCollision(i);
+                    DrawRectangleLines(rec.x,rec.y,rec.width,rec.height,MAGENTA);
+                }
 			}
 			EndMode2D();
 

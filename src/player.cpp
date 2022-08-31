@@ -44,9 +44,9 @@ bool player::checkForAnyCollisions(std::vector<Rectangle> walls, int direction) 
 
 Rectangle player::getCollision(int direction) {
     const float margin = 24;
-    const float blockLengthMargin = 6;
-    const float blockThickness = 40;
-    const float blockLength = 68;
+    const float blockLengthMargin = 15;
+    const float blockThickness = 25;
+    const float blockLength = 50;
     const float totalSize = blockLength + blockLengthMargin + blockLengthMargin;
     switch (direction) {
         case 0:
@@ -57,7 +57,7 @@ Rectangle player::getCollision(int direction) {
             break;
         case 1:
             return {this->position.x + margin,
-                    this->position.y + margin + 4,
+                    this->position.y + margin+blockLengthMargin,
                     blockThickness,
                     blockLength};
             break;
