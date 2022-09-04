@@ -18,7 +18,7 @@ target_include_directories(${PROJECT_NAME} PUBLIC
         )
 
 #  Link to Raylib and Nlohmann_json
-target_link_libraries(${PROJECT_NAME} raylib nlohmann_json::nlohmann_json)
+target_link_libraries(${PROJECT_NAME} raylib nlohmann_json::nlohmann_json -static)
 
 # Copy assets to assets path
 add_custom_target(copy_assets
