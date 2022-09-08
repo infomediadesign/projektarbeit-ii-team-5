@@ -7,6 +7,7 @@
 
 #include "string"
 #include "raylib.h"
+#include "raymath.h"
 
 class itemBase {
 protected:
@@ -15,14 +16,23 @@ protected:
     Texture2D texture_item;
     Texture2D texture_infos;
     Vector2 position;
+    bool is_active = true;
+    bool is_collected = false;
+    bool is_hitbox_visible = false;
+    int hitbox_size = 0;
 
 public:
-    Texture2D GetTexture() { return texture_item; }
-    Texture2D GetInfos() {return texture_infos; }
-    std::string GetName() { return name; }
-    std::string GetDescription() {return description; }
+    Texture2D GetTexture();
+    Texture2D GetInfos();
+    std::string GetName();
+    std::string GetDescription();
+
+    void draw();
+    void update(Vector2 playerPosition);
+    bool GetActive();
+    void SetCollected(bool status);
+    bool GetCollected();
 
 };
-
 
 #endif //RAYLIBSTARTER_ITEMBASE_H

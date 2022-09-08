@@ -15,6 +15,8 @@
 #include <iostream>
 #include "battle.h"
 
+#include "itemHeilbeere.h"
+
 
 
 
@@ -28,7 +30,7 @@ int main() {
     SetWindowIcon(icon);
     UnloadImage(icon);
     SetWindowTitle("Forest Spirits Beta");
-    SetExitKey(KEY_NULL);
+    //SetExitKey(KEY_NULL);
 
 	// initialize enum for screens
 	typedef enum GameScreen { HOME = 0, GAMEPLAY, FIGHT, DEATH } Gamescreen; //LOGO = 0
@@ -51,6 +53,9 @@ int main() {
     Battle* theBattle = new Battle(0,0);
     theBattle->initTestBattle();
     theBattle->controlInputs = &controlInputs;
+
+    itemHeilbeere* heilbeere = new itemHeilbeere;
+    itemBase* Item = new itemBase;
 
 	this_camera->target = this_player->position;
 	this_camera->offset = Vector2{ Game::ScreenWidth / 2.0f - this_player->texture.width / 2, Game::ScreenHeight / 2.0f - this_player->texture.height / 2 };
@@ -123,6 +128,15 @@ int main() {
 			if (!this_inventory->isActive())
 			{
 
+                // Items
+                heilbeere->update(this_player->position);
+                if (heilbeere->GetCollected() == false)
+                {
+                    this_inventory->addHeilbeere();
+                    heilbeere->SetCollected(true);
+                }
+
+                // Player
 				this_player->update(controlInputs, this_map->collisionRectangles);
 				this_camera->target = this_player->position;
 
@@ -209,8 +223,14 @@ int main() {
 			this_camera->offset.x -= 128 * GetGamepadAxisMovement(0, 2);
 			this_camera->offset.y -= 128 * GetGamepadAxisMovement(0, 3);
 			this_map->drawBackground();
+            heilbeere->draw();
 			this_player->draw();
 			this_map->drawForeground();
+
+
+
+
+
 			if (IsKeyDown(KEY_H))
 			{
 				this_map->drawCollision();
@@ -219,6 +239,7 @@ int main() {
                     DrawRectangleLines(rec.x,rec.y,rec.width,rec.height,MAGENTA);
                 }
 			}
+
 			EndMode2D();
 
 			this_inventory->draw();

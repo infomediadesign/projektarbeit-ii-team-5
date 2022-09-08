@@ -9,5 +9,30 @@ itemSeifenblase::itemSeifenblase()
     this->name = "Seifenblase";
     this->description = "Idk sieht hübsch aus.";
     this->texture_item = LoadTexture("assets/graphics/Items/Seifenblase.png");
-    this->texture_infos = LoadTexture("assets/graphics/Items/Seifenblase.png");
+    //this->texture_infos = LoadTexture("");
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

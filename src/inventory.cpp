@@ -1,5 +1,5 @@
 #include "inventory.h"
-#include "player.h"
+
 #include <iostream>
 
 inventory::inventory(controlInput* x)
