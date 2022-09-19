@@ -17,11 +17,14 @@ public:
     void update();
     void draw();
     bool isActive();
+    bool setActive(bool status);
 
     // use this methods from player to add items
     void addMudbomb();
     void addHeilbeere();
     void addSeifenblase();
+
+    void deleteItems();
 
 protected:
 

@@ -29,7 +29,9 @@ public:
 
     void draw();
     void update(Vector2 playerPosition);
+    void reset();
     bool GetActive();
+    bool SetActive(bool status);
     void SetCollected(bool status);
     bool GetCollected();
 

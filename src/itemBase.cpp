@@ -38,11 +38,17 @@ void itemBase::draw()
     }
 }
 
+void itemBase::reset()
+{
+    SetCollected(false);
+    SetActive(true);
+}
 
 Texture2D itemBase::GetTexture() { return texture_item; }
 Texture2D itemBase::GetInfos() {return texture_infos; }
 std::string itemBase::GetName() { return name; }
 std::string itemBase::GetDescription() {return description; }
 bool itemBase::GetActive() { return is_active; }
+bool itemBase::SetActive(bool status) { is_active = status; }
 void itemBase::SetCollected(bool status) { is_collected = status; }
 bool itemBase::GetCollected() { return is_collected; }

@@ -112,8 +112,8 @@ int main() {
 
 		case GAMEPLAY:
 		{
-			// Press enter to change to ENDING screen
-			if (controlInputs.confirm == 1) // || this_player->position.x < 15 * 32 && this_player->position.x > 14 * 32 && this_player->position.y < 9 * 32 && this_player->position.y > 8 * 32)
+			// Press enter to change to FIGHT screen
+			if (controlInputs.confirm == 1 && this_inventory->isActive() == false) // || this_player->position.x < 15 * 32 && this_player->position.x > 14 * 32 && this_player->position.y < 9 * 32 && this_player->position.y > 8 * 32)
 			{
 				currentScreen = FIGHT;
 			}
@@ -129,8 +129,11 @@ int main() {
 			{
 
                 // Items
+                // check if player collides with item
                 heilbeere->update(this_player->position);
-                if (heilbeere->GetCollected() == false)
+
+                // if player collides item gets set to collected
+                if (heilbeere->GetCollected() == false && heilbeere->GetActive() == false)
                 {
                     this_inventory->addHeilbeere();
                     heilbeere->SetCollected(true);
@@ -149,7 +152,7 @@ int main() {
 		{
             theBattle->update_gui();
 
-			// Press enter to return to TITLE screen
+			// Press enter to return to GAMEPLAY screen
 			if (controlInputs.confirm == 1)
 			{
 				currentScreen = GAMEPLAY;
@@ -169,6 +172,8 @@ int main() {
 		{
             // reset player position to begin of map
             this_player->position = this_map->player_start_pos;
+            this_inventory->deleteItems();
+            heilbeere->reset();
 
             screen_death->update();
             if (screen_death->buttons == screenDeath::giveUp && controlInputs.confirm == 1)

@@ -29,13 +29,21 @@ inventory::~inventory()
 
 void inventory::update()
 {
-	
+    /*
+	if (IsKeyPressed(KEY_N))
+    {
+        deleteItems();
+    }
+    */
+
 	if (this->controlInputs->opt1 == 1)
 	{
 		this->isVisible = !this->isVisible;
 		std::cout << "Inventory bool has been flipped to: " << this->isVisible << std::endl;
 	}
 
+    /*
+    // add items manually for debug
     if (IsKeyPressed(KEY_J))
     {
         addItem(heilbeere);
@@ -48,6 +56,7 @@ void inventory::update()
     {
         addItem(seifenblase);
     }
+     */
 
     navigateInventory();
 }
@@ -212,6 +221,15 @@ void inventory::navigateInventory()
     }
 }
 
+void inventory::deleteItems()
+{
+    for (int i = 0; i < 10; i++)
+    {
+        container_slot = 0;
+        inventoryContainer.setItem(NULL, i);
+    }
+}
+
 void inventory::addMudbomb(){ addItem(mudbomb);}
 void inventory::addHeilbeere() { addItem(heilbeere);}
 void inventory::addSeifenblase() { addItem(seifenblase);}
@@ -223,3 +241,5 @@ void inventory::addItem(itemBase *item)
 }
 
 bool inventory::isActive() { return this->isVisible; }
+
+bool inventory::setActive(bool status) { status = isVisible; }
