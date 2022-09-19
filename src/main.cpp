@@ -159,6 +159,7 @@ int main() {
 			if (IsKeyPressed(KEY_SPACE))
 			{
 				currentScreen = DEATH;
+                theBattle->resetGUI();
 			}
 
             //theBattle->frameRoutine();

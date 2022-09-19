@@ -100,8 +100,9 @@ protected:
     void drawGUIBox(Texture2D texture);
     void drawGUISelection(Texture2D texture, Vector2 position);
 
+
 public:
     void draw();
-
+    void resetGUI();
     void update_gui();
 };

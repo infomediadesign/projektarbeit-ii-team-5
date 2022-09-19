@@ -108,9 +108,6 @@ void Battle::update_gui()
 
 
 
-
-
-
 }
 
 void Battle::draw()
@@ -135,7 +132,6 @@ void Battle::draw()
         case 2:
             drawGUIBox(this->baseItems);
             break;
-
     }
 
     if (isActionSelectVisible)
@@ -215,6 +211,17 @@ void Battle::drawBattleEnemy(Texture2D texture, Vector2 position)
                    {(float)actor_frame_offset * 32, 0, 32, 32},
                    {position.x, position.y, 32*7, 32*7},
                    {16*4, 16*4},0, WHITE );
+}
+
+void Battle::resetGUI()
+{
+    gui_currentScreen = 0;
+    gui_currentItem = 0;
+    gui_currentAction = 0;
+    gui_currentBox = 0;
+
+    isItemSelectVisible = false;
+    isActionSelectVisible = false;
 }
 
 void Battle::gui_setSlots()
