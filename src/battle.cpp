@@ -17,6 +17,9 @@ Battle::Battle(int advantage, int encounternumber)
     this->marker_2 = LoadTexture("assets/graphics/UI/Fightscreen/Fightscreen_Box_2_Marker.png");
     this->markerItems = LoadTexture("assets/graphics/UI/Fightscreen/Fightscreen_Box_Items_Marker.png");
 
+    this->player = LoadTexture("assets/graphics/Sprites/Character/Player/Blaize_Idle.png");
+    this->shroom = LoadTexture("assets/graphics/Sprites/Character/Enemy/Shroom_Idle.png");
+
     gui_setSlots();
 }
 
@@ -116,6 +119,9 @@ void Battle::draw()
 
     drawGUIBox(background);
 
+    drawBattlePlayer(player, {100, 450});
+    drawBattleEnemy(shroom, {900, 450});
+
     switch (gui_currentScreen)
     {
         case 0:
@@ -184,6 +190,33 @@ void Battle::drawGUISelection(Texture2D currentTexture, Vector2 position)
                    {0, 0}, 0, WHITE);
 }
 
+void Battle::drawBattlePlayer(Texture2D texture, Vector2 position)
+{
+    // with every loop set actor frames + 1
+    this->actor_frames++;
+
+    // frame offset is calculated by current frames of actor and frame speed as well as width of texture
+    // so it will switch every few frames to a new frame on the spritesheet
+    this->actor_frame_offset = (actor_frames / 40) % 2;
+
+    DrawTexturePro(texture,
+                   {(float)actor_frame_offset * 64, 0, 64, 32},
+                   {position.x, position.y, (float)64*7, (float)32*7},
+                   {16*4, 16*4},0, WHITE );
+}
+
+void Battle::drawBattleEnemy(Texture2D texture, Vector2 position)
+{
+    this->actor_frames++;
+
+    this->actor_frame_offset = (actor_frames / 60) % 2;
+
+    DrawTexturePro(texture,
+                   {(float)actor_frame_offset * 32, 0, 32, 32},
+                   {position.x, position.y, 32*7, 32*7},
+                   {16*4, 16*4},0, WHITE );
+}
+
 void Battle::gui_setSlots()
 {
     // Party - Actions - Items
@@ -208,6 +241,10 @@ void Battle::gui_setSlots()
 
 }
 
+
+
+
+//--------------------------------------------------------------------------------------------------------------------//
 // Battle Stuff
 const bool debug = true;
 

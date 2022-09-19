@@ -53,6 +53,13 @@ private:
 	void receiveUIAnswer(std::string);
 	BattleActor* getRandomPlayerPointer(int target);
     void playTurn();
+
+    int actor_frames = 0;
+    int actor_frame_offset = 0;
+    Texture2D player;
+    Texture2D shroom;
+    void drawBattlePlayer(Texture2D texture, Vector2 position);
+    void drawBattleEnemy(Texture2D texture, Vector2 position);
 public:
 	Battle(int advantage, int encounternumber); //constructor
 	void frameRoutine(); //wird jeden frame aufgerufen
