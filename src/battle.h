@@ -60,6 +60,8 @@ private:
     Texture2D shroom;
     void drawBattlePlayer(Texture2D texture, Vector2 position);
     void drawBattleEnemy(Texture2D texture, Vector2 position);
+
+    void onButtonPress();
 public:
 	Battle(int advantage, int encounternumber); //constructor
 	void frameRoutine(); //wird jeden frame aufgerufen
@@ -99,7 +101,6 @@ protected:
     void gui_setSlots();
     void drawGUIBox(Texture2D texture);
     void drawGUISelection(Texture2D texture, Vector2 position);
-
 
 public:
     void draw();

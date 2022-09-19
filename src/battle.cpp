@@ -107,6 +107,7 @@ void Battle::update_gui()
     }
 
 
+    onButtonPress();
 
 }
 
@@ -336,3 +337,59 @@ void Battle::initTestBattle() {
     this->theBattleActors.push_back(new BattleActor(false,1,&this->theBattleActors));
 }
 
+void Battle::onButtonPress()
+{
+    if (IsKeyPressed(KEY_E))
+    {
+        // party
+        if (gui_currentScreen == 0)
+        {
+            // screen 0 is only party members there is nothing to select
+            // update stuff to display here i guess
+        }
+        // actions
+        else if (gui_currentScreen == 1)
+        {
+            switch (gui_currentAction)
+            {
+                case 0:
+                    std::cout << "Attack 1" << std::endl;
+                    break;
+
+                case 1:
+                    std::cout << "Attack 2" << std::endl;
+                    break;
+
+                case 2:
+                    std::cout << "Attack 3" << std::endl;
+                    break;
+
+                case 3:
+                    std::cout << "Wait" << std::endl;
+                    break;
+
+                // infos in slot 4 ist in gui abgedeckt
+            }
+        }
+        // items
+        else if (gui_currentScreen == 2)
+        {
+            switch (gui_currentItem)
+            {
+                case 0:
+                    std::cout << "Item 1" << std::endl;
+                    break;
+
+                case 1:
+                    std::cout << "Item 2" << std::endl;
+                    break;
+
+                case 2:
+                    std::cout << "Item 3" << std::endl;
+                    break;
+
+                // infos in slot 4 ist in gui abgedeckt
+            }
+        }
+    }
+}
