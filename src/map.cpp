@@ -13,8 +13,8 @@ map::map()
 	this->position.x = 0;
 	this->position.y = 0;
 
-	this->player_start_pos.x = 3936; //need to parse from json
-	this->player_start_pos.y = 1815;
+	this->player_start_pos.x = 4200; //need to parse from json
+	this->player_start_pos.y = 1700;
 
 
     //tileset Description File
