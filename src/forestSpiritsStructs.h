@@ -17,3 +17,15 @@ struct controlInput{
 void updateControls(controlInput* x);
 void SmartToggleFullscreen(Camera2D* cam);
 void DrawOrnaments(Texture& borderLeft, Texture& borderRight);
+
+enum battleAttackIndex{
+    undefined = -1,
+    wait = 0,
+    basic_attack = 1,
+    foxFire = 2,
+    foxShield = 3,
+    shroomAngerment = 4,
+    shroom
+};
+
+const float global_damageCalcConstB = 1.5;

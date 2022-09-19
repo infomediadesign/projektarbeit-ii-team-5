@@ -267,7 +267,7 @@ void Battle::frameRoutine() {
             if (debug)
                 std::cout << "DEBUG: Player Action selection\n";
             if (controlInputs->up >= 1){
-                theBattleActors[currentlyActingNumber]->setNextAttack(1);
+                theBattleActors[currentlyActingNumber]->setNextAttack(basic_attack);
                 theBattleActors[currentlyActingNumber]->autoTarget();
                 this->currentlyActingNumber++;
                 this->battleState = actorsActionSelection;

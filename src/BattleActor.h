@@ -1,5 +1,6 @@
 #pragma once
 #include <vector>
+#include "forestSpiritsStructs.h"
 
 
 class BattleActor {
@@ -58,7 +59,7 @@ public:
 
     int getNextAttack() const;
 
-    void setNextAttack(int nextAttack);
+    void setNextAttack(battleAttackIndex nextAttack);
 
     bool isNeedAttackMenu() const;
 
@@ -79,7 +80,7 @@ private:
     float attackStr;
     int dNat = 10;
     std::vector<BattleActor*>* otherActors;
-    int nextAttack = -1;
+    battleAttackIndex nextAttack = undefined;
     BattleActor* target;
 public:
     BattleActor *getTarget() const;
@@ -100,4 +101,8 @@ public:
     int evaluateAction();
     void executeAction();
     BattleActor(bool player, int archetype,std::vector<BattleActor*>* others);
+
+    void dealDamage(float damageBaseValue, float attackerStrength, int damageType);
+
+    void die();
 };

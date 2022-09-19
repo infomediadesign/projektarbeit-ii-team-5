@@ -1,35 +1,36 @@
 
 #include "BattleActor.h"
+#include "math.h"
 
 BattleActor *BattleActor::getAddress() {
     return this;
 }
 
-BattleActor::BattleActor(bool player, int archetype, std::vector<BattleActor*>* others) {
+BattleActor::BattleActor(bool player, int archetype, std::vector<BattleActor *> *others) {
     this->isPlayerControlled = player;
     this->otherActors = others;
-    switch (archetype){
+    switch (archetype) {
         case (0): //Blaize
-        this->maxHP = 500;
-        this->hp = 500;
-        this->pat = 40;
-        this->pdf = 40;
-        this->dNat = 7;
-        this->nat = 7;
-        this->attackStr = 50;
-        break;
+            this->maxHP = 500;
+            this->hp = 500;
+            this->pat = 40;
+            this->pdf = 40;
+            this->dNat = 7;
+            this->nat = 7;
+            this->attackStr = 50;
+            break;
         case (1): //EVERYBODY WANTS TO BE, MY ENEMY!
-        this->maxHP = 300;
-        this->hp = 300;
-        this->pat = 50;
-        this->pdf = 60;
-        this->dNat = 9;
-        this->nat = 3;
+            this->maxHP = 300;
+            this->hp = 300;
+            this->pat = 50;
+            this->pdf = 60;
+            this->dNat = 9;
+            this->nat = 3;
     }
 
 }
 
-int BattleActor::evaluateAction(){
+int BattleActor::evaluateAction() {
     return 0;
 }
 
@@ -129,11 +130,11 @@ void BattleActor::setDNat(int dNat) {
     BattleActor::dNat = dNat;
 }
 
-std::vector<BattleActor*> *BattleActor::getOtherActors() const {
+std::vector<BattleActor *> *BattleActor::getOtherActors() const {
     return otherActors;
 }
 
-void BattleActor::setOtherActors(std::vector<BattleActor*> *otherActors) {
+void BattleActor::setOtherActors(std::vector<BattleActor *> *otherActors) {
     this->otherActors = otherActors;
 }
 
@@ -141,7 +142,7 @@ int BattleActor::getNextAttack() const {
     return nextAttack;
 }
 
-void BattleActor::setNextAttack(int nextAttack) {
+void BattleActor::setNextAttack(battleAttackIndex nextAttack) {
     this->nextAttack = nextAttack;
 }
 
@@ -154,7 +155,13 @@ void BattleActor::setNeedAttackMenu(bool needAttackMenu) {
 }
 
 void BattleActor::executeAction() {
-    //TODO
+    switch (this->nextAttack) {
+        case basic_attack:
+            target->dealDamage(50, this->pat, 0);
+            break;
+        default:
+            ;
+    }
 }
 
 BattleActor *BattleActor::getTarget() const {
@@ -165,11 +172,26 @@ void BattleActor::setTarget(BattleActor *target) {
     BattleActor::target = target;
 }
 
-void BattleActor::autoTarget(){
-    for (auto it = otherActors->begin();it!=otherActors->end();it++)
-    {
-        if((*it)->isPlayerControlled1()){
+void BattleActor::autoTarget() {
+    for (auto it = otherActors->begin(); it != otherActors->end(); it++) {
+        if ((*it)->isPlayerControlled1()) {
             this->target = *it;
         }
     }
+}
+
+void BattleActor::dealDamage(float damageBaseValue, float attackerStrength, int damageType) {
+
+
+    this->hp -=
+            damageBaseValue * pow(attackerStrength / (damageType ? this->mdf : this->pdf), 1 / global_damageCalcConstB);
+
+    if (this->hp <= 0) {
+        die();
+    }
+}
+
+void BattleActor::die() {
+    this->hp = 0;
+    this->isAlive = false;
 }
