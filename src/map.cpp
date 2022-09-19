@@ -4,7 +4,7 @@
 
 map::map()
 {
-	this->tilemapData.tileMapWidth = 20;
+	this->tilemapData.tileMapWidth = 11;
 
 
 	this->image = LoadImage("assets/graphics/backgrounds/map_test.png");
@@ -13,21 +13,21 @@ map::map()
 	this->position.x = 0;
 	this->position.y = 0;
 
-	this->player_start_pos.x = this->texture.width - 80; //need to parse from json
-	this->player_start_pos.y = this->texture.height - 2050;
+	this->player_start_pos.x = 3936; //need to parse from json
+	this->player_start_pos.y = 1815;
 
 
     //tileset Description File
 	std::ifstream tilesetDescriptionFile("assets/graphics/Testlevel/Testlevel_Tileset_V2.json"); //
 	//begin of parsing
     //level map file
-	std::ifstream levelMapFile("assets/graphics/Testlevel/Testlevel_V2.json"); //json file that says which tile number goes were
+	std::ifstream levelMapFile("assets/graphics/Level_02/Secondlevel.json"); //json file that says which tile number goes were
 	this->levelMap = nlohmann::json::parse(levelMapFile);
 	levelMapFile.close();
 	this->mapData.mapWidth = levelMap["width"]; //Schreibt in mapData die Weite des Levels
 	this->mapData.mapHeight = levelMap["height"];
 
-	this->tileAtlasTexture = LoadTexture("assets/graphics/Testlevel/Testlevel_Tileset_V2.png");
+	this->tileAtlasTexture = LoadTexture("assets/graphics/Level_02/Secondlevel_Tileset.png");
 
 	//go through all contents of "layers"
 	for (auto const& layer : levelMap["layers"]) {
@@ -152,12 +152,7 @@ void map::drawBackground()
 void map::drawForeground()
 {
 
-	for (int y{}; y < mapData.mapHeight; y++) {
-		for (int x{}; x < mapData.mapWidth; x++) {
-			if (mapData.layerForegroundTransparent[x + y * mapData.mapWidth] != -1)
-			DrawTexturePro(tileAtlasTexture, { (float)(mapData.layerForegroundTransparent[x + y * mapData.mapWidth] % this->tilemapData.tileMapWidth) * 32,(float)(mapData.layerForegroundTransparent[x + y * mapData.mapWidth] / this->tilemapData.tileMapWidth) * 32 ,32,32 }, { (float)(x * 32 * 4),(float)(y * 32 * 4),32 * 4,32 * 4 }, {}, 0, WHITE);
-		}
-	}
+
 
 	for (int y{}; y < mapData.mapHeight; y++) {
 		for (int x{}; x < mapData.mapWidth; x++) {
@@ -165,7 +160,12 @@ void map::drawForeground()
 			DrawTexturePro(tileAtlasTexture, { (float)(mapData.layerForegroundOpaque[x + y * mapData.mapWidth] % this->tilemapData.tileMapWidth) * 32,(float)(mapData.layerForegroundOpaque[x + y * mapData.mapWidth] / this->tilemapData.tileMapWidth) * 32 ,32,32 }, { (float)(x * 32 * 4),(float)(y * 32 * 4),32 * 4,32 * 4 }, {}, 0, WHITE);
 		}
 	}
-
+    for (int y{}; y < mapData.mapHeight; y++) {
+        for (int x{}; x < mapData.mapWidth; x++) {
+            if (mapData.layerForegroundTransparent[x + y * mapData.mapWidth] != -1)
+                DrawTexturePro(tileAtlasTexture, { (float)(mapData.layerForegroundTransparent[x + y * mapData.mapWidth] % this->tilemapData.tileMapWidth) * 32,(float)(mapData.layerForegroundTransparent[x + y * mapData.mapWidth] / this->tilemapData.tileMapWidth) * 32 ,32,32 }, { (float)(x * 32 * 4),(float)(y * 32 * 4),32 * 4,32 * 4 }, {}, 0, WHITE);
+        }
+    }
 }
 
 void map::drawCollision() { //debugging feature
