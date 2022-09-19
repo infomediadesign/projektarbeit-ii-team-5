@@ -34,11 +34,11 @@ public:
 	nlohmann::json tilesetDescription;
 	//structs for tilemaps
 	struct {
-		Texture2D tilemap;
-		int tileWidht;
+		Texture2D tileSet;
+		int tileWidth;
 		int tileMapWidth;
 		int rowLength;
-	} tilemapData;
+	} tileSetData;
 
 	struct {
 		std::vector<int> layerGround;

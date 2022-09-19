@@ -4,7 +4,7 @@
 
 map::map()
 {
-	this->tilemapData.tileMapWidth = 11;
+	this->tileSetData.tileMapWidth = 11;
 
 
 	this->image = LoadImage("assets/graphics/backgrounds/map_test.png");
@@ -116,8 +116,8 @@ void map::drawBackground()
 		for (int x{}; x < mapData.mapWidth; x++) {
 			DrawTexturePro(tileAtlasTexture,
                 {
-                    (float)(mapData.layerGround[x + y * mapData.mapWidth] % this->tilemapData.tileMapWidth) * 32,
-                    (float)(mapData.layerGround[x + y * mapData.mapWidth] / this->tilemapData.tileMapWidth) * 32 ,
+                        (float)(mapData.layerGround[x + y * mapData.mapWidth] % this->tileSetData.tileMapWidth) * 32,
+                        (float)(mapData.layerGround[x + y * mapData.mapWidth] / this->tileSetData.tileMapWidth) * 32 ,
                     32,32
                 },
                 {
@@ -133,14 +133,14 @@ void map::drawBackground()
 	for (int y{}; y < mapData.mapHeight; y++) {
 		for (int x{}; x < mapData.mapWidth; x++) {
 			if (mapData.layerDecoration[x + y * mapData.mapWidth] != -1)
-			DrawTexturePro(tileAtlasTexture, { (float)(mapData.layerDecoration[x + y * mapData.mapWidth] % this->tilemapData.tileMapWidth) * 32,(float)(mapData.layerDecoration[x + y * mapData.mapWidth] / this->tilemapData.tileMapWidth) * 32 ,32,32 }, { (float)(x * 32 * 4),(float)(y * 32 * 4),32 * 4,32 * 4 }, {}, 0, WHITE);
+			DrawTexturePro(tileAtlasTexture, {(float)(mapData.layerDecoration[x + y * mapData.mapWidth] % this->tileSetData.tileMapWidth) * 32, (float)(mapData.layerDecoration[x + y * mapData.mapWidth] / this->tileSetData.tileMapWidth) * 32 , 32, 32 }, {(float)(x * 32 * 4), (float)(y * 32 * 4), 32 * 4, 32 * 4 }, {}, 0, WHITE);
 		}
 	}
 	
 	for (int y{}; y < mapData.mapHeight; y++) {
 		for (int x{}; x < mapData.mapWidth; x++) {
 			if (mapData.layerObjects[x + y * mapData.mapWidth] != -1) {
-				DrawTexturePro(tileAtlasTexture, { (float)(mapData.layerObjects[x + y * mapData.mapWidth] % this->tilemapData.tileMapWidth) * 32,(float)(mapData.layerObjects[x + y * mapData.mapWidth] / this->tilemapData.tileMapWidth) * 32 ,32,32 }, { (float)(x * 32 * 4),(float)(y * 32 * 4),32 * 4,32 * 4 }, {}, 0, WHITE);
+				DrawTexturePro(tileAtlasTexture, {(float)(mapData.layerObjects[x + y * mapData.mapWidth] % this->tileSetData.tileMapWidth) * 32, (float)(mapData.layerObjects[x + y * mapData.mapWidth] / this->tileSetData.tileMapWidth) * 32 , 32, 32 }, {(float)(x * 32 * 4), (float)(y * 32 * 4), 32 * 4, 32 * 4 }, {}, 0, WHITE);
 			}
 		}
 	}
@@ -157,13 +157,13 @@ void map::drawForeground()
 	for (int y{}; y < mapData.mapHeight; y++) {
 		for (int x{}; x < mapData.mapWidth; x++) {
 			if (mapData.layerForegroundOpaque[x + y * mapData.mapWidth] != -1)
-			DrawTexturePro(tileAtlasTexture, { (float)(mapData.layerForegroundOpaque[x + y * mapData.mapWidth] % this->tilemapData.tileMapWidth) * 32,(float)(mapData.layerForegroundOpaque[x + y * mapData.mapWidth] / this->tilemapData.tileMapWidth) * 32 ,32,32 }, { (float)(x * 32 * 4),(float)(y * 32 * 4),32 * 4,32 * 4 }, {}, 0, WHITE);
+			DrawTexturePro(tileAtlasTexture, {(float)(mapData.layerForegroundOpaque[x + y * mapData.mapWidth] % this->tileSetData.tileMapWidth) * 32, (float)(mapData.layerForegroundOpaque[x + y * mapData.mapWidth] / this->tileSetData.tileMapWidth) * 32 , 32, 32 }, {(float)(x * 32 * 4), (float)(y * 32 * 4), 32 * 4, 32 * 4 }, {}, 0, WHITE);
 		}
 	}
     for (int y{}; y < mapData.mapHeight; y++) {
         for (int x{}; x < mapData.mapWidth; x++) {
             if (mapData.layerForegroundTransparent[x + y * mapData.mapWidth] != -1)
-                DrawTexturePro(tileAtlasTexture, { (float)(mapData.layerForegroundTransparent[x + y * mapData.mapWidth] % this->tilemapData.tileMapWidth) * 32,(float)(mapData.layerForegroundTransparent[x + y * mapData.mapWidth] / this->tilemapData.tileMapWidth) * 32 ,32,32 }, { (float)(x * 32 * 4),(float)(y * 32 * 4),32 * 4,32 * 4 }, {}, 0, WHITE);
+                DrawTexturePro(tileAtlasTexture, {(float)(mapData.layerForegroundTransparent[x + y * mapData.mapWidth] % this->tileSetData.tileMapWidth) * 32, (float)(mapData.layerForegroundTransparent[x + y * mapData.mapWidth] / this->tileSetData.tileMapWidth) * 32 , 32, 32 }, {(float)(x * 32 * 4), (float)(y * 32 * 4), 32 * 4, 32 * 4 }, {}, 0, WHITE);
         }
     }
 }
