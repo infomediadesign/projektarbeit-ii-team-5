@@ -17,7 +17,6 @@ public:
     void update();
     void draw();
     bool isActive();
-    bool setActive(bool status);
 
     // use this methods from player to add items
     void addMudbomb();
@@ -30,12 +29,15 @@ protected:
 
 	Image bag_img;
 	Texture2D backpack;
+    Texture2D infobox;
     Texture2D selection;
     void setSlots();
     void navigateInventory();
     void drawItems(int i);
+    void drawInfobox();
 
     Rectangle slot_positions[12];
+    Vector2 info_positions[3];
 
     controlInput* controlInputs{};
 
@@ -51,6 +53,7 @@ protected:
     int container_slot = 0;
 
 	bool isVisible = false;
+    bool isInfo = false;
     int slot_offset = (32 + 16) * scale_factor;
     int current_slot = 0;
 

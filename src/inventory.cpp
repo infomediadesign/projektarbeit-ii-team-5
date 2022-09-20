@@ -12,6 +12,7 @@ inventory::inventory(controlInput* x)
 
     this->backpack = LoadTexture("assets/graphics/UI/Inventory/Backpack.png");
     this->selection = LoadTexture("assets/graphics/UI/Inventory/Slot_Selection.png");
+    this->infobox = LoadTexture("assets/graphics/UI/Inventory/InfosBox.png");
 
     this->controlInputs = x;
 
@@ -42,21 +43,20 @@ void inventory::update()
 		std::cout << "Inventory bool has been flipped to: " << this->isVisible << std::endl;
 	}
 
-    /*
+
     // add items manually for debug
-    if (IsKeyPressed(KEY_J))
+    if (IsKeyPressed(KEY_M))
     {
         addItem(heilbeere);
-    }
-    else if (IsKeyPressed(KEY_K))
-    {
+        addItem(seifenblase);
+        addItem(mudbomb);
+        addItem(seifenblase);
+        addItem(mudbomb);
+        addItem(heilbeere);
+        addItem(heilbeere);
         addItem(mudbomb);
     }
-    else if (IsKeyPressed(KEY_L))
-    {
-        addItem(seifenblase);
-    }
-     */
+
 
     navigateInventory();
 }
@@ -89,6 +89,18 @@ void inventory::draw()
             drawItems(i);
         }
 
+        if (isInfo)
+        {
+            DrawTexturePro(this->infobox,
+                           {0, 0, (float)this->infobox.width, (float)this->infobox.height},
+                           {(float)GetScreenWidth()/2 - this->infobox.width/2*this->scale_factor, (float)GetScreenHeight() / 2 - this->infobox.height / 2 * this->scale_factor, (float)this->infobox.width * this->scale_factor, (float)this->infobox.height * this->scale_factor},
+                           {0, 0} ,0, WHITE);
+
+            drawInfobox();
+        }
+
+
+
 	}
 }
 
@@ -114,6 +126,10 @@ void inventory::setSlots()
     this->slot_positions[9] = {slot_positions[8].x + slot_offset, slot_positions[8].y, (float)selection.width*scale_factor, (float)selection.height*scale_factor};
     this->slot_positions[10] = {slot_positions[9].x + slot_offset, slot_positions[9].y, (float)selection.width*scale_factor, (float)selection.height*scale_factor};
     this->slot_positions[11] = {slot_positions[10].x + slot_offset, slot_positions[10].y, (float)selection.width*scale_factor, (float)selection.height*scale_factor};
+
+    info_positions[0] = {(float)GetScreenWidth()/2 - 350, (float)GetScreenHeight() / 2 - 100};
+    info_positions[1] = {info_positions[0].x, info_positions[0].y + 60};
+    info_positions[2] = {info_positions[0].x, info_positions[1].y + 60};
 }
 
 void inventory::drawItems(int i)
@@ -218,6 +234,32 @@ void inventory::navigateInventory()
                     current_slot = 7;
             }
         }
+
+        // open/close infos
+        if (isInfo == true && IsKeyPressed(KEY_SPACE) || isInfo == true && IsKeyPressed(KEY_I))
+        {
+            isInfo = false;
+        }
+        else if (isInfo == false && IsKeyPressed(KEY_SPACE))
+        {
+            isInfo = true;
+        }
+    }
+}
+
+void inventory::drawInfobox()
+{
+    if (current_slot <= container_slot - 1)
+    {
+        // print info accessing the Inventory item
+        DrawText(("Slot: " + std::to_string(this->current_slot + 1)).c_str(), this->info_positions[0].x, this->info_positions[0].y, 40, GetColor(0xb9824bff));
+        DrawText(("Name: " + inventoryContainer.getItem(current_slot)->GetName()).c_str(), this->info_positions[1].x, this->info_positions[1].y, 40, GetColor(0xb9824bff));
+        DrawText(("Description: " + (inventoryContainer.getItem(current_slot)->GetDescription())).c_str(), this->info_positions[2].x, this->info_positions[2].y, 40, GetColor(0xb9824bff));
+    }
+    else
+    {
+        // print default
+        DrawText(("Slot: " + std::to_string(this->current_slot +1)).c_str(), this->info_positions[0].x, this->info_positions[0].y, 40, WHITE);
     }
 }
 
@@ -241,5 +283,3 @@ void inventory::addItem(itemBase *item)
 }
 
 bool inventory::isActive() { return this->isVisible; }
-
-bool inventory::setActive(bool status) { status = isVisible; }
