@@ -54,7 +54,17 @@ int main() {
     theBattle->initTestBattle();
     theBattle->controlInputs = &controlInputs;
 
-    itemHeilbeere* heilbeere = new itemHeilbeere;
+    itemHeilbeere heilbeere_1({38*128, 51*128});
+    itemHeilbeere heilbeere_2({10*128, 118*128});
+    itemHeilbeere heilbeere_3({48*128, 96*128});
+
+    itemMudbomb bärenfalle_1({44*128, 34*128});
+    itemMudbomb bärenfalle_2({35*128, 101*128});
+    itemMudbomb bärenfalle_3({64*128, 100*128});
+
+    itemSeifenblase blume_1({97*128, 32*128});
+    itemSeifenblase blume_2({54*128, 78*128});
+
     itemBase* Item = new itemBase;
 
 	this_camera->target = this_player->position;
@@ -130,13 +140,59 @@ int main() {
 
                 // Items
                 // check if player collides with item
-                heilbeere->update(this_player->position);
+                heilbeere_1.update(this_player->position);
+                heilbeere_2.update(this_player->position);
+                heilbeere_3.update(this_player->position);
+
+                bärenfalle_1.update(this_player->position);
+                bärenfalle_2.update(this_player->position);
+                bärenfalle_3.update(this_player->position);
+
+                blume_1.update(this_player->position);
+                blume_2.update(this_player->position);
 
                 // if player collides item gets set to collected
-                if (heilbeere->GetCollected() == false && heilbeere->GetActive() == false)
+                if (heilbeere_1.GetCollected() == false && heilbeere_1.GetActive() == false)
                 {
                     this_inventory->addHeilbeere();
-                    heilbeere->SetCollected(true);
+                    heilbeere_1.SetCollected(true);
+                }
+                if (heilbeere_2.GetCollected() == false && heilbeere_2.GetActive() == false)
+                {
+                    this_inventory->addHeilbeere();
+                    heilbeere_2.SetCollected(true);
+                }
+                if (heilbeere_3.GetCollected() == false && heilbeere_3.GetActive() == false)
+                {
+                    this_inventory->addHeilbeere();
+                    heilbeere_3.SetCollected(true);
+                }
+
+                if (bärenfalle_1.GetCollected() == false && bärenfalle_1.GetActive() == false)
+                {
+                    this_inventory->addMudbomb();
+                    bärenfalle_1.SetCollected(true);
+                }
+                if (bärenfalle_2.GetCollected() == false && bärenfalle_2.GetActive() == false)
+                {
+                    this_inventory->addMudbomb();
+                    bärenfalle_2.SetCollected(true);
+                }
+                if (bärenfalle_3.GetCollected() == false && bärenfalle_3.GetActive() == false)
+                {
+                    this_inventory->addMudbomb();
+                    bärenfalle_1.SetCollected(true);
+                }
+
+                if (blume_1.GetCollected() == false && blume_1.GetActive() == false)
+                {
+                    this_inventory->addSeifenblase();
+                    blume_1.SetCollected(true);
+                }
+                if (blume_2.GetCollected() == false && blume_2.GetActive() == false)
+                {
+                    this_inventory->addSeifenblase();
+                    blume_2.SetCollected(true);
                 }
 
                 // Player
@@ -173,7 +229,7 @@ int main() {
             // reset player position to begin of map
             this_player->position = this_map->player_start_pos;
             this_inventory->deleteItems();
-            heilbeere->reset();
+            heilbeere_1.reset();
 
             screen_death->update();
             if (screen_death->buttons == screenDeath::giveUp && controlInputs.confirm == 1)
@@ -229,7 +285,16 @@ int main() {
 			this_camera->offset.x -= 128 * GetGamepadAxisMovement(0, 2);
 			this_camera->offset.y -= 128 * GetGamepadAxisMovement(0, 3);
 			this_map->drawBackground();
-            heilbeere->draw();
+
+            heilbeere_1.draw();
+            heilbeere_2.draw();
+            heilbeere_3.draw();
+            bärenfalle_1.draw();
+            bärenfalle_2.draw();
+            bärenfalle_3.draw();
+            blume_1.draw();
+            blume_2.draw();
+
 			this_player->draw();
 			this_map->drawForeground();
 

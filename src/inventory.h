@@ -42,9 +42,9 @@ protected:
     // add an inventory container with 12 slots
     inventoryTemplate<itemBase*, 12> inventoryContainer;
     // add pointers to item objects
-    itemHeilbeere* heilbeere = new itemHeilbeere;
-    itemMudbomb* mudbomb = new itemMudbomb;
-    itemSeifenblase* seifenblase = new itemSeifenblase;
+    itemHeilbeere* heilbeere = new itemHeilbeere({0, 0});
+    itemMudbomb* mudbomb = new itemMudbomb({0, 0});
+    itemSeifenblase* seifenblase = new itemSeifenblase({0, 0});
 
     void addItem(itemBase* item);
 

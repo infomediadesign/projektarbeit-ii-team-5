@@ -9,7 +9,7 @@
 
 class itemMudbomb : public itemBase {
 public:
-    itemMudbomb();
+    itemMudbomb(Vector2 pos);
 };
 
 

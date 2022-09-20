@@ -4,13 +4,12 @@
 
 #include "itemHeilbeere.h"
 
-itemHeilbeere::itemHeilbeere()
+itemHeilbeere::itemHeilbeere(Vector2 pos)
 {
     this->name = "Heilbeere";
     this->description = "Heilt HP.";
     this->healHP = 100;
     this->texture_item = LoadTexture("assets/graphics/Items/Heilbeeren.png");
-    this->texture_infos = LoadTexture("assets/graphics/Items/Heilbeeren.png");
-    this->position = {40 * 128, 14 * 128};
+    this->position = pos;
     this->hitbox_size = 100;
 }
