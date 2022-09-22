@@ -31,7 +31,7 @@ class battleMenu{
 
 class Battle {
 	//attributes
-private:
+public:
 	std::vector<BattleActor*> theBattleActors{};
 
 	int waitingForAnimtaion = 0;
@@ -41,13 +41,11 @@ private:
     int currentTurn = 0;
     int currentlyActingNumber = 0; //secondary state switch
     std::string infoText = "";
-public:
 	controlInput* controlInputs{};
     bool killMe = false;
 
 
 	//methods
-private:
 	void decreaseAllNats();
 	void calculatePrognosis(); 
 	void receiveUIAnswer(std::string);
@@ -62,7 +60,6 @@ private:
     void drawBattleEnemy(Texture2D texture, Vector2 position);
 
     void onButtonPress();
-public:
 	Battle(int advantage, int encounternumber); //constructor
 	void frameRoutine(); //wird jeden frame aufgerufen
 	void drawBattle();

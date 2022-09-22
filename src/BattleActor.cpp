@@ -2,6 +2,7 @@
 #include <iostream>
 #include "BattleActor.h"
 #include "math.h"
+#include "battle.h"
 
 BattleActor *BattleActor::getAddress() {
     return this;
@@ -141,13 +142,6 @@ void BattleActor::setDNat(int dNat) {
     BattleActor::dNat = dNat;
 }
 
-std::vector<BattleActor *> *BattleActor::getOtherActors() const {
-    return otherActors;
-}
-
-void BattleActor::setOtherActors(std::vector<BattleActor *> *otherActors) {
-    this->otherActors = otherActors;
-}
 
 int BattleActor::getNextAttack() const {
     return nextAttack;
@@ -184,14 +178,14 @@ void BattleActor::setTarget(BattleActor *target) {
 }
 
 void BattleActor::autoTarget() {
-    for (auto it = *otherActors->begin(); it != *otherActors->end(); it++) {
+    for (auto it = 0; it != myBattle->theBattleActors.size(); it++) {
         if (!this->isPlayerControlled) {
-            if (it->isPlayerControlled) {
-                this->target = it;
+            if (myBattle->theBattleActors[it]->isPlayerControlled) {
+                this->target = myBattle->theBattleActors[it];
             }
         } else {
-            if (!it->isPlayerControlled1()) {
-                this->target = it;
+            if (!myBattle->theBattleActors[it]->isPlayerControlled) {
+                this->target = myBattle->theBattleActors[it];
             }
         }
     }

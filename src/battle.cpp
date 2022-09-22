@@ -232,6 +232,7 @@ void Battle::frameRoutine() {
             if (debug) {
                 std::cout << "DEBUG: Tick is started\n";
             }
+            currentTurn++;
             std::cout
                     << TextFormat("It is tick %i. Blaize's HP are %f and the angry shrooms is %f\n", this->currentTurn,
                                   this->theBattleActors[0]->getHp(), this->theBattleActors[1]->getHp());
@@ -241,12 +242,6 @@ void Battle::frameRoutine() {
         case playerActionSelect:
             if (debug && IsKeyPressed(KEY_H))
                 std::cout << "DEBUG: Player Action selection\n";
-            if (controlInputs->up >= 1) {
-                theBattleActors[currentlyActingNumber]->setNextAttack(basic_attack);
-                theBattleActors[currentlyActingNumber]->autoTarget();
-                this->currentlyActingNumber++;
-                this->battleState = actorsActionSelection;
-            }
 
             break;
         case actorsActionSelection:
@@ -288,7 +283,7 @@ void Battle::frameRoutine() {
 void Battle::actorsActionSelectionRoutine() {
     if (debug)
         std::cout << "DEBUG: Actors Action confirmation\n";
-    if (currentlyActingNumber >= theBattleActors.size()) { //checks if the round is done
+    if (currentlyActingNumber > theBattleActors.size()) { //checks if the round is done
         this->battleState = playOutRound;
         currentlyActingNumber = 0;
     } else {
@@ -333,8 +328,10 @@ void Battle::onButtonPress() {
                 case 2:
                     std::cout << "Attack " << gui_currentAction << std::endl;
                     theBattleActors[currentlyActingNumber]->setNextAttackFromMoveset(gui_currentAction);
+                    theBattleActors[currentlyActingNumber]->autoTarget();
                     currentlyActingNumber++;
                     this->battleState = actorsActionSelection;
+                    //Hier mus UI geschlossen werden I think.
                     break;
 
                 case 3:

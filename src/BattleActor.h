@@ -66,7 +66,6 @@ public:
 
     void setNeedAttackMenu(bool needAttackMenu);
 
-private:
     bool isPlayerControlled = false;
     bool isAlive = true;
     float hp = 100;
@@ -89,10 +88,8 @@ public:
     void autoTarget();
     void setTarget(BattleActor *target);
 
-private:
     bool needAttackMenu;
 
-private:
 
 public:
     //getter
