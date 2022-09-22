@@ -151,6 +151,7 @@ int main() {
 		case FIGHT:
 		{
             theBattle->update_gui();
+            theBattle->frameRoutine();
 
 			// Press enter to return to GAMEPLAY screen
 			if (controlInputs.confirm == 1)

@@ -106,4 +106,6 @@ public:
     void draw();
     void resetGUI();
     void update_gui();
+
+    void actorsActionSelectionRoutine();
 };

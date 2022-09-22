@@ -82,6 +82,7 @@ private:
     std::vector<BattleActor*>* otherActors;
     battleAttackIndex nextAttack = undefined;
     BattleActor* target;
+    battleAttackIndex moveset[3] = {basic_attack,basic_attack,basic_attack};
 public:
     BattleActor *getTarget() const;
     void autoTarget();
@@ -98,11 +99,15 @@ public:
     BattleActor* getAddress();
 
     void startTurn();
-    int evaluateAction();
+    void evaluateAction();
     void executeAction();
     BattleActor(bool player, int archetype,std::vector<BattleActor*>* others);
 
     void dealDamage(float damageBaseValue, float attackerStrength, int damageType);
 
     void die();
+
+    void setNextAttackFromMoveset(int i);
+
+
 };

@@ -126,7 +126,8 @@ void map::drawBackground()
                     32 * 4,32 * 4
                 },
                 {}, 0, WHITE);
-		}	//this draws the tiles on screen. This uses a loop for each dimension to make the readability a *bit* easier. Those lines are fairly long, but it's not too complex once you get into it
+		}	//this draws the tiles on screen. This uses a loop for each dimension to make the readability a *bit* easier.
+        // Those lines are fairly long, but it's not too complex once you get into it
 	}   //also maybe these should be a function but that's for future me -o
         //I'm future me and still don't want to -o
 	
@@ -170,6 +171,6 @@ void map::drawForeground()
 
 void map::drawCollision() { //debugging feature
 	for (int i = 0; i < collisionRectangles.size(); i++) {
-		DrawRectangleRec(collisionRectangles[i], {(unsigned char)255,(unsigned char) 0,(unsigned char) 0,(unsigned char) 128});
+		DrawRectangleRec(collisionRectangles[i], GetColor(0xFF000080));
 	}
 }

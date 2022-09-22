@@ -10,7 +10,7 @@ BattleActor::BattleActor(bool player, int archetype, std::vector<BattleActor *> 
     this->isPlayerControlled = player;
     this->otherActors = others;
     switch (archetype) {
-        case (0): //Blaize
+        case 0: //Blaize
             this->maxHP = 500;
             this->hp = 500;
             this->pat = 40;
@@ -18,20 +18,28 @@ BattleActor::BattleActor(bool player, int archetype, std::vector<BattleActor *> 
             this->dNat = 7;
             this->nat = 7;
             this->attackStr = 50;
+            this->moveset[1] = foxFire;
+            this->moveset[2] = foxShield;
             break;
-        case (1): //EVERYBODY WANTS TO BE, MY ENEMY!
+        case 1: //EVERYBODY WANTS TO BE, MY ENEMY!
             this->maxHP = 300;
             this->hp = 300;
             this->pat = 50;
             this->pdf = 60;
             this->dNat = 9;
             this->nat = 3;
+            this->attackStr = 35;
+            this->moveset[1] = shroomAngerment;
+            this->moveset[2] = basic_attack;
+            break;
+        default:
+;
     }
 
 }
 
-int BattleActor::evaluateAction() {
-    return 0;
+void BattleActor::evaluateAction() {
+    nextAttack = moveset[GetRandomValue(0,2)];
 }
 
 bool BattleActor::isPlayerControlled1() const {
@@ -157,7 +165,8 @@ void BattleActor::setNeedAttackMenu(bool needAttackMenu) {
 void BattleActor::executeAction() {
     switch (this->nextAttack) {
         case basic_attack:
-            target->dealDamage(50, this->pat, 0);
+            target->dealDamage(this->attackStr, this->pat, 0);
+            this->nat = this->dNat;
             break;
         default:
             ;
@@ -194,4 +203,8 @@ void BattleActor::dealDamage(float damageBaseValue, float attackerStrength, int 
 void BattleActor::die() {
     this->hp = 0;
     this->isAlive = false;
+}
+
+void BattleActor::setNextAttackFromMoveset(int i) {
+    this->nextAttack = this->moveset[i];
 }
