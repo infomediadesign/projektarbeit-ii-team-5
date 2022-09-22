@@ -41,11 +41,13 @@ void Battle::update_gui() {
             case 1:
                 isActionSelectVisible = true;
                 isItemSelectVisible = false;
+                goto skipVisibles;
                 break;
 
             case 2:
                 isActionSelectVisible = false;
                 isItemSelectVisible = true;
+                goto skipVisibles;
                 break;
 
         }
@@ -70,6 +72,9 @@ void Battle::update_gui() {
         if (IsKeyPressed(KEY_Q)) {
             this->showActionInfo = false;
         }
+        if (IsKeyPressed(KEY_E)) {
+            onButtonPress();
+        }
     }
 
     if (isItemSelectVisible) {
@@ -85,9 +90,7 @@ void Battle::update_gui() {
             this->showItemInfo = false;
         }
     }
-
-
-    onButtonPress();
+    skipVisibles:;
 
 }
 
@@ -238,11 +241,14 @@ void Battle::frameRoutine() {
                                   this->theBattleActors[0]->getHp(), this->theBattleActors[1]->getHp());
             decreaseAllNats();
             this->battleState = playerActionSelect;
+            this->gui_currentScreen = 0;
+            this->gui_currentAction = 0;
             break;
         case playerActionSelect:
-            if (debug && IsKeyPressed(KEY_H))
+            if (debug && IsKeyPressed(KEY_H)) {
                 std::cout << "DEBUG: Player Action selection\n";
-
+            }
+            this->gui_currentScreen = 1;
             break;
         case actorsActionSelection:
             actorsActionSelectionRoutine();
@@ -283,7 +289,7 @@ void Battle::frameRoutine() {
 void Battle::actorsActionSelectionRoutine() {
     if (debug)
         std::cout << "DEBUG: Actors Action confirmation\n";
-    if (currentlyActingNumber > theBattleActors.size()) { //checks if the round is done
+    if (currentlyActingNumber >= theBattleActors.size()) { //checks if the round is done
         this->battleState = playOutRound;
         currentlyActingNumber = 0;
     } else {
@@ -296,6 +302,8 @@ void Battle::actorsActionSelectionRoutine() {
                 currentlyActingNumber++;
             }
         } else {
+            theBattleActors[currentlyActingNumber]->setNextAttackFromMoveset(GetRandomValue(0, 1));
+            theBattleActors[currentlyActingNumber]->autoTarget();
             currentlyActingNumber++;
         }
     }
@@ -314,52 +322,51 @@ void Battle::initTestBattle() {
 }
 
 void Battle::onButtonPress() {
-    if (IsKeyPressed(KEY_E)) {
-        // party
-        if (gui_currentScreen == 0) {
-            // screen 0 is only party members there is nothing to select
-            // update stuff to display here i guess
-        }
-            // actions
-        else if (gui_currentScreen == 1) {
-            switch (gui_currentAction) {
-                case 0:
-                case 1:
-                case 2:
-                    std::cout << "Attack " << gui_currentAction << std::endl;
-                    theBattleActors[currentlyActingNumber]->setNextAttackFromMoveset(gui_currentAction);
-                    theBattleActors[currentlyActingNumber]->autoTarget();
-                    currentlyActingNumber++;
-                    this->battleState = actorsActionSelection;
-                    //Hier mus UI geschlossen werden I think.
-                    break;
+    // party
+    if (gui_currentScreen == 0) {
+        // screen 0 is only party members there is nothing to select
+        // update stuff to display here i guess
+    }
+        // actions
+    else if (gui_currentScreen == 1) {
+        switch (gui_currentAction) {
+            case 0:
+            case 1:
+            case 2:
+                std::cout << "Attack " << gui_currentAction << std::endl;
+                theBattleActors[currentlyActingNumber]->setNextAttackFromMoveset(gui_currentAction);
+                theBattleActors[currentlyActingNumber]->autoTarget();
+                currentlyActingNumber++;
+                this->battleState = actorsActionSelection;
+                gui_currentScreen = 0;
+                break;
 
-                case 3:
-                    std::cout << "Wait" << std::endl;
-                    currentlyActingPointer->setNextAttack(wait);
-                    currentlyActingNumber++;
-                    this->battleState = actorsActionSelection;
+            case 3:
+                std::cout << "Wait" << std::endl;
+                theBattleActors[currentlyActingNumber]->setNextAttack(wait);
+                currentlyActingNumber++;
+                this->battleState = actorsActionSelection;
 
-                    // infos in slot 4 ist in gui abgedeckt
-            }
-        }
-            // items
-        else if (gui_currentScreen == 2) {
-            switch (gui_currentItem) {
-                case 0:
-                    std::cout << "Item 1" << std::endl;
-                    break;
-
-                case 1:
-                    std::cout << "Item 2" << std::endl;
-                    break;
-
-                case 2:
-                    std::cout << "Item 3" << std::endl;
-                    break;
-
-                    // infos in slot 4 ist in gui abgedeckt
-            }
+                // infos in slot 4 ist in gui abgedeckt
         }
     }
+        // items
+    else if (gui_currentScreen == 2) {
+        switch (gui_currentItem) {
+            case 0:
+                std::cout << "Item 1" << std::endl;
+                break;
+
+            case 1:
+                std::cout << "Item 2" << std::endl;
+                break;
+
+            case 2:
+                std::cout << "Item 3" << std::endl;
+                break;
+
+                // infos in slot 4 ist in gui abgedeckt
+        }
+    }
+
 }

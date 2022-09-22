@@ -36,7 +36,6 @@ public:
 
 	int waitingForAnimtaion = 0;
 	bool isWaitingForPlayerInput{};
-	BattleActor* currentlyActingPointer{};
     enumBattleState battleState = startOfTick;
     int currentTurn = 0;
     int currentlyActingNumber = 0; //secondary state switch

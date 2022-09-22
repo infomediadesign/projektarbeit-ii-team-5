@@ -164,6 +164,7 @@ void BattleActor::executeAction() {
         case basic_attack:
             target->takeDamage(this->attackStr, this->pat, 0);
             this->nat = this->dNat;
+            this->nextAttack = undefined;
             break;
         default:;
     }

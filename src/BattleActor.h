@@ -81,7 +81,7 @@ public:
     int dNat = 10;
     Battle* myBattle;
     battleAttackIndex nextAttack = undefined;
-    BattleActor* target;
+    BattleActor* target = this;
     battleAttackIndex moveset[3] = {basic_attack,basic_attack,basic_attack};
 public:
     BattleActor *getTarget() const;
