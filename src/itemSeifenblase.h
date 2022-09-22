@@ -9,7 +9,7 @@
 
 class itemSeifenblase : public itemBase {
 public:
-    itemSeifenblase();
+    itemSeifenblase(Vector2 pos);
 };
 
 

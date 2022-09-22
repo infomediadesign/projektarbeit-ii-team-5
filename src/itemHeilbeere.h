@@ -9,7 +9,7 @@
 
 class itemHeilbeere : public itemBase {
 public:
-    itemHeilbeere();
+    itemHeilbeere(Vector2 position);
 
 protected:
     int healHP;
