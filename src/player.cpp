@@ -101,7 +101,15 @@ void player::movement(std::vector<Rectangle> &walls) {
 
     // set moving false every frame
     this->isMoving = false;
-
+    if (IsKeyDown(KEY_LEFT_SHIFT)){
+        this->movement_speed = 9;
+        if (IsKeyDown(KEY_RIGHT_SHIFT)){
+            this->movement_speed = 14;
+        }
+    }
+    else{
+        this->movement_speed = 5;
+    }
     //right
     if (controlInputs->right) {
         this->position.x += this->movement_speed;
