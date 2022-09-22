@@ -1,4 +1,5 @@
 
+#include <iostream>
 #include "BattleActor.h"
 #include "math.h"
 
@@ -6,11 +7,12 @@ BattleActor *BattleActor::getAddress() {
     return this;
 }
 
-BattleActor::BattleActor(bool player, int archetype, std::vector<BattleActor *> *others) {
+BattleActor::BattleActor(bool player, int archetype, Battle *theBattleImIn) {
     this->isPlayerControlled = player;
-    this->otherActors = others;
+    this->myBattle = theBattleImIn;
     switch (archetype) {
         case 0: //Blaize
+            std::cout << "init blaize\n";
             this->maxHP = 500;
             this->hp = 500;
             this->pat = 40;
@@ -22,6 +24,7 @@ BattleActor::BattleActor(bool player, int archetype, std::vector<BattleActor *> 
             this->moveset[2] = foxShield;
             break;
         case 1: //EVERYBODY WANTS TO BE, MY ENEMY!
+            std::cout << "init enemy\n";
             this->maxHP = 300;
             this->hp = 300;
             this->pat = 50;
@@ -32,14 +35,14 @@ BattleActor::BattleActor(bool player, int archetype, std::vector<BattleActor *> 
             this->moveset[1] = shroomAngerment;
             this->moveset[2] = basic_attack;
             break;
-        default:
-;
+        default:;
     }
+    return;
 
 }
 
 void BattleActor::evaluateAction() {
-    nextAttack = moveset[GetRandomValue(0,2)];
+    nextAttack = moveset[GetRandomValue(0, 2)];
 }
 
 bool BattleActor::isPlayerControlled1() const {
@@ -165,11 +168,10 @@ void BattleActor::setNeedAttackMenu(bool needAttackMenu) {
 void BattleActor::executeAction() {
     switch (this->nextAttack) {
         case basic_attack:
-            target->dealDamage(this->attackStr, this->pat, 0);
+            target->takeDamage(this->attackStr, this->pat, 0);
             this->nat = this->dNat;
             break;
-        default:
-            ;
+        default:;
     }
 }
 
@@ -182,14 +184,20 @@ void BattleActor::setTarget(BattleActor *target) {
 }
 
 void BattleActor::autoTarget() {
-    for (auto it = otherActors->begin(); it != otherActors->end(); it++) {
-        if ((*it)->isPlayerControlled1()) {
-            this->target = *it;
+    for (auto it = *otherActors->begin(); it != *otherActors->end(); it++) {
+        if (!this->isPlayerControlled) {
+            if (it->isPlayerControlled) {
+                this->target = it;
+            }
+        } else {
+            if (!it->isPlayerControlled1()) {
+                this->target = it;
+            }
         }
     }
 }
 
-void BattleActor::dealDamage(float damageBaseValue, float attackerStrength, int damageType) {
+void BattleActor::takeDamage(float damageBaseValue, float attackerStrength, int damageType) {
 
 
     this->hp -=

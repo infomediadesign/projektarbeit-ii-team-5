@@ -2,6 +2,7 @@
 #include <vector>
 #include "forestSpiritsStructs.h"
 
+class Battle;
 
 class BattleActor {
 public:
@@ -79,7 +80,7 @@ private:
     float maxMana = 100;
     float attackStr;
     int dNat = 10;
-    std::vector<BattleActor*>* otherActors;
+    Battle* myBattle;
     battleAttackIndex nextAttack = undefined;
     BattleActor* target;
     battleAttackIndex moveset[3] = {basic_attack,basic_attack,basic_attack};
@@ -94,16 +95,15 @@ private:
 private:
 
 public:
-    BattleActor(std::vector<BattleActor>* otherActors, int actorType);
     //getter
     BattleActor* getAddress();
 
     void startTurn();
     void evaluateAction();
     void executeAction();
-    BattleActor(bool player, int archetype,std::vector<BattleActor*>* others);
+    BattleActor(bool player, int archetype, Battle *theBattleImIn);
 
-    void dealDamage(float damageBaseValue, float attackerStrength, int damageType);
+    void takeDamage(float damageBaseValue, float attackerStrength, int damageType);
 
     void die();
 

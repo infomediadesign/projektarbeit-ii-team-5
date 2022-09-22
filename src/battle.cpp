@@ -229,13 +229,17 @@ const bool debug = true;
 void Battle::frameRoutine() {
     switch (battleState) {
         case startOfTick:
-            if (debug)
+            if (debug) {
                 std::cout << "DEBUG: Tick is started\n";
+            }
+            std::cout
+                    << TextFormat("It is tick %i. Blaize's HP are %f and the angry shrooms is %f\n", this->currentTurn,
+                                  this->theBattleActors[0]->getHp(), this->theBattleActors[1]->getHp());
             decreaseAllNats();
             this->battleState = playerActionSelect;
             break;
         case playerActionSelect:
-            if (debug)
+            if (debug && IsKeyPressed(KEY_H))
                 std::cout << "DEBUG: Player Action selection\n";
             if (controlInputs->up >= 1) {
                 theBattleActors[currentlyActingNumber]->setNextAttack(basic_attack);
@@ -246,7 +250,7 @@ void Battle::frameRoutine() {
 
             break;
         case actorsActionSelection:
-           actorsActionSelectionRoutine();
+            actorsActionSelectionRoutine();
             break;
         case textBubble:
             if (controlInputs->confirm) {
@@ -267,9 +271,9 @@ void Battle::frameRoutine() {
                 std::cout << "DEBUG: Round is being played\n";
             if (theBattleActors[currentlyActingNumber]->getNat() <= 0) {
                 theBattleActors[currentlyActingNumber]->executeAction();
+            }
+            currentlyActingNumber++;
 
-            } else
-                currentlyActingNumber++;
             if (currentlyActingNumber >= theBattleActors.size()) {
                 currentlyActingNumber = 0;
                 this->battleState = startOfTick;
@@ -281,7 +285,7 @@ void Battle::frameRoutine() {
     }
 }
 
-void Battle::actorsActionSelectionRoutine(){
+void Battle::actorsActionSelectionRoutine() {
     if (debug)
         std::cout << "DEBUG: Actors Action confirmation\n";
     if (currentlyActingNumber >= theBattleActors.size()) { //checks if the round is done
@@ -309,9 +313,9 @@ void Battle::decreaseAllNats() {
 }
 
 void Battle::initTestBattle() {
-
-    this->theBattleActors.push_back(new BattleActor(true, 0, &this->theBattleActors));
-    this->theBattleActors.push_back(new BattleActor(false, 1, &this->theBattleActors));
+    std::cout << "the Test battle is being initialized\n";
+    this->theBattleActors.push_back(new BattleActor(true, 0, this));
+    this->theBattleActors.push_back(new BattleActor(false, 1, this));
 }
 
 void Battle::onButtonPress() {
